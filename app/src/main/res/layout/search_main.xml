@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_floating_material_dark">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/search_icon"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:paddingLeft="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/goButton"
+            android:textColor="#ffffff"
+            android:hint="Search for a movie, artist or genre"
+            android:textSize="16dp"
+            android:textColorHint="#ffffff"/>
+        <Button
+            android:text="@string/go_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:id="@+id/goButton"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="@string/suggestions"
+        android:textColor="#ffffff"
+        android:textSize="24dp"/>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/suggestionView"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp">
+
+    </HorizontalScrollView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="@string/new_theatres"
+        android:textColor="#ffffff"
+        android:textSize="24dp"/>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/newTheatresView"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp">
+
+    </HorizontalScrollView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="@string/friends_watch"
+        android:textColor="#ffffff"
+        android:textSize="24dp"/>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/friendsView"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp">
+
+    </HorizontalScrollView>
+
+</LinearLayout>
