@@ -1,4 +1,4 @@
-package model;
+package comp.mymoviemanager.model;
 
 import java.util.LinkedList;
 
