@@ -1,37 +1,25 @@
 package comp.mymoviemanager;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+import comp.mymoviemanager.control.SearchButtonCtrl;
+import comp.mymoviemanager.model.MovieModel;
+import comp.mymoviemanager.view.SearchView;
+
+public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_example);
+        setContentView(R.layout.search_main);
+
+        MovieModel model = ((MyMovieApplication) this.getApplication()).getModel();
+
+        SearchView mainView = new SearchView(findViewById(R.id.main_search), model);
+        SearchButtonCtrl ctrl = new SearchButtonCtrl(model, mainView);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_example, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }
