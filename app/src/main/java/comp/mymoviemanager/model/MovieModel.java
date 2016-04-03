@@ -1,5 +1,7 @@
 package comp.mymoviemanager.model;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
@@ -9,15 +11,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.LinkedList;
+import java.util.Observable;
 
 /**
  * Created by Goldenberg on 02/04/16.
  */
-public class MovieModel {
+public class MovieModel extends Observable{
 
     LinkedList<Movie> suggestions = new LinkedList<>();
     LinkedList<Movie> new_in_theatres = new LinkedList<>();
@@ -30,11 +36,15 @@ public class MovieModel {
     private int func = -1;
 
 
-    public void getSuggestions(String text){
+    public void getSuggestions(){
         //String url = apiURL + "title_kw=" + text + "&pg=1&rpp=20&api_key=" + api_key;
         String url = apiURL + "movie/popular?api_key=" + api_key;
         func = 0;
         new CallAPI().execute(url);
+    }
+
+    public LinkedList<Movie> getSuggestionsResult(){
+        return suggestions;
     }
 
     public class CallAPI extends AsyncTask<String, String, String>{
@@ -64,8 +74,7 @@ public class MovieModel {
                 finally{
                     urlConnection.disconnect();
                 }
-            }
-            catch(Exception e) {
+            } catch (Exception e) {
                 Log.e("ERROR", e.getMessage(), e);
                 return null;
             }
@@ -81,9 +90,10 @@ public class MovieModel {
                     for(int i=0; i < json_array_participants.length(); i++) {
                         JSONObject participant = json_array_participants.getJSONObject(i);
                         //System.out.println(participant.getString("original_title"));
-                        suggestions.add(new Movie(participant.getString("original_title"),participant.getString("release_date"),"",participant.getString("popularity"),participant.getString("original_language"),participant.getString("overview")));
+                        suggestions.add(new Movie(participant.getString("original_title"),participant.getString("release_date"),"",participant.getString("popularity"),participant.getString("original_language"),participant.getString("overview"),participant.getString("poster_path")));
                     }
-
+                    setChanged();
+                    notifyObservers(0);
                     func = -1;
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -92,4 +102,5 @@ public class MovieModel {
             }
         }
     }
+
 }

@@ -24,7 +24,7 @@ public class SearchButtonCtrl implements OnClickListener{
     public void onClick(View v) {
         if(v == view.go){
             String text = view.search.getText().toString();
-            model.getSuggestions(text);
+            model.getSuggestions();
         }
     }
 }

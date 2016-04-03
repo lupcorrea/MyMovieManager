@@ -46,9 +46,15 @@
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/suggestionView"
         android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/suggestionView">
+        </LinearLayout>
 
     </HorizontalScrollView>
 
@@ -63,9 +69,15 @@
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/newTheatresView"
         android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/newTheatresView">
+        </LinearLayout>
 
     </HorizontalScrollView>
 
@@ -80,9 +92,15 @@
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/friendsView"
         android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/friendsView">
+        </LinearLayout>
 
     </HorizontalScrollView>
 
