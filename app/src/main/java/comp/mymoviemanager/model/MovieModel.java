@@ -7,14 +7,8 @@ import android.view.View;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -29,21 +23,16 @@ public class MovieModel {
     LinkedList<Movie> new_in_theatres = new LinkedList<>();
     LinkedList<Movie> search_results = new LinkedList<>();
 
-    private final String api_key = "F088t4s6QGI5T92W3Nwiju8jFU52J8SP";
+    //private final String api_key = "F088t4s6QGI5T92W3Nwiju8jFU52J8SP";
+    //public final static String apiURL = "http://api.bigoven.com/recipes?";
+    private final String api_key = "9e848c636182f849c60c808276757408";
+    public final static String apiURL = "http://api.themoviedb.org/3/";
     private int func = -1;
-    public final static String apiURL = "http://api.bigoven.com/recipes?";
 
-
-
-/*    public LinkedList<Movie> getSuggestions(String text){
-        String url = apiURL + "title_kw=" + text + "&pg=1&rpp=20";
-        LinkedList<Movie> suggestions;
-        new CallAPI().execute(url);
-        return suggestions;
-    }*/
 
     public void getSuggestions(String text){
-        String url = apiURL + "title_kw=" + text + "&pg=1&rpp=20&api_key=" + api_key;
+        //String url = apiURL + "title_kw=" + text + "&pg=1&rpp=20&api_key=" + api_key;
+        String url = apiURL + "movie/popular?api_key=" + api_key;
         func = 0;
         new CallAPI().execute(url);
     }
@@ -81,40 +70,6 @@ public class MovieModel {
                 return null;
             }
 
-           /*
-            // HTTP Get
-            try {
-                URL url = new URL(urlString);
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                in = new BufferedInputStream(urlConnection.getInputStream());
-                System.out.println(in);
-            } catch (Exception e ) {
-                System.out.println(e.getMessage());
-                return e.getMessage();
-            }
-
-            */
-
-
-
-
-            /*// Parse XML
-            XmlPullParserFactory pullParserFactory;
-            try {
-                pullParserFactory = XmlPullParserFactory.newInstance();
-                XmlPullParser parser = pullParserFactory.newPullParser();
-                parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-                parser.setInput(in, null);
-                result = parseXML(parser);
-            } catch (XmlPullParserException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }*/
-
-
-            //return resultToDisplay;
-
         }
 
         @Override
@@ -122,7 +77,13 @@ public class MovieModel {
             if(func == 0){
                 try {
                     JSONObject suggestionsObj = new JSONObject(result);
-                    System.out.println(suggestionsObj.getString("Results"));
+                    JSONArray json_array_participants = suggestionsObj.getJSONArray("results");
+                    for(int i=0; i < json_array_participants.length(); i++) {
+                        JSONObject participant = json_array_participants.getJSONObject(i);
+                        //System.out.println(participant.getString("original_title"));
+                        suggestions.add(new Movie(participant.getString("original_title"),participant.getString("release_date"),"",participant.getString("popularity"),participant.getString("original_language"),participant.getString("overview")));
+                    }
+
                     func = -1;
                 } catch (JSONException e) {
                     e.printStackTrace();

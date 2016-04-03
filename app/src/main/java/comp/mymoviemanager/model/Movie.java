@@ -12,8 +12,17 @@ public class Movie {
     private String release;
     private String category;
     private String popularity;
-    private String country;
+    private String language;
     private String sinopsis;
+
+    public Movie(String name, String release, String category, String popularity, String language, String sinopsis){
+        this.name = name;
+        this.release = release;
+        this.category = category;
+        this.popularity = popularity;
+        this.language = language;
+        this.sinopsis = sinopsis;
+    }
 
     public String getSinopsis() {
         return sinopsis;
@@ -55,11 +64,11 @@ public class Movie {
         this.popularity = popularity;
     }
 
-    public String getCountry() {
-        return country;
+    public String getLanguage() {
+        return language;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setLanguage(String language) {
+        this.language = language;
     }
 }
