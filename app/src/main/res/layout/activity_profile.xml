@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
             android:id="@+id/ll_profile_personal">
 
             <ImageView
@@ -34,45 +35,126 @@
 
         </LinearLayout>
 
+
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000000"
+            android:textSize="24dp"
             android:id="@+id/label_profile_top_movies"
             android:text="@string/profile_top_movies"/>
 
-        <!-- Insert here horizontal scrollable list -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/scroll_profile_top_movies">
+            </LinearLayout>
+
+        </HorizontalScrollView>
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000000"
+            android:textSize="24dp"
             android:id="@+id/label_profile_bottom_movies"
             android:text="@string/profile_bottom_movies"/>
 
-        <!-- Insert here horizontal scrollable list -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/scroll_profile_bottom_movies">
+            </LinearLayout>
+
+        </HorizontalScrollView>
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000000"
+            android:textSize="24dp"
             android:id="@+id/label_profile_todo_movies"
             android:text="@string/profile_todo_movies"/>
 
-        <!-- Insert here horizontal scrollable list -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/scroll_profile_todo_movies">
+            </LinearLayout>
+
+        </HorizontalScrollView>
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000000"
+            android:textSize="24dp"
             android:id="@+id/label_profile_top_tags"
             android:text="@string/profile_top_tags"/>
 
-        <!-- Insert here horizontal scrollable list -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/scroll_profile_top_tags">
+            </LinearLayout>
+
+        </HorizontalScrollView>
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000000"
+            android:textSize="24dp"
             android:id="@+id/label_profile_bottom_tags"
             android:text="@string/profile_bottom_tags"/>
 
-        <!-- Insert here horizontal scrollable list -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/scroll_profile_bottom_tags">
+            </LinearLayout>
+
+        </HorizontalScrollView>
 
     </LinearLayout>
 

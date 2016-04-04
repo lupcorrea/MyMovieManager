@@ -31,24 +31,31 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
-                    android:id="@+id/movie_title"/>
+                    android:id="@+id/movie_title"
+                    android:text="Placeholder: The Movie"
+                    android:gravity="center"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:weightSum="2">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/movie_tag"
-                        android:layout_toLeftOf="@+id/movie_year"/>
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:text="Adventure"/>
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/movie_year"
-                        android:layout_toRightOf="@+id/movie_tag"/>
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:text="1995"/>
 
                 </LinearLayout>
 
@@ -68,4 +75,28 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:weight_sum="3">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+
+    </LinearLayout>
 </RelativeLayout>
