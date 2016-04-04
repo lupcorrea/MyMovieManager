@@ -1,9 +1,14 @@
 package comp.mymoviemanager.view;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -21,7 +26,8 @@ import comp.mymoviemanager.model.MovieModel;
 public class SearchView implements Observer{
     View view;
     MovieModel model;
-    public Button go, movieButton;
+    public Button go;
+    ImageButton movieButton;
     public EditText search;
     LinkedList<Button> suggestion_buttonList = new LinkedList<>();
     LinkedList<Button> new_buttonList = new LinkedList<>();
@@ -31,6 +37,8 @@ public class SearchView implements Observer{
     LinearLayout suggestions;
     LinearLayout newTheatre;
     LinearLayout friends;
+
+    ImageView teste;
 
     public SearchView(View view, final MovieModel model){
         this.model = model;
@@ -45,6 +53,8 @@ public class SearchView implements Observer{
         newTheatre = (LinearLayout) view.findViewById(R.id.newTheatresView);
         friends = (LinearLayout) view.findViewById(R.id.friendsView);
 
+        teste = (ImageView) view.findViewById(R.id.test);
+
         model.getSuggestions();
 
     }
@@ -56,13 +66,24 @@ public class SearchView implements Observer{
             System.out.println("oi");
             suggestion_result = model.getSuggestionsResult();
             for (int i = 0; i < suggestion_result.size(); i++){
-                movieButton = new Button(view.getContext());
-                movieButton.setText(suggestion_result.get(i).getName());
-                movieButton.setTextColor(-1);
-                movieButton.setTextSize(10);
+                movieButton = new ImageButton(view.getContext());
+                //movieButton.setText(suggestion_result.get(i).getName());
+                //movieButton.setTextColor(-1);
+                //movieButton.setTextSize(10);
+                Bitmap resized_img = Bitmap.createScaledBitmap(suggestion_result.get(i).getPoster(), 241, 360, true);
+                BitmapDrawable img = new BitmapDrawable(view.getResources(),resized_img);
+                movieButton.setBackground(img);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                params.setMargins(0, 0, 15, 0);
+                movieButton.setLayoutParams(params);
+                //movieButton.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                //movieButton.setLayoutParams(new LinearLayout.LayoutParams(241,360));
                 //int resId = suggestion_result.get(i).getPoster().getGenerationId();
-                //movieButton.setCompoundDrawablesWithIntrinsicBounds(0, resId, 0, 0);
-                movieButton.setBackgroundColor(0);
+                //System.out.println(suggestion_result.get(i).getPoster());
+                //teste.setImageBitmap(suggestion_result.get(0).getPoster());
+                //teste.setImageDrawable(img);
+                //movieButton.setCompoundDrawablesWithIntrinsicBounds(0, img, 0, 0);
+                //movieButton.setBackgroundColor(0);
                 suggestions.addView(movieButton);
             }
         }

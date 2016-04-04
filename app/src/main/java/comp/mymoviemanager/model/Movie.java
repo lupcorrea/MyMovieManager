@@ -38,7 +38,7 @@ public class Movie {
         this.language = language;
         this.sinopsis = sinopsis;
         this.poster_path = poster_path;
-        new GetPoster().execute("http://image.tmdb.org/t/p/w500" + poster_path);
+        //new GetPoster().execute("http://image.tmdb.org/t/p/w500" + poster_path);
     }
 
     public String getSinopsis() {

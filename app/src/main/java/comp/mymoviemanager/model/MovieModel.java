@@ -28,19 +28,34 @@ public class MovieModel extends Observable{
     LinkedList<Movie> suggestions = new LinkedList<>();
     LinkedList<Movie> new_in_theatres = new LinkedList<>();
     LinkedList<Movie> search_results = new LinkedList<>();
+    LinkedList<Bitmap> images = new LinkedList<>();
 
     //private final String api_key = "F088t4s6QGI5T92W3Nwiju8jFU52J8SP";
     //public final static String apiURL = "http://api.bigoven.com/recipes?";
     private final String api_key = "9e848c636182f849c60c808276757408";
     public final static String apiURL = "http://api.themoviedb.org/3/";
     private int func = -1;
-
+    private int cont = 0;
 
     public void getSuggestions(){
         //String url = apiURL + "title_kw=" + text + "&pg=1&rpp=20&api_key=" + api_key;
         String url = apiURL + "movie/popular?api_key=" + api_key;
         func = 0;
         new CallAPI().execute(url);
+    }
+
+    public void getImages(){
+        for (int i = 0; i < suggestions.size(); i++){
+            new GetPoster().execute("http://image.tmdb.org/t/p/w154" + suggestions.get(i).getPosterPath());
+        }
+    }
+
+    public void setImages(){
+        for (int i = 0; i < suggestions.size(); i++){
+            suggestions.get(i).setPoster(images.get(i));
+        }
+        setChanged();
+        notifyObservers(0);
     }
 
     public LinkedList<Movie> getSuggestionsResult(){
@@ -92,14 +107,53 @@ public class MovieModel extends Observable{
                         //System.out.println(participant.getString("original_title"));
                         suggestions.add(new Movie(participant.getString("original_title"),participant.getString("release_date"),"",participant.getString("popularity"),participant.getString("original_language"),participant.getString("overview"),participant.getString("poster_path")));
                     }
-                    setChanged();
-                    notifyObservers(0);
+                    getImages();
                     func = -1;
                 } catch (JSONException e) {
                     e.printStackTrace();
                     func = -1;
                 }
             }
+        }
+    }
+
+    //////////
+    public class GetPoster extends AsyncTask<String, String, Bitmap> {
+
+        @Override
+        protected Bitmap doInBackground(String... params) {
+            try
+            {
+                URL url;
+                url = new URL( params[0] );
+
+                HttpURLConnection c = ( HttpURLConnection ) url.openConnection();
+                c.setDoInput( true );
+                c.connect();
+                InputStream is = c.getInputStream();
+                Bitmap img;
+                img = BitmapFactory.decodeStream(is);
+                return img;
+            }
+            catch ( MalformedURLException e )
+            {
+                Log.d("RemoteImageHandler", "fetchImage passed invalid URL: " + params[0]);
+            }
+            catch ( IOException e )
+            {
+                Log.d("RemoteImageHandler", "fetchImage IO exception: " + e);
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap result){
+            images.add(result);
+            if(images.size() == suggestions.size()){
+                setImages();
+            }
+            //Movie.setPoster(result);
+            //System.out.println(getPoster());
         }
     }
 
