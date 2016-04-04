@@ -78,9 +78,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_orientation="horizontal"
+        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
-        android:weight_sum="3">
+        android:weightSum="3">
 
         <Button
             android:layout_width="match_parent"
