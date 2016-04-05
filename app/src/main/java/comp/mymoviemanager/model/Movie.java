@@ -29,8 +29,9 @@ public class Movie {
     private String sinopsis;
     private String poster_path;
     private Bitmap poster;
+    private Integer id;
 
-    public Movie(String name, String release, String category, String popularity, String language, String sinopsis, String poster_path){
+    public Movie(String name, String release, String category, String popularity, String language, String sinopsis, String poster_path, Integer id){
         this.name = name;
         this.release = release;
         this.category = category;
@@ -38,6 +39,7 @@ public class Movie {
         this.language = language;
         this.sinopsis = sinopsis;
         this.poster_path = poster_path;
+        this.id = id;
         //new GetPoster().execute("http://image.tmdb.org/t/p/w500" + poster_path);
     }
 

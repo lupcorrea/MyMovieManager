@@ -26,7 +26,9 @@ import java.util.Observable;
 public class MovieModel extends Observable{
 
     LinkedList<Movie> suggestions = new LinkedList<>();
-    LinkedList<Movie> new_in_theatres = new LinkedList<>();
+    LinkedList<Movie> popular = new LinkedList<>();
+    LinkedList<Movie> top_rated = new LinkedList<>();
+    LinkedList<Movie> upcoming = new LinkedList<>();
     LinkedList<Movie> search_results = new LinkedList<>();
     LinkedList<Bitmap> images = new LinkedList<>();
 
@@ -35,7 +37,14 @@ public class MovieModel extends Observable{
     private final String api_key = "9e848c636182f849c60c808276757408";
     public final static String apiURL = "http://api.themoviedb.org/3/";
     private int func = -1;
-    private int cont = 0;
+    private int func1 = -1;
+
+    public void makeSearch(String query){
+        query = query.replace(" ", "+");
+        String url = apiURL + "search/movie?query=" + query + "&api_key=" + api_key;
+        func = 4;
+        new CallAPI().execute(url);
+    }
 
     public void getSuggestions(){
         //String url = apiURL + "title_kw=" + text + "&pg=1&rpp=20&api_key=" + api_key;
@@ -44,22 +53,123 @@ public class MovieModel extends Observable{
         new CallAPI().execute(url);
     }
 
-    public void getImages(){
-        for (int i = 0; i < suggestions.size(); i++){
-            new GetPoster().execute("http://image.tmdb.org/t/p/w154" + suggestions.get(i).getPosterPath());
+    public void getPopulars(){
+        //String url = apiURL + "title_kw=" + text + "&pg=1&rpp=20&api_key=" + api_key;
+        String url = apiURL + "movie/popular?api_key=" + api_key;
+        func = 1;
+        new CallAPI().execute(url);
+    }
+
+    public void getTopRated(){
+        //String url = apiURL + "title_kw=" + text + "&pg=1&rpp=20&api_key=" + api_key;
+        String url = apiURL + "movie/top_rated?api_key=" + api_key;
+        func = 2;
+        new CallAPI().execute(url);
+    }
+
+    public void getUpcoming(){
+        //String url = apiURL + "title_kw=" + text + "&pg=1&rpp=20&api_key=" + api_key;
+        String url = apiURL + "movie/upcoming?api_key=" + api_key;
+        func = 3;
+        new CallAPI().execute(url);
+    }
+
+    public void getImages(Integer x){
+        if (x == 0) {
+            func1 = 0;
+            for (int i = 0; i < suggestions.size(); i++) {
+                new GetPoster().execute("http://image.tmdb.org/t/p/w154" + suggestions.get(i).getPosterPath());
+            }
+        }
+        else if (x == 1){
+            func1 = 1;
+            for (int i = 0; i < popular.size(); i++) {
+                new GetPoster().execute("http://image.tmdb.org/t/p/w154" + popular.get(i).getPosterPath());
+            }
+        }
+        else if (x == 2){
+            func1 = 2;
+            for (int i = 0; i < top_rated.size(); i++) {
+                new GetPoster().execute("http://image.tmdb.org/t/p/w154" + top_rated.get(i).getPosterPath());
+            }
+        }
+        else if (x == 3){
+            func1 = 3;
+            for (int i = 0; i < upcoming.size(); i++) {
+                new GetPoster().execute("http://image.tmdb.org/t/p/w154" + upcoming.get(i).getPosterPath());
+            }
+        }
+        else if (x == 4){
+            func1 = 4;
+            for (int i = 0; i < search_results.size(); i++) {
+                new GetPoster().execute("http://image.tmdb.org/t/p/w154" + search_results.get(i).getPosterPath());
+            }
         }
     }
 
     public void setImages(){
-        for (int i = 0; i < suggestions.size(); i++){
-            suggestions.get(i).setPoster(images.get(i));
+        if (func1 == 0){
+            for (int i = 0; i < suggestions.size(); i++){
+                suggestions.get(i).setPoster(images.get(i));
+            }
+            images.clear();
+            setChanged();
+            notifyObservers(0);
+            getPopulars();
         }
-        setChanged();
-        notifyObservers(0);
+        else if (func1 == 1) {
+            for (int i = 0; i < popular.size(); i++) {
+                popular.get(i).setPoster(images.get(i));
+            }
+            images.clear();
+            setChanged();
+            notifyObservers(1);
+            getTopRated();
+        }
+        else if (func1 == 2) {
+            for (int i = 0; i < top_rated.size(); i++) {
+                top_rated.get(i).setPoster(images.get(i));
+            }
+            images.clear();
+            setChanged();
+            notifyObservers(2);
+            getUpcoming();
+        }
+        else if (func1 == 3) {
+            for (int i = 0; i < upcoming.size(); i++) {
+                upcoming.get(i).setPoster(images.get(i));
+            }
+            images.clear();
+            setChanged();
+            notifyObservers(3);
+        }
+        else if (func1 == 4) {
+            for (int i = 0; i < search_results.size(); i++) {
+                search_results.get(i).setPoster(images.get(i));
+            }
+            images.clear();
+            setChanged();
+            notifyObservers(4);
+        }
+        func1 = -1;
     }
 
-    public LinkedList<Movie> getSuggestionsResult(){
-        return suggestions;
+    public LinkedList<Movie> getResult(Integer x){
+        LinkedList<Movie> result = new LinkedList<>();
+        if (x == 0)
+            result = suggestions;
+        else if (x == 1)
+            result = popular;
+        else if (x == 2)
+            result = top_rated;
+        else if (x == 3)
+            result = upcoming;
+        return result;
+    }
+
+    public LinkedList<Movie> getSearch_results(){
+        LinkedList<Movie> result = search_results;
+        return result;
     }
 
     public class CallAPI extends AsyncTask<String, String, String>{
@@ -105,9 +215,74 @@ public class MovieModel extends Observable{
                     for(int i=0; i < json_array_participants.length(); i++) {
                         JSONObject participant = json_array_participants.getJSONObject(i);
                         //System.out.println(participant.getString("original_title"));
-                        suggestions.add(new Movie(participant.getString("original_title"),participant.getString("release_date"),"",participant.getString("popularity"),participant.getString("original_language"),participant.getString("overview"),participant.getString("poster_path")));
+                        suggestions.add(new Movie(participant.getString("original_title"),participant.getString("release_date"),"",participant.getString("vote_average"),participant.getString("original_language"),participant.getString("overview"),participant.getString("poster_path"),Integer.parseInt(participant.getString("id"))));
                     }
-                    getImages();
+                    getImages(0);
+                    func = -1;
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    func = -1;
+                }
+            }
+            else if(func == 1){
+                try {
+                    JSONObject suggestionsObj = new JSONObject(result);
+                    JSONArray json_array_participants = suggestionsObj.getJSONArray("results");
+                    for(int i=0; i < json_array_participants.length(); i++) {
+                        JSONObject participant = json_array_participants.getJSONObject(i);
+                        //System.out.println(participant.getString("original_title"));
+                        popular.add(new Movie(participant.getString("original_title"),participant.getString("release_date"),"",participant.getString("vote_average"),participant.getString("original_language"),participant.getString("overview"),participant.getString("poster_path"),Integer.parseInt(participant.getString("id"))));
+                    }
+                    getImages(1);
+                    func = -1;
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    func = -1;
+                }
+            }
+            else if(func == 2){
+                try {
+                    JSONObject suggestionsObj = new JSONObject(result);
+                    JSONArray json_array_participants = suggestionsObj.getJSONArray("results");
+                    for(int i=0; i < json_array_participants.length(); i++) {
+                        JSONObject participant = json_array_participants.getJSONObject(i);
+                        //System.out.println(participant.getString("original_title"));
+                        top_rated.add(new Movie(participant.getString("original_title"),participant.getString("release_date"),"",participant.getString("vote_average"),participant.getString("original_language"),participant.getString("overview"),participant.getString("poster_path"),Integer.parseInt(participant.getString("id"))));
+                    }
+                    getImages(2);
+                    func = -1;
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    func = -1;
+                }
+            }
+            else if(func == 3){
+                try {
+                    JSONObject suggestionsObj = new JSONObject(result);
+                    JSONArray json_array_participants = suggestionsObj.getJSONArray("results");
+                    for(int i=0; i < json_array_participants.length(); i++) {
+                        JSONObject participant = json_array_participants.getJSONObject(i);
+                        //System.out.println(participant.getString("original_title"));
+                        upcoming.add(new Movie(participant.getString("original_title"),participant.getString("release_date"),"",participant.getString("vote_average"),participant.getString("original_language"),participant.getString("overview"),participant.getString("poster_path"),Integer.parseInt(participant.getString("id"))));
+                    }
+                    getImages(3);
+                    func = -1;
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    func = -1;
+                }
+            }
+            else if(func == 4){
+                try {
+                    JSONObject suggestionsObj = new JSONObject(result);
+                    JSONArray json_array_participants = suggestionsObj.getJSONArray("results");
+                    System.out.println(json_array_participants);
+                    for(int i=0; i < json_array_participants.length(); i++) {
+                        JSONObject participant = json_array_participants.getJSONObject(i);
+                        //System.out.println(participant.getString("original_title"));
+                        search_results.add(new Movie(participant.getString("original_title"),participant.getString("release_date"),"",participant.getString("vote_average"),participant.getString("original_language"),participant.getString("overview"),participant.getString("poster_path"),Integer.parseInt(participant.getString("id"))));
+                    }
+                    getImages(4);
                     func = -1;
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -149,11 +324,26 @@ public class MovieModel extends Observable{
         @Override
         protected void onPostExecute(Bitmap result){
             images.add(result);
-            if(images.size() == suggestions.size()){
-                setImages();
+            if (func1 == 0) {
+                if (images.size() == suggestions.size()) {
+                    setImages();
+                }
             }
-            //Movie.setPoster(result);
-            //System.out.println(getPoster());
+            else if (func1 == 1) {
+                if (images.size() == popular.size()) {
+                    setImages();
+                }
+            }
+            else if (func1 == 2) {
+                if (images.size() == top_rated.size()) {
+                    setImages();
+                }
+            }
+            else if (func1 == 3) {
+                if (images.size() == upcoming.size()) {
+                    setImages();
+                }
+            }
         }
     }
 

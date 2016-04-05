@@ -5,8 +5,9 @@
     <string name="action_settings">Settings</string>
     <string name="go_button">Go</string>
     <string name="suggestions">Suggestions</string>
-    <string name="new_theatres">New in Theatres</string>
-    <string name="friends_watch">What your Friends are Watching</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="top_rated">Top Rated</string>
+    <string name="popular">Popular</string>
     <string name="result">Results</string>
     <string name="sort">Sort By: </string>
     <string name="hint">Search for a movie, artist or genre</string>

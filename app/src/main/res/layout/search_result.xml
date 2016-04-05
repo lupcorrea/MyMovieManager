@@ -3,71 +3,109 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_floating_material_dark">
+    android:id="@+id/results_view"
+    android:background="#484848">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:gravity="center"
+        android:background="#2e2e2e">
 
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_margin="10dp"
-            android:src="@drawable/search_icon"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:paddingLeft="50dp"
-            android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@+id/goButton"
-            android:textColor="#ffffff"
-            android:hint="@string/hint"
-            android:textSize="16sp"
-            android:textColorHint="#ffffff"/>
-        <Button
-            android:text="@string/go_button"
+            android:clickable="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/homeicon"/>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:clickable="true"
+            android:layout_gravity="center"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/profileicon"/>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:clickable="true"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/favorite"/>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/filter"/>
+
+        <SearchView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:id="@+id/goButton"/>
+            android:id="@+id/search"
+            android:searchIcon="@drawable/search"
+            >
 
-    </RelativeLayout>
+        </SearchView>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="@string/result"
-            android:textColor="#ffffff"
-            android:textSize="24sp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
             android:layout_marginRight="10dp"
             android:text="@string/sort"
             android:textColor="#ffffff"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <Spinner
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/spinner"
             android:layout_weight="1" />
 
-
     </LinearLayout>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@+id/choose"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="@string/result"
+        android:textColor="#ffffff"
+        android:textSize="24sp"/>
 
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/results_container">
+
+        </LinearLayout>
 
     </ScrollView>
 </LinearLayout>
