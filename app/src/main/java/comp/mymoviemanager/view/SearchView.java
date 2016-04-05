@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.LinkedList;
 import java.util.Observable;
@@ -25,6 +26,7 @@ public class SearchView implements Observer{
     MovieModel model;
     public Button go;
     ImageButton movieButton;
+    TextView movie_name;
     public EditText search;
     LinkedList<Button> suggestion_buttonList = new LinkedList<>();
     LinkedList<Button> new_buttonList = new LinkedList<>();
@@ -32,10 +34,11 @@ public class SearchView implements Observer{
     LinkedList<Movie> suggestion_result;
 
     LinearLayout suggestions;
+    LinearLayout suggestionsText;
     LinearLayout newTheatre;
     LinearLayout friends;
 
-    ImageView teste;
+    //ImageView teste;
 
     public SearchView(View view, final MovieModel model){
         this.model = model;
@@ -47,10 +50,11 @@ public class SearchView implements Observer{
         go = (Button) view.findViewById(R.id.goButton);
 
         suggestions = (LinearLayout) view.findViewById(R.id.suggestionView);
+        suggestionsText = (LinearLayout) view.findViewById(R.id.suggestionViewText);
         newTheatre = (LinearLayout) view.findViewById(R.id.newTheatresView);
         friends = (LinearLayout) view.findViewById(R.id.friendsView);
 
-        teste = (ImageView) view.findViewById(R.id.test);
+        //teste = (ImageView) view.findViewById(R.id.test);
 
         model.getSuggestions();
 
@@ -60,19 +64,22 @@ public class SearchView implements Observer{
     public void update(Observable observable, Object data) {
         //UPDATE SUGGESTIONS
         if ((Integer) data == 0){
-            System.out.println("oi");
             suggestion_result = model.getSuggestionsResult();
             for (int i = 0; i < suggestion_result.size(); i++){
                 movieButton = new ImageButton(view.getContext());
-                //movieButton.setText(suggestion_result.get(i).getName());
-                //movieButton.setTextColor(-1);
-                //movieButton.setTextSize(10);
+                movie_name = new TextView(view.getContext());
+                movie_name.setText(suggestion_result.get(i).getName());
+                movie_name.setTextColor(-1);
+                movie_name.setTextSize(10);
                 Bitmap resized_img = Bitmap.createScaledBitmap(suggestion_result.get(i).getPoster(), 241, 360, true);
                 BitmapDrawable img = new BitmapDrawable(view.getResources(),resized_img);
                 movieButton.setBackground(img);
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 params.setMargins(0, 0, 15, 0);
+                LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(241, LinearLayout.LayoutParams.WRAP_CONTENT);
+                params1.setMargins(0, 0, 15, 0);
                 movieButton.setLayoutParams(params);
+                movie_name.setLayoutParams(params1);
                 //movieButton.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
                 //movieButton.setLayoutParams(new LinearLayout.LayoutParams(241,360));
                 //int resId = suggestion_result.get(i).getPoster().getGenerationId();
@@ -82,6 +89,7 @@ public class SearchView implements Observer{
                 //movieButton.setCompoundDrawablesWithIntrinsicBounds(0, img, 0, 0);
                 //movieButton.setBackgroundColor(0);
                 suggestions.addView(movieButton);
+                suggestionsText.addView(movie_name);
             }
         }
     }
