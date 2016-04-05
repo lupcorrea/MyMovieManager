@@ -43,6 +43,7 @@ public class MovieModel extends Observable{
         query = query.replace(" ", "+");
         String url = apiURL + "search/movie?query=" + query + "&api_key=" + api_key;
         func = 4;
+        search_results.clear();
         new CallAPI().execute(url);
     }
 
@@ -341,6 +342,11 @@ public class MovieModel extends Observable{
             }
             else if (func1 == 3) {
                 if (images.size() == upcoming.size()) {
+                    setImages();
+                }
+            }
+            else if (func1 == 4) {
+                if (images.size() == search_results.size()) {
                     setImages();
                 }
             }

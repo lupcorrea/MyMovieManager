@@ -26,6 +26,7 @@ public class NewSearchCtrl implements SearchView.OnQueryTextListener{
 
     @Override
     public boolean onQueryTextSubmit(String query) {
+        view.progressBar.setVisibility(View.VISIBLE);
         model.makeSearch(query);
         return true;
     }
