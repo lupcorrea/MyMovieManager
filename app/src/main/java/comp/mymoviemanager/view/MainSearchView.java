@@ -37,13 +37,13 @@ public class MainSearchView implements Observer{
     //LinkedList<Button> friends_buttonList = new LinkedList<>();
     LinkedList<Movie> suggestion_result;
 
-    LinearLayout suggestions;
+    public LinearLayout suggestions;
     LinearLayout suggestionsText;
-    LinearLayout upcoming;
+    public LinearLayout upcoming;
     LinearLayout upcomingText;
-    LinearLayout popular;
+    public LinearLayout popular;
     LinearLayout popularText;
-    LinearLayout topRated;
+    public LinearLayout topRated;
     LinearLayout topRatedText;
 
     //ImageView teste;
@@ -106,6 +106,7 @@ public class MainSearchView implements Observer{
                 LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(241, LinearLayout.LayoutParams.WRAP_CONTENT);
                 params1.setMargins(0, 0, 15, 0);
                 movieButton.setLayoutParams(params);
+                movieButton.setId(suggestion_result.get(i).getId());
                 movie_name.setLayoutParams(params1);
                 //movieButton.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
                 //movieButton.setLayoutParams(new LinearLayout.LayoutParams(241,360));
@@ -143,6 +144,7 @@ public class MainSearchView implements Observer{
                 LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(241, LinearLayout.LayoutParams.WRAP_CONTENT);
                 params1.setMargins(0, 0, 15, 0);
                 movieButton.setLayoutParams(params);
+                movieButton.setId(suggestion_result.get(i).getId());
                 movie_name.setLayoutParams(params1);
                 //movieButton.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
                 //movieButton.setLayoutParams(new LinearLayout.LayoutParams(241,360));
@@ -180,6 +182,7 @@ public class MainSearchView implements Observer{
                 LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(241, LinearLayout.LayoutParams.WRAP_CONTENT);
                 params1.setMargins(0, 0, 15, 0);
                 movieButton.setLayoutParams(params);
+                movieButton.setId(suggestion_result.get(i).getId());
                 movie_name.setLayoutParams(params1);
                 //movieButton.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
                 //movieButton.setLayoutParams(new LinearLayout.LayoutParams(241,360));
@@ -217,6 +220,7 @@ public class MainSearchView implements Observer{
                 LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(241, LinearLayout.LayoutParams.WRAP_CONTENT);
                 params1.setMargins(0, 0, 15, 0);
                 movieButton.setLayoutParams(params);
+                movieButton.setId(suggestion_result.get(i).getId());
                 movie_name.setLayoutParams(params1);
                 //movieButton.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
                 //movieButton.setLayoutParams(new LinearLayout.LayoutParams(241,360));

@@ -1,18 +1,32 @@
 package comp.mymoviemanager;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MovieActivity extends AppCompatActivity {
+import comp.mymoviemanager.model.MovieModel;
+import comp.mymoviemanager.view.MovieView;
+
+public class MovieActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
+
+
+        MovieModel model = ((MyMovieApplication) this.getApplication()).getModel();
+
+        MovieView mainView = new MovieView(findViewById(R.id.movie_screen), model);
+        //SearchFindCtrl ctrl = new SearchFindCtrl(model, mainView);
+
     }
 
+
+
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -33,5 +47,5 @@ public class MovieActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 }

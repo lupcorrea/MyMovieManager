@@ -10,6 +10,8 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 
 import comp.mymoviemanager.model.MovieModel;
 
@@ -30,8 +32,9 @@ public class Movie {
     private String poster_path;
     private Bitmap poster;
     private Integer id;
+    private String genre_list;
 
-    public Movie(String name, String release, String category, String popularity, String language, String sinopsis, String poster_path, Integer id){
+    public Movie(String name, String release, String category, String popularity, String language, String sinopsis, String poster_path, Integer id, String genre_list){
         this.name = name;
         this.release = release;
         this.category = category;
@@ -40,7 +43,7 @@ public class Movie {
         this.sinopsis = sinopsis;
         this.poster_path = poster_path;
         this.id = id;
-        //new GetPoster().execute("http://image.tmdb.org/t/p/w500" + poster_path);
+        this.genre_list = genre_list;
     }
 
     public String getSinopsis() {
@@ -101,38 +104,20 @@ public class Movie {
         return poster;
     }
 
-    public class GetPoster extends AsyncTask<String, String, Bitmap> {
-
-        @Override
-        protected Bitmap doInBackground(String... params) {
-            try
-            {
-                URL url;
-                url = new URL( params[0] );
-
-                HttpURLConnection c = ( HttpURLConnection ) url.openConnection();
-                c.setDoInput( true );
-                c.connect();
-                InputStream is = c.getInputStream();
-                Bitmap img;
-                img = BitmapFactory.decodeStream(is);
-                return img;
-            }
-            catch ( MalformedURLException e )
-            {
-                Log.d("RemoteImageHandler", "fetchImage passed invalid URL: " + params[0]);
-            }
-            catch ( IOException e )
-            {
-                Log.d( "RemoteImageHandler", "fetchImage IO exception: " + e );
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Bitmap result){
-            setPoster(result);
-            System.out.println(getPoster());
-        }
+    public void setId(Integer id) {
+        this.id = id;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setGenre_list(String genre_list) {
+        this.genre_list = genre_list;
+    }
+
+    public String getGenre_list() {
+        return genre_list;
+    }
+
 }
