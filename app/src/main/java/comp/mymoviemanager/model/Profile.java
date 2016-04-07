@@ -11,9 +11,6 @@ import java.util.ListIterator;
  * Day: 01/04/16
  */
 
-/* TODO: Set the api key. */
-/* TODO: Build the constructor with dynamic data. */
-/* TODO: Add the model access methods on demand. It's useless to build lots of methods now that will not be used in the last version. */
 public class Profile {
     /* Profile attributes */
     private String name;
@@ -22,7 +19,7 @@ public class Profile {
     /* Movies lists */
     private LinkedList<Movie> topList = new LinkedList<>();
     private LinkedList<Movie> bottomList = new LinkedList<>();
-    private LinkedList<Movie> toDoList = new LinkedList<>();
+    private LinkedList<Movie> futureList = new LinkedList<>();
 
     public LinkedList<Movie> getTopList() {
         return topList;
@@ -40,12 +37,12 @@ public class Profile {
         this.bottomList = bottomList;
     }
 
-    public LinkedList<Movie> getToDoList() {
-        return toDoList;
+    public LinkedList<Movie> getFutureList() {
+        return futureList;
     }
 
-    public void setToDoList(LinkedList<Movie> toDoList) {
-        this.toDoList = toDoList;
+    public void setFutureList(LinkedList<Movie> toDoList) {
+        this.futureList = toDoList;
     }
 
     public Bitmap getProfile_image() {
@@ -64,10 +61,24 @@ public class Profile {
         this.name = name;
     }
 
-    public void insertMovieToTopList (Movie m) {
+    public void addMovieToTopList (Movie m) {
         for (int index = 0; index < topList.size(); index++) {
             if (topList.get(index).getMyVote() < m.getMyVote()) continue;
             else topList.add(index, m);
+        }
+    }
+
+    public void addMovieToBottomList (Movie m) {
+        for (int index = 0; index < bottomList.size(); index++) {
+            if (bottomList.get(index).getMyVote() < m.getMyVote()) continue;
+            else bottomList.add(index, m);
+        }
+    }
+
+    public void addMovieToFutureList (Movie m) {
+        for (int index = 0; index < futureList.size(); index++) {
+            if (futureList.get(index).getMyVote() < m.getMyVote()) continue;
+            else futureList.add(index, m);
         }
     }
 }
