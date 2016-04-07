@@ -3,8 +3,10 @@ package comp.mymoviemanager.view;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -74,6 +76,22 @@ public class MainSearchView implements Observer{
         progressBar2.setVisibility(View.VISIBLE);
         progressBar3.setVisibility(View.VISIBLE);
 
+        // Change the color of the search text
+        changeSearchViewTextColor(search);
+    }
+
+    private void changeSearchViewTextColor(View view) {
+        if (view != null) {
+            if (view instanceof TextView) {
+                ((TextView) view).setTextColor(Color.WHITE);
+                return;
+            } else if (view instanceof ViewGroup) {
+                ViewGroup viewGroup = (ViewGroup) view;
+                for (int i = 0; i < viewGroup.getChildCount(); i++) {
+                    changeSearchViewTextColor(viewGroup.getChildAt(i));
+                }
+            }
+        }
     }
 
     @Override
