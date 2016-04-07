@@ -8,6 +8,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
@@ -78,6 +79,9 @@ public class MainSearchView implements Observer{
 
         // Change the color of the search text
         changeSearchViewTextColor(search);
+        int closeButtonId = view.getContext().getResources().getIdentifier("android:id/search_close_btn", null, null);
+        ImageView closeButtonImage = (ImageView) search.findViewById(closeButtonId);
+        closeButtonImage.setImageResource(R.drawable.close_icon);
     }
 
     private void changeSearchViewTextColor(View view) {

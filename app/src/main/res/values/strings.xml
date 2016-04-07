@@ -12,6 +12,9 @@
     <string name="sort">Sort By: </string>
     <string name="hint">Search for a movie, artist or genre</string>
     <string name="title_activity_profile">ProfileActivity</string>
+    <string name="rate">Rate</string>
+    <string name="interested">I\'m interested</string>
+    <string name="not_interested">I\'m not interested</string>
 
     <!-- Profile Strings -->
     <string name="profile_top_movies">Movies I Liked The Most</string>

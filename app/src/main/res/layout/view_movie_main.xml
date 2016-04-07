@@ -48,6 +48,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#484848"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
@@ -78,18 +79,22 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/movie_title"
+                        android:textSize="20dp"
+                        android:textColor="#ffffff"
                         android:text="Placeholder: The Movie"
                         android:gravity="center"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
                         android:orientation="horizontal"
                         android:weightSum="2">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:textColor="#ffffff"
                             android:id="@+id/movie_tag"
                             android:gravity="center"
                             android:layout_weight="1"/>
@@ -97,6 +102,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:textColor="#ffffff"
                             android:id="@+id/movie_year"
                             android:gravity="center"
                             android:layout_weight="1"
@@ -111,6 +117,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="#ffffff"
                 android:scrollbarAlwaysDrawVerticalTrack="true"
                 android:id="@+id/movie_plot"/>
 
@@ -121,26 +129,34 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:orientation="horizontal"
-            android:layout_alignParentBottom="true"
-            android:weightSum="3">
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true">
 
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10dp"
+                android:text="@string/rate"
+                android:id="@+id/rate_btn"/>
 
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10dp"
+                android:gravity="center"
+                android:text="@string/interested"
+                android:id="@+id/interested_btn"/>
 
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10dp"
+                android:gravity="center"
+                android:text="@string/not_interested"
+                android:id="@+id/not_interested_btn"/>
 
 
         </LinearLayout>
