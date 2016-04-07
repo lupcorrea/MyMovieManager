@@ -20,6 +20,7 @@ public class Movie {
     private Bitmap poster;
     private Integer id;
     private String genre_list;
+    private int myVote;
 
     public Movie(String name, String release, String category, String popularity, String language, String sinopsis, String poster_path, Integer id, String genre_list){
         this.name = name;
@@ -107,4 +108,11 @@ public class Movie {
         return genre_list;
     }
 
+    public int getMyVote() {
+        return myVote;
+    }
+
+    public void setMyVote(int myVote) {
+        this.myVote = myVote;
+    }
 }
