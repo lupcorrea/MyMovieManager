@@ -1,19 +1,6 @@
 package comp.mymoviemanager.model;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
-import android.util.Log;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Arrays;
-import java.util.List;
-
-import comp.mymoviemanager.model.MovieModel;
 
 /**
  * Author: lupcorrea

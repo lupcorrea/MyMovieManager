@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import comp.mymoviemanager.control.NewSearchCtrl;
-import comp.mymoviemanager.model.MovieModel;
+import comp.mymoviemanager.model.ApplicationModel;
 import comp.mymoviemanager.view.SearchResultsView;
 
 /**
@@ -16,7 +16,7 @@ public class ResultsActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_search_result);
 
-        MovieModel model = ((MyMovieApplication) this.getApplication()).getModel();
+        ApplicationModel model = ((MyMovieApplication) this.getApplication()).getModel();
 
         SearchResultsView mainView = new SearchResultsView(findViewById(R.id.results_view), model);
         NewSearchCtrl ctrl = new NewSearchCtrl(model, mainView);

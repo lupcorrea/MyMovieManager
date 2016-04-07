@@ -11,7 +11,7 @@ import java.util.LinkedList;
 /* TODO: Instantiate the profile image. */
 /* TODO: Build the constructor with dynamic data. */
 /* TODO: Add the model access methods on demand. It's useless to build lots of methods now that will not be used in the last version. */
-public class ProfileModel {
+public class Profile {
     /* Profile attributes */
     private String name;
     private final String api_key = "ff";
@@ -22,7 +22,7 @@ public class ProfileModel {
     private LinkedList<Movie> toDoList = new LinkedList<>();
 
     /* Constructor */
-    public ProfileModel() {
+    public Profile() {
 
     }
 }

@@ -10,17 +10,17 @@ import java.util.List;
 
 import comp.mymoviemanager.R;
 import comp.mymoviemanager.model.Movie;
-import comp.mymoviemanager.model.MovieModel;
+import comp.mymoviemanager.model.ApplicationModel;
 
 /**
  * Created by Goldenberg on 06/04/16.
  */
 public class MovieView {
-    MovieModel model;
+    ApplicationModel model;
     View view;
     Movie selected = null;
 
-    public MovieView(View view, MovieModel model){
+    public MovieView(View view, ApplicationModel model){
         this.model = model;
         this.view = view;
         this.selected = model.getSelected();

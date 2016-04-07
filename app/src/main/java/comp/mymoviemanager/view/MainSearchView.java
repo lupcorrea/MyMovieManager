@@ -4,10 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -20,14 +17,14 @@ import java.util.Observer;
 
 import comp.mymoviemanager.R;
 import comp.mymoviemanager.model.Movie;
-import comp.mymoviemanager.model.MovieModel;
+import comp.mymoviemanager.model.ApplicationModel;
 
 /**
  * Created by Goldenberg on 02/04/16.
  */
 public class MainSearchView implements Observer{
     View view;
-    MovieModel model;
+    ApplicationModel model;
     ImageButton movieButton;
     TextView movie_name;
     ProgressBar progressBar, progressBar1, progressBar2, progressBar3;
@@ -48,7 +45,7 @@ public class MainSearchView implements Observer{
 
     //ImageView teste;
 
-    public MainSearchView(View view, final MovieModel model){
+    public MainSearchView(View view, final ApplicationModel model){
         this.model = model;
         this.view = view;
 

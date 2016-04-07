@@ -2,13 +2,13 @@ package comp.mymoviemanager;
 
 import android.app.Application;
 
-import comp.mymoviemanager.model.MovieModel;
+import comp.mymoviemanager.model.ApplicationModel;
 
 public class MyMovieApplication extends Application {
-    private MovieModel model = new MovieModel();
-    public MovieModel getModel() { return model; }
+    private ApplicationModel model = new ApplicationModel();
+    public ApplicationModel getModel() { return model; }
 
-    public void setModel(MovieModel model) {
+    public void setModel(ApplicationModel model) {
         this.model = model;
     }
 }

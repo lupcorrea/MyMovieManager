@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import comp.mymoviemanager.control.NewSearchBtnCtrl;
 import comp.mymoviemanager.control.SearchFindCtrl;
-import comp.mymoviemanager.model.MovieModel;
+import comp.mymoviemanager.model.ApplicationModel;
 import comp.mymoviemanager.view.MainSearchView;
 
 public class MainActivity extends Activity {
@@ -15,7 +15,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_search_main);
 
-        MovieModel model = ((MyMovieApplication) this.getApplication()).getModel();
+        ApplicationModel model = ((MyMovieApplication) this.getApplication()).getModel();
 
         MainSearchView mainView = new MainSearchView(findViewById(R.id.main_search), model);
         SearchFindCtrl ctrl = new SearchFindCtrl(model, mainView);

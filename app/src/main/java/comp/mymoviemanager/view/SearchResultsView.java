@@ -6,13 +6,10 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -22,14 +19,14 @@ import java.util.Observer;
 
 import comp.mymoviemanager.R;
 import comp.mymoviemanager.model.Movie;
-import comp.mymoviemanager.model.MovieModel;
+import comp.mymoviemanager.model.ApplicationModel;
 
 /**
  * Created by Goldenberg on 05/04/16.
  */
 public class SearchResultsView implements Observer{
     View view;
-    MovieModel model;
+    ApplicationModel model;
     LinkedList<Movie> results;
     public SearchView search;
     public ProgressBar progressBar;
@@ -38,7 +35,7 @@ public class SearchResultsView implements Observer{
     TextView name_date, ratings, description;
     ImageView poster;
 
-    public SearchResultsView(View view, MovieModel model) {
+    public SearchResultsView(View view, ApplicationModel model) {
         this.view = view;
         this.model = model;
 

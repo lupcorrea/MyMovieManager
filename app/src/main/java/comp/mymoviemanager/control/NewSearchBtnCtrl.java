@@ -6,17 +6,17 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import comp.mymoviemanager.MovieActivity;
-import comp.mymoviemanager.model.MovieModel;
+import comp.mymoviemanager.model.ApplicationModel;
 import comp.mymoviemanager.view.MainSearchView;
 
 /**
  * Created by Goldenberg on 06/04/16.
  */
 public class NewSearchBtnCtrl implements ViewGroup.OnHierarchyChangeListener {
-    MovieModel model;
+    ApplicationModel model;
     MainSearchView view;
 
-    public NewSearchBtnCtrl (MainSearchView view, MovieModel model){
+    public NewSearchBtnCtrl (MainSearchView view, ApplicationModel model){
         this.model = model;
         this.view = view;
 

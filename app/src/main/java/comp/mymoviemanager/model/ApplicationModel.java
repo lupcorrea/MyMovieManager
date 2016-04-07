@@ -17,13 +17,14 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.Observable;
 
 /**
  * Created by Goldenberg on 02/04/16.
  */
-public class MovieModel extends Observable{
+public class ApplicationModel extends Observable{
 
     LinkedList<Movie> suggestions = new LinkedList<>();
     LinkedList<Movie> popular = new LinkedList<>();
@@ -40,6 +41,8 @@ public class MovieModel extends Observable{
     private int func1 = -1;
 
     public Movie selected = null;
+
+    public Hashtable<String,String> genres = new Hashtable<>();
 
     public Movie getSelected(){
         return selected;
