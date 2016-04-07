@@ -1,10 +1,7 @@
 package comp.mymoviemanager;
 
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import comp.mymoviemanager.model.MovieModel;
 import comp.mymoviemanager.view.MovieView;
@@ -14,7 +11,7 @@ public class MovieActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movie);
+        setContentView(R.layout.view_movie_main);
 
 
         MovieModel model = ((MyMovieApplication) this.getApplication()).getModel();

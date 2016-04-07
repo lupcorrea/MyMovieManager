@@ -2,10 +2,8 @@ package comp.mymoviemanager;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.widget.SearchView;
 
 import comp.mymoviemanager.control.NewSearchCtrl;
-import comp.mymoviemanager.control.SearchFindCtrl;
 import comp.mymoviemanager.model.MovieModel;
 import comp.mymoviemanager.view.SearchResultsView;
 
@@ -16,7 +14,7 @@ public class ResultsActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.search_result);
+        setContentView(R.layout.view_search_result);
 
         MovieModel model = ((MyMovieApplication) this.getApplication()).getModel();
 
