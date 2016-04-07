@@ -3,7 +3,7 @@ package comp.mymoviemanager;
 import android.app.Activity;
 import android.os.Bundle;
 
-import comp.mymoviemanager.control.NewSearchBtnCtrl;
+import comp.mymoviemanager.control.MainViewBtnCtrl;
 import comp.mymoviemanager.control.SearchFindCtrl;
 import comp.mymoviemanager.model.ApplicationModel;
 import comp.mymoviemanager.view.MainSearchView;
@@ -19,7 +19,7 @@ public class MainActivity extends Activity {
 
         MainSearchView mainView = new MainSearchView(findViewById(R.id.main_search), model);
         SearchFindCtrl ctrl = new SearchFindCtrl(model, mainView);
-        NewSearchBtnCtrl btnCtrl = new NewSearchBtnCtrl(mainView, model);
+        MainViewBtnCtrl btnCtrl = new MainViewBtnCtrl(mainView, model);
     }
 
 }

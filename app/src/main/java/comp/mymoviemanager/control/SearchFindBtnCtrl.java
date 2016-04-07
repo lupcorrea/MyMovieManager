@@ -3,38 +3,32 @@ package comp.mymoviemanager.control;
 import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
 import comp.mymoviemanager.MovieActivity;
 import comp.mymoviemanager.model.ApplicationModel;
-import comp.mymoviemanager.view.MainSearchView;
+import comp.mymoviemanager.view.SearchResultsView;
 
 /**
- * Created by Goldenberg on 06/04/16.
+ * Created by Goldenberg on 07/04/16.
  */
-public class NewSearchBtnCtrl implements ViewGroup.OnHierarchyChangeListener {
+public class SearchFindBtnCtrl implements ViewGroup.OnHierarchyChangeListener {
     ApplicationModel model;
-    MainSearchView view;
+    SearchResultsView view;
 
-    public NewSearchBtnCtrl (MainSearchView view, ApplicationModel model){
+    public SearchFindBtnCtrl (ApplicationModel model, SearchResultsView view){
         this.model = model;
         this.view = view;
 
-        view.suggestions.setOnHierarchyChangeListener(this);
-        view.upcoming.setOnHierarchyChangeListener(this);
-        view.popular.setOnHierarchyChangeListener(this);
-        view.topRated.setOnHierarchyChangeListener(this);
-
+        view.result_container.setOnHierarchyChangeListener(this);
     }
-
 
     @Override
     public void onChildViewAdded(View parent, View child) {
-        if (child instanceof ImageButton){
-            ImageButton temp;
-            temp = (ImageButton) child;
+        if (child instanceof LinearLayout){
+            LinearLayout temp;
+            temp = (LinearLayout) child;
             temp.setOnClickListener(handler);
-            //System.out.println("New Button Created");
         }
     }
 
@@ -51,5 +45,4 @@ public class NewSearchBtnCtrl implements ViewGroup.OnHierarchyChangeListener {
             view.getContext().startActivity(i);
         }
     };
-
 }

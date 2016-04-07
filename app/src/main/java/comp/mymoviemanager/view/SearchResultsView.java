@@ -1,5 +1,6 @@
 package comp.mymoviemanager.view;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -31,7 +32,8 @@ public class SearchResultsView implements Observer{
     public SearchView search;
     public ProgressBar progressBar;
 
-    LinearLayout container, infos, result_container;
+    LinearLayout container, infos;
+    public LinearLayout result_container;
     TextView name_date, ratings, description;
     ImageView poster;
 
@@ -106,8 +108,14 @@ public class SearchResultsView implements Observer{
                 infos.addView(description);
                 container.addView(infos);
                 container.setBackgroundColor(Color.GRAY);
+                container.setClickable(true);
+                container.setId(results.get(i).getId());
                 result_container.addView(container);
             }
         }
+    }
+
+    public Context getContext() {
+        return view.getContext();
     }
 }

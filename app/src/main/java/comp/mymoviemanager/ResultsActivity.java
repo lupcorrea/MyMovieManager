@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import comp.mymoviemanager.control.NewSearchCtrl;
+import comp.mymoviemanager.control.SearchFindBtnCtrl;
 import comp.mymoviemanager.model.ApplicationModel;
 import comp.mymoviemanager.view.SearchResultsView;
 
@@ -20,5 +21,6 @@ public class ResultsActivity extends Activity{
 
         SearchResultsView mainView = new SearchResultsView(findViewById(R.id.results_view), model);
         NewSearchCtrl ctrl = new NewSearchCtrl(model, mainView);
+        SearchFindBtnCtrl btnCtrl = new SearchFindBtnCtrl(model, mainView);
     }
 }
