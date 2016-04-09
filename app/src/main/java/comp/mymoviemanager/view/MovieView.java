@@ -5,17 +5,14 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Arrays;
 import java.util.List;
 
 import comp.mymoviemanager.R;
-import comp.mymoviemanager.control.ProfileCtrl;
 import comp.mymoviemanager.model.Movie;
 import comp.mymoviemanager.model.ApplicationModel;
 
@@ -28,9 +25,6 @@ public class MovieView {
     Movie selected = null;
     public SearchView search;
 
-    /* Controller for the button which will change the profile model */
-    private ProfileCtrl ctrl = new ProfileCtrl();
-    private int personalVote = 0;
 
     public MovieView(View view, ApplicationModel model){
         this.model = model;
@@ -104,33 +98,5 @@ public class MovieView {
         return view.getContext();
     }
 
-    public void addToLiked () {
-        /* Set the personal vote for that movie */
-
-        /* Change the model */
-        ctrl.addToLiked(model.getProfile(), selected);
-
-        /* Debug with toast */
-        String text = model.getProfile().getTopList().getFirst().getName();
-        Toast.makeText(this.getContext(), text, Toast.LENGTH_SHORT).show();
-
-        /* Change the view */
-    }
-
-    public void addToHated () {
-        /* Set the personal vote for that movie */
-
-        /* Change the model */
-        ctrl.addToHated(model.getProfile(), selected);
-
-        /* Change the view */
-    }
-
-    public void addToFuture () {
-        /* Change the model */
-        ctrl.addToFuture(model.getProfile(), selected);
-
-        /* Change the view */
-    }
 
 }

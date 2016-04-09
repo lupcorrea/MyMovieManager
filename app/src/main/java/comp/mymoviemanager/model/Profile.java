@@ -32,15 +32,17 @@ public class Profile {
     public Profile (String name) {
         this.name = name;
 
-        /* Database construction */
+        /* Database construction
         database = SQLiteDatabase.openOrCreateDatabase("/Profile Database", null, null);
         database.execSQL("CREATE TABLE IF NOT EXISTS Profile (Mail TEXT PRIMARY KEY NOT NULL, Name TEXT NOT NULL, TopList TEXT, BottomList TEXT, FutureList TEXT);");
         database.execSQL("CREATE TABLE IF NOT EXISTS TopList (Id INT PRIMARY KEY NOT NULL, Name TEXT NOT NULL, Release TEXT, GenreList TEXT, Popularity TEXT, Language TEXT, Sinopsis TEXT, PosterPath TEXT, PersonalVote INT, PersonalRank INT NOT NULL UNIQUE);");
         database.execSQL("CREATE TABLE IF NOT EXISTS BottomList (Id INT PRIMARY KEY NOT NULL, Name TEXT NOT NULL, Release TEXT, GenreList TEXT, Popularity TEXT, Language TEXT, Sinopsis TEXT, PosterPath TEXT, PersonalVote INT, PersonalRank INT NOT NULL UNIQUE);");
         database.execSQL("CREATE TABLE IF NOT EXISTS FutureList (Id INT PRIMARY KEY NOT NULL, Name TEXT NOT NULL, Release TEXT, GenreList TEXT, Popularity TEXT, Language TEXT, Sinopsis TEXT, PosterPath TEXT, PersonalVote INT, PersonalRank INT NOT NULL UNIQUE);");
+        /**/
     }
 
     public LinkedList<Movie> getTopList() {
+        /*
         Movie m = null;
 
         Cursor resultSet = database.rawQuery("Select * from TopList", null);
@@ -60,11 +62,13 @@ public class Profile {
             this.topList.set(i, m);
             resultSet.moveToNext();
         }
+        */
 
         return this.topList;
     }
 
     public void setTopList() {
+        /*
         for (int i = 0; i < this.topList.size(); i++) {
             database.rawQuery("UPDATE TopList SET Id = \'" + this.topList.get(i).getId() + "\' WHERE RANK = " + i + 1 + ";", null);
             database.rawQuery("UPDATE TopList SET Name = \'" + this.topList.get(i).getName() + "\' WHERE RANK = " + i+1 + ";", null);
@@ -76,9 +80,11 @@ public class Profile {
             database.rawQuery("UPDATE TopList SET PosterPath = \'" + this.topList.get(i).getPosterPath() + "\' WHERE RANK = " + i+1 + ";", null);
             database.rawQuery("UPDATE TopList SET PersonalVote = \'" + this.topList.get(i).getMyVote() + "\' WHERE RANK = " + i+1 + ";", null);
         }
+        */
     }
 
     public LinkedList<Movie> getBottomList() {
+        /*
         Movie m = null;
 
         Cursor resultSet = database.rawQuery("Select * from BottomList", null);
@@ -97,12 +103,13 @@ public class Profile {
 
             this.bottomList.set(i, m);
             resultSet.moveToNext();
-        }
+        }*/
 
         return bottomList;
     }
 
     public void setBottomList() {
+        /*
         for (int i = 0; i < this.bottomList.size(); i++) {
             database.rawQuery("UPDATE BottomList SET Id = \'" + this.bottomList.get(i).getId() + "\' WHERE RANK = " + i + 1 + ";", null);
             database.rawQuery("UPDATE BottomList SET Name = \'" + this.bottomList.get(i).getName() + "\' WHERE RANK = " + i+1 + ";", null);
@@ -114,9 +121,11 @@ public class Profile {
             database.rawQuery("UPDATE BottomList SET PosterPath = \'" + this.bottomList.get(i).getPosterPath() + "\' WHERE RANK = " + i+1 + ";", null);
             database.rawQuery("UPDATE BottomList SET PersonalVote = \'" + this.bottomList.get(i).getMyVote() + "\' WHERE RANK = " + i+1 + ";", null);
         }
+        */
     }
 
     public LinkedList<Movie> getFutureList() {
+        /*
         Movie m = null;
 
         Cursor resultSet = database.rawQuery("Select * from FutureList", null);
@@ -135,12 +144,13 @@ public class Profile {
 
             this.futureList.set(i, m);
             resultSet.moveToNext();
-        }
+        }*/
 
         return futureList;
     }
 
     public void setFutureList() {
+        /*
         for (int i = 0; i < this.futureList.size(); i++) {
             database.rawQuery("UPDATE FutureList SET Id = \'" + this.futureList.get(i).getId() + "\' WHERE RANK = " + i + 1 + ";", null);
             database.rawQuery("UPDATE FutureList SET Name = \'" + this.futureList.get(i).getName() + "\' WHERE RANK = " + i+1 + ";", null);
@@ -151,7 +161,7 @@ public class Profile {
             database.rawQuery("UPDATE FutureList SET Sinopsis = \'" + this.futureList.get(i).getSinopsis() + "\' WHERE RANK = " + i+1 + ";", null);
             database.rawQuery("UPDATE FutureList SET PosterPath = \'" + this.futureList.get(i).getPosterPath() + "\' WHERE RANK = " + i+1 + ";", null);
             database.rawQuery("UPDATE FutureList SET PersonalVote = \'" + this.futureList.get(i).getMyVote() + "\' WHERE RANK = " + i+1 + ";", null);
-        }
+        }*/
     }
 
     public Bitmap getProfile_image() {

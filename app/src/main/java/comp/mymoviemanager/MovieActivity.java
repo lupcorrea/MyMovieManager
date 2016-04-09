@@ -27,16 +27,4 @@ public class MovieActivity extends Activity {
 
     }
 
-    public void addToLiked (View v) {
-        mainView.addToLiked();
-    }
-
-    public void addToHated (View v) {
-        mainView.addToHated();
-    }
-
-    public void addToFuture (View v) {
-        mainView.addToFuture();
-    }
-
 }
