@@ -2,7 +2,9 @@ package comp.mymoviemanager.view;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -50,8 +52,16 @@ public class MovieView {
         not_interested.setCompoundDrawablesWithIntrinsicBounds(R.drawable.not_interested_icon, 0, 0, 0);
         not_interested.setText("I'm not interested");*/
 
-        Bitmap resized_img = Bitmap.createScaledBitmap(selected.getPoster(), 241, 360, true);
-        poster.setImageBitmap(resized_img);
+        try{
+            Bitmap resized_img = Bitmap.createScaledBitmap(selected.getPoster(), 241, 360, true);
+            poster.setImageBitmap(resized_img);
+        } catch (Exception e){
+            e.printStackTrace();
+            Bitmap bMap = BitmapFactory.decodeResource(view.getResources(), R.drawable.no_poster);
+            Bitmap resized_img = Bitmap.createScaledBitmap(bMap, 241, 360, true);
+            BitmapDrawable img = new BitmapDrawable(view.getResources(),resized_img);
+            poster.setImageDrawable(img);
+        }
 
         movie_name.setText(selected.getName());
         //movie_name.setTextSize(18);
