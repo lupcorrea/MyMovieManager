@@ -140,7 +140,8 @@
                 android:layout_height="wrap_content"
                 android:textSize="10dp"
                 android:text="@string/rate"
-                android:id="@+id/rate_btn"/>
+                android:id="@+id/rate_btn"
+                android:onClick="addToLiked"/>
 
             <Button
                 android:layout_width="wrap_content"

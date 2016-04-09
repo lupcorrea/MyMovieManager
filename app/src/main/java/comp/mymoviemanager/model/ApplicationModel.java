@@ -41,7 +41,7 @@ public class ApplicationModel extends Observable{
     private int func1 = -1;
 
     public Movie selected = null;
-    public Profile pro = null;
+    private Profile profile;
 
     public Hashtable<String,String> genres = new Hashtable<>();
 
@@ -49,8 +49,8 @@ public class ApplicationModel extends Observable{
         return selected;
     }
 
-    public void getProfile() {
-        //pro = Profile.getProfile();
+    public Profile getProfile() {
+        return this.profile;
     }
 
     public void setMovieFromId(Integer id){
@@ -443,5 +443,8 @@ public class ApplicationModel extends Observable{
         genres.put("53", "Thriller");
         genres.put("10752", "War");
         genres.put("37", "Western");
+
+        /* Profile construction. We need to make it dynamic. */
+        profile = new Profile("Kurt");
     }
 }

@@ -33,8 +33,8 @@ public class Profile {
         this.name = name;
 
         /* Database construction */
-        database = SQLiteDatabase.openOrCreateDatabase(name, null, null);
-        database.execSQL("CREATE TABLE IF NOT EXISTS " + name + "(Mail TEXT PRIMARY KEY NOT NULL, Name TEXT NOT NULL, TopList TEXT, BottomList TEXT, FutureList TEXT);");
+        database = SQLiteDatabase.openOrCreateDatabase("/Profile Database", null, null);
+        database.execSQL("CREATE TABLE IF NOT EXISTS Profile (Mail TEXT PRIMARY KEY NOT NULL, Name TEXT NOT NULL, TopList TEXT, BottomList TEXT, FutureList TEXT);");
         database.execSQL("CREATE TABLE IF NOT EXISTS TopList (Id INT PRIMARY KEY NOT NULL, Name TEXT NOT NULL, Release TEXT, GenreList TEXT, Popularity TEXT, Language TEXT, Sinopsis TEXT, PosterPath TEXT, PersonalVote INT, PersonalRank INT NOT NULL UNIQUE);");
         database.execSQL("CREATE TABLE IF NOT EXISTS BottomList (Id INT PRIMARY KEY NOT NULL, Name TEXT NOT NULL, Release TEXT, GenreList TEXT, Popularity TEXT, Language TEXT, Sinopsis TEXT, PosterPath TEXT, PersonalVote INT, PersonalRank INT NOT NULL UNIQUE);");
         database.execSQL("CREATE TABLE IF NOT EXISTS FutureList (Id INT PRIMARY KEY NOT NULL, Name TEXT NOT NULL, Release TEXT, GenreList TEXT, Popularity TEXT, Language TEXT, Sinopsis TEXT, PosterPath TEXT, PersonalVote INT, PersonalRank INT NOT NULL UNIQUE);");
@@ -170,17 +170,23 @@ public class Profile {
         this.name = name;
     }
 
-    public void addMovieToTopList (Movie m) {
+    public void addMovieToTopList(Movie m) {
         for (int index = 0; index < topList.size(); index++) {
             if (topList.get(index).getMyVote() < m.getMyVote()) continue;
-            else topList.add(index, m);
+            else {
+                topList.add(index, m);
+                break;
+            }
         }
     }
 
     public void addMovieToBottomList (Movie m) {
         for (int index = 0; index < bottomList.size(); index++) {
             if (bottomList.get(index).getMyVote() > m.getMyVote()) continue;
-            else bottomList.add(index, m);
+            else {
+                bottomList.add(index, m);
+                break;
+            }
         }
     }
 
