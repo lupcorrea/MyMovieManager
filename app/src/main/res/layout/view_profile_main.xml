@@ -1,27 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#484848">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="#2e2e2e">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:clickable="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/homeicon"/>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:clickable="true"
+            android:layout_gravity="center"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/profileicon"/>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:clickable="true"
+            android:layout_gravity="center"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/favorite"/>
+
+        <SearchView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/search"
+            android:searchIcon="@drawable/search"
+            >
+
+        </SearchView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
         android:orientation="horizontal"
         android:layout_marginLeft="10dp"
         android:id="@+id/ll_profile_personal">
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:id="@+id/profile_photo"
-            android:layout_toLeftOf="@+id/profile_name"/>
+            android:layout_toLeftOf="@+id/profile_name"
+            android:src="@drawable/bender"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:id="@+id/profile_name"
             android:layout_toRightOf="@+id/profile_photo"
-            android:layout_marginLeft="20dp"/>
+            android:layout_marginLeft="20dp"
+            android:text="Bender Rodríguez"
+            android:textColor="#ffffff"
+            android:textSize="25dp"
+            android:layout_gravity="center"
+            android:gravity="center"/>
 
     </LinearLayout>
 
@@ -30,7 +77,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:textColor="#000000"
+        android:textColor="#ffffff"
         android:textSize="24dp"
         android:id="@+id/label_profile_top_movies"
         android:text="@string/profile_top_movies"/>
@@ -54,7 +101,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:textColor="#000000"
+        android:textColor="#ffffff"
         android:textSize="24dp"
         android:id="@+id/label_profile_bottom_movies"
         android:text="@string/profile_bottom_movies"/>
@@ -78,7 +125,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:textColor="#000000"
+        android:textColor="#ffffff"
         android:textSize="24dp"
         android:id="@+id/label_profile_todo_movies"
         android:text="@string/profile_todo_movies"/>
@@ -102,7 +149,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:textColor="#000000"
+        android:textColor="#ffffff"
         android:textSize="24dp"
         android:id="@+id/label_profile_top_tags"
         android:text="@string/profile_top_tags"/>
@@ -126,7 +173,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:textColor="#000000"
+        android:textColor="#ffffff"
         android:textSize="24dp"
         android:id="@+id/label_profile_bottom_tags"
         android:text="@string/profile_bottom_tags"/>
