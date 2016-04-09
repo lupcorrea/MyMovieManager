@@ -19,6 +19,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="30dp"
+            android:id="@+id/home_action"
             android:background="@drawable/homeicon"/>
         <ImageView
             android:layout_width="30dp"
@@ -26,6 +27,7 @@
             android:clickable="true"
             android:layout_gravity="center"
             android:layout_marginRight="30dp"
+            android:id="@+id/profile_action"
             android:background="@drawable/profileicon"/>
         <ImageView
             android:layout_width="30dp"
