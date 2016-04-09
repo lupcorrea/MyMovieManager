@@ -23,4 +23,8 @@
     <string name="profile_top_tags">Most Liked Categories</string>
     <string name="profile_bottom_tags">Most Hated Categories</string>
     <string name="title_activity_movie">MovieActivity</string>
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
+    <string name="favorite">Favorite</string>
+    <string name="search">Search</string>
 </resources>

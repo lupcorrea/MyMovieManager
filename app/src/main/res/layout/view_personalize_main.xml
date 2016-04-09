@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/personalize"
     android:padding="16dp">
 
     <!-- Reference for the GridView: http://developer.android.com/guide/topics/ui/layout/gridview.html -->
@@ -14,6 +15,14 @@
         android:layout_marginBottom="50dp"
         android:enabled="false"
         android:text="Which movies did you like to see?"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SKIP FOR NOW"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/skip"/>
 
     <GridView
         android:layout_width="match_parent"

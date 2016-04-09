@@ -2,6 +2,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="comp.mymoviemanager.ProfileActivity">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+
+    <item android:id="@+id/home_action"
+        android:title="@string/home"
+        android:icon="@drawable/homeicon"
+        android:orderInCategory="200"
+        app:showAsAction="always">
+    </item>
+    <item android:id="@+id/profile_action"
+        android:title="@string/profile"
+        android:icon="@drawable/profileicon"
+        android:orderInCategory="200"
+        app:showAsAction="always">
+    </item>
+    <item android:id="@+id/favorite"
+        android:title="@string/favorite"
+        android:icon="@drawable/favorite"
+        android:orderInCategory="200"
+        app:showAsAction="always">
+    </item>
+    <item android:id="@+id/search"
+        android:title="@string/search"
+        android:icon="@android:drawable/ic_menu_search"
+        app:showAsAction="always"
+        android:orderInCategory="200"
+        android:actionViewClass="android.widget.SearchView" />
 </menu>
