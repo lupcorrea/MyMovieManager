@@ -5,9 +5,9 @@
     android:id="@+id/profile_view"
     android:background="#484848">
 
-    <!--
+
     <include layout="@layout/toolbar"/>
-    -->
+    <!--
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -49,12 +49,13 @@
 
         </SearchView>
     </LinearLayout>
-
+-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="110dp"
         android:orientation="horizontal"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/ll_profile_personal">
 
         <ImageView

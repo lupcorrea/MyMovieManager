@@ -34,6 +34,10 @@ public class Movie {
         this.genre_list = genre_list;
     }
 
+    /*protected void finalize() throws Throwable{
+        super.finalize();
+        //tempfile.delete();
+    }*/
     public String getSinopsis() {
         return sinopsis;
     }
