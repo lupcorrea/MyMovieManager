@@ -12,7 +12,7 @@ import comp.mymoviemanager.control.SearchFindCtrl;
 import comp.mymoviemanager.model.ApplicationModel;
 import comp.mymoviemanager.view.MainSearchView;
 
-public class MainActivity extends Activity {
+public class MainActivity extends ProfileActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,18 +22,18 @@ public class MainActivity extends Activity {
         ApplicationModel model = ((MyMovieApplication) this.getApplication()).getModel();
 
         MainSearchView mainView = new MainSearchView(findViewById(R.id.main_search), model);
-        SearchFindCtrl ctrl = new SearchFindCtrl(model, mainView);
+        //SearchFindCtrl ctrl = new SearchFindCtrl(model, mainView);
         MainViewBtnCtrl btnCtrl = new MainViewBtnCtrl(mainView, model);
 
 
-        ImageView profile = (ImageView) findViewById(R.id.profile_action);
+        /*ImageView profile = (ImageView) findViewById(R.id.profile_action);
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, ProfileActivity.class);
                 startActivity(i);
             }
-        });
+        });*/
     }
 
 }

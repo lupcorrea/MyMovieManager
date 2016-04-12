@@ -4,6 +4,8 @@
     android:layout_height="match_parent"
     android:background="#484848"
     android:id="@+id/main_search">
+
+    <include layout="@layout/toolbar"/>
     <!--@color/background_floating_material_dark-->
 <!--
     <RelativeLayout
@@ -36,6 +38,7 @@
 
     </RelativeLayout>
     -->
+    <!--
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -77,6 +80,7 @@
         </SearchView>
 
     </LinearLayout>
+    -->
 <!--Comment-->
     <ScrollView
         android:layout_width="match_parent"

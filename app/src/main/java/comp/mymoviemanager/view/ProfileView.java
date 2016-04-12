@@ -1,5 +1,6 @@
 package comp.mymoviemanager.view;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,20 +17,20 @@ import comp.mymoviemanager.model.ApplicationModel;
 public class ProfileView {
     View view;
     ApplicationModel model;
-    SearchView search;
+    public SearchView search;
 
     public ProfileView(View view, ApplicationModel model){
         this.view = view;
         this.model = model;
 
-        search = (SearchView) view.findViewById(R.id.search);
+        /*search = (SearchView) view.findViewById(R.id.search);
         changeSearchViewTextColor(search);
         int closeButtonId = view.getContext().getResources().getIdentifier("android:id/search_close_btn", null, null);
         ImageView closeButtonImage = (ImageView) search.findViewById(closeButtonId);
-        closeButtonImage.setImageResource(R.drawable.close_icon);
+        closeButtonImage.setImageResource(R.drawable.close_icon);*/
     }
 
-    private void changeSearchViewTextColor(View view) {
+    /*private void changeSearchViewTextColor(View view) {
         if (view != null) {
             if (view instanceof TextView) {
                 ((TextView) view).setTextColor(Color.WHITE);
@@ -41,5 +42,9 @@ public class ProfileView {
                 }
             }
         }
+    }*/
+
+    public Context getContext(){
+        return view.getContext();
     }
 }

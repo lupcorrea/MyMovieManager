@@ -112,7 +112,15 @@ public class ApplicationModel extends Observable{
         new CallAPI().execute(url);
     }
 
+    public void clearLists(){
+        suggestions.clear();
+        upcoming.clear();
+        popular.clear();
+        top_rated.clear();
+        System.gc();
+    }
     public void getSuggestions(){
+        clearLists();
         //String url = apiURL + "title_kw=" + text + "&pg=1&rpp=20&api_key=" + api_key;
         String url = apiURL + "movie/popular?api_key=" + api_key;
         func = 0;

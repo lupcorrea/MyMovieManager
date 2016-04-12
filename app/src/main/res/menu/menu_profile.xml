@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="comp.mymoviemanager.ProfileActivity">
+    tools:context="comp.mymoviemanager.ToolBarActivity">
 
     <item android:id="@+id/home_action"
         android:title="@string/home"
@@ -15,16 +15,17 @@
         android:orderInCategory="200"
         app:showAsAction="always">
     </item>
-    <item android:id="@+id/favorite"
+    <item android:id="@+id/favorite_action"
         android:title="@string/favorite"
         android:icon="@drawable/favorite"
         android:orderInCategory="200"
         app:showAsAction="always">
     </item>
-    <item android:id="@+id/search"
+    <item
+        android:id="@+id/action_search"
         android:title="@string/search"
         android:icon="@android:drawable/ic_menu_search"
         app:showAsAction="always"
         android:orderInCategory="200"
-        android:actionViewClass="android.widget.SearchView" />
+        app:actionViewClass="android.support.v7.widget.SearchView" />
 </menu>

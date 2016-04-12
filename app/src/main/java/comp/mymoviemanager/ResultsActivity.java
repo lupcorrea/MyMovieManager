@@ -33,6 +33,7 @@ public class ResultsActivity extends Activity{
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(ResultsActivity.this, MainActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(i);
             }
         });
