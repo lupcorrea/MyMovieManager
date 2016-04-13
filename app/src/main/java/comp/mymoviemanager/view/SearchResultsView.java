@@ -30,7 +30,6 @@ public class SearchResultsView implements Observer{
     View view;
     ApplicationModel model;
     LinkedList<Movie> results;
-    public SearchView search;
     public ProgressBar progressBar;
 
     LinearLayout container, infos;
@@ -45,28 +44,9 @@ public class SearchResultsView implements Observer{
         model.addObserver(this);
 
         result_container = (LinearLayout) view.findViewById(R.id.results_container);
-        search = (SearchView) view.findViewById(R.id.search);
+
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
-
         progressBar.setVisibility(View.VISIBLE);
-        changeSearchViewTextColor(search);
-        int closeButtonId = view.getContext().getResources().getIdentifier("android:id/search_close_btn", null, null);
-        ImageView closeButtonImage = (ImageView) search.findViewById(closeButtonId);
-        closeButtonImage.setImageResource(R.drawable.close_icon);
-    }
-
-    private void changeSearchViewTextColor(View view) {
-        if (view != null) {
-            if (view instanceof TextView) {
-                ((TextView) view).setTextColor(Color.WHITE);
-                return;
-            } else if (view instanceof ViewGroup) {
-                ViewGroup viewGroup = (ViewGroup) view;
-                for (int i = 0; i < viewGroup.getChildCount(); i++) {
-                    changeSearchViewTextColor(viewGroup.getChildAt(i));
-                }
-            }
-        }
     }
 
     @Override

@@ -6,6 +6,9 @@
     android:id="@+id/results_view"
     android:background="#484848">
 
+    <include layout="@layout/toolbar"/>
+
+<!--
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -54,6 +57,7 @@
         </SearchView>
 
     </LinearLayout>
+    -->
 
     <LinearLayout
         android:layout_width="match_parent"
