@@ -31,10 +31,7 @@ public class MainSearchView implements Observer{
     ImageButton movieButton;
     TextView movie_name;
     ProgressBar progressBar, progressBar1, progressBar2, progressBar3;
-    public SearchView search;
-    //LinkedList<Button> suggestion_buttonList = new LinkedList<>();
-    //LinkedList<Button> new_buttonList = new LinkedList<>();
-    //LinkedList<Button> friends_buttonList = new LinkedList<>();
+
     LinkedList<Movie> suggestion_result;
 
     public LinearLayout suggestions;
@@ -46,7 +43,6 @@ public class MainSearchView implements Observer{
     public LinearLayout topRated;
     LinearLayout topRatedText;
 
-    //ImageView teste;
 
     public MainSearchView(View view, final ApplicationModel model){
         this.model = model;
@@ -54,7 +50,6 @@ public class MainSearchView implements Observer{
 
         model.addObserver(this);
 
-        //search = (SearchView) view.findViewById(R.id.search); MODIFIQUEI
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
         progressBar1 = (ProgressBar) view.findViewById(R.id.progressBar1);
         progressBar2 = (ProgressBar) view.findViewById(R.id.progressBar2);
@@ -69,35 +64,13 @@ public class MainSearchView implements Observer{
         topRated = (LinearLayout) view.findViewById(R.id.topRatedView);
         topRatedText = (LinearLayout) view.findViewById(R.id.topRatedViewText);
 
-        //teste = (ImageView) view.findViewById(R.id.test);
-
         model.getSuggestions();
         progressBar.setVisibility(View.VISIBLE);
         progressBar1.setVisibility(View.VISIBLE);
         progressBar2.setVisibility(View.VISIBLE);
         progressBar3.setVisibility(View.VISIBLE);
 
-        // Change the color of the search text MODIFIQUEI
-        /*
-        changeSearchViewTextColor(search);
-        int closeButtonId = view.getContext().getResources().getIdentifier("android:id/search_close_btn", null, null);
-        ImageView closeButtonImage = (ImageView) search.findViewById(closeButtonId);
-        closeButtonImage.setImageResource(R.drawable.close_icon);*/
     }
-
-    /*private void changeSearchViewTextColor(View view) {
-        if (view != null) {
-            if (view instanceof TextView) {
-                ((TextView) view).setTextColor(Color.WHITE);
-                return;
-            } else if (view instanceof ViewGroup) {
-                ViewGroup viewGroup = (ViewGroup) view;
-                for (int i = 0; i < viewGroup.getChildCount(); i++) {
-                    changeSearchViewTextColor(viewGroup.getChildAt(i));
-                }
-            }
-        }
-    }*/
 
     @Override
     public void update(Observable observable, Object data) {

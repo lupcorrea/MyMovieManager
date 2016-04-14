@@ -25,8 +25,6 @@ public class MovieView {
     ApplicationModel model;
     View view;
     Movie selected = null;
-    public SearchView search;
-
 
     public MovieView(View view, ApplicationModel model){
         this.model = model;
@@ -67,11 +65,6 @@ public class MovieView {
         //movie_name.setTextSize(18);
         movie_release.setText(selected.getRelease());
 
-        search = (SearchView) view.findViewById(R.id.search);
-        changeSearchViewTextColor(search);
-        int closeButtonId = view.getContext().getResources().getIdentifier("android:id/search_close_btn", null, null);
-        ImageView closeButtonImage = (ImageView) search.findViewById(closeButtonId);
-        closeButtonImage.setImageResource(R.drawable.close_icon);
 
         String genre_list = selected.getGenre_list();
         genre_list = genre_list.replace("[", "");
@@ -89,19 +82,6 @@ public class MovieView {
             }
         }
         movie_description.setText(selected.getSinopsis());
-    }
-    private void changeSearchViewTextColor(View view) {
-        if (view != null) {
-            if (view instanceof TextView) {
-                ((TextView) view).setTextColor(Color.WHITE);
-                return;
-            } else if (view instanceof ViewGroup) {
-                ViewGroup viewGroup = (ViewGroup) view;
-                for (int i = 0; i < viewGroup.getChildCount(); i++) {
-                    changeSearchViewTextColor(viewGroup.getChildAt(i));
-                }
-            }
-        }
     }
 
     public Context getContext() {

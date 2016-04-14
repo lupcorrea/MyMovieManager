@@ -1,39 +1,44 @@
 package comp.mymoviemanager;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
+import android.support.v7.widget.Toolbar;
+import android.widget.TextView;
 
 import comp.mymoviemanager.control.MainViewBtnCtrl;
-import comp.mymoviemanager.control.SearchFindCtrl;
 import comp.mymoviemanager.model.ApplicationModel;
 import comp.mymoviemanager.view.MainSearchView;
 
-public class MainActivity extends ProfileActivity {
+public class MainActivity extends ToolBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.view_search_main);
+        //setContentView(R.layout.view_search_main);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        TextView title = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        title.setText("Home");
 
         ApplicationModel model = ((MyMovieApplication) this.getApplication()).getModel();
 
         MainSearchView mainView = new MainSearchView(findViewById(R.id.main_search), model);
-        //SearchFindCtrl ctrl = new SearchFindCtrl(model, mainView);
         MainViewBtnCtrl btnCtrl = new MainViewBtnCtrl(mainView, model);
 
+    }
 
-        /*ImageView profile = (ImageView) findViewById(R.id.profile_action);
-        profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, ProfileActivity.class);
-                startActivity(i);
-            }
-        });*/
+    @Override
+    protected int getLayoutResource() {
+        return R.layout.view_search_main;
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);//must store the new intent unless getIntent() will return the old one
+        //processExtraData();
     }
 
 }
