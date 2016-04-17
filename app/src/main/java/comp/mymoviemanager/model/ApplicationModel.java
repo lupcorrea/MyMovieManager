@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,8 +48,24 @@ public class ApplicationModel extends Observable{
     public Movie selected = null;
     public Hashtable<String,String> genres = new Hashtable<>();
 
-    /* Database */
-    private DatabaseManager db;
+    /* Database methods */
+    public LinkedList addToLiked (Movie m, DatabaseManager db) {
+        profile.addMovieToTopList(m);
+        profile.setTopList(db);
+        return profile.getTopList(db);
+    }
+
+    public LinkedList addToHated (Movie m, DatabaseManager db) {
+        profile.addMovieToBottomList(m);
+        profile.setBottomList(db);
+        return profile.getBottomList(db);
+    }
+
+    public LinkedList addToFuture (Movie m, DatabaseManager db) {
+        profile.addMovieToFutureList(m);
+        profile.setFutureList(db);
+        return profile.getFutureList(db);
+    }
 
     public Movie getSelected(){
         return selected;
