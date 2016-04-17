@@ -21,10 +21,10 @@ import static android.database.sqlite.SQLiteDatabase.OPEN_READWRITE;
 
 public class Profile {
     /* Profile attributes */
-    private String name;
+    private String name = "Fgh";
     private String profile_image_path;
     private Bitmap profile_image;
-    private String mail;
+    private String mail = "www";
 
     /* Movies lists */
     private LinkedList<Movie> topList = new LinkedList<>();

@@ -49,22 +49,22 @@ public class ApplicationModel extends Observable{
     public Hashtable<String,String> genres = new Hashtable<>();
 
     /* Database methods */
-    public LinkedList addToLiked (Movie m, DatabaseManager db) {
+    public Movie addToLiked (Movie m, DatabaseManager db) {
         profile.addMovieToTopList(m);
         profile.setTopList(db);
-        return profile.getTopList(db);
+        return profile.getTopList(db).getLast();
     }
 
-    public LinkedList addToHated (Movie m, DatabaseManager db) {
+    public Movie addToHated (Movie m, DatabaseManager db) {
         profile.addMovieToBottomList(m);
         profile.setBottomList(db);
-        return profile.getBottomList(db);
+        return profile.getBottomList(db).getLast();
     }
 
-    public LinkedList addToFuture (Movie m, DatabaseManager db) {
+    public Movie addToFuture (Movie m, DatabaseManager db) {
         profile.addMovieToFutureList(m);
         profile.setFutureList(db);
-        return profile.getFutureList(db);
+        return profile.getFutureList(db).getLast();
     }
 
     public Movie getSelected(){

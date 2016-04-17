@@ -49,18 +49,19 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     // Table Create Statements
     // Profiles table
-    private static final String CREATE_TABLE_PROFILES = "CREATE TABLE IF NOT EXISTS"
+    private static final String CREATE_TABLE_PROFILES = "CREATE TABLE IF NOT EXISTS "
             + TABLE_PROFILES + "(" + KEY_MAIL + " TEXT PRIMARY KEY," + KEY_NAME
             + " TEXT," + KEY_PHOTO + " TEXT," + KEY_GENRE
-            + " TEXT" + ")";
+            + " TEXT);";
 
     // Lists table
-    private static final String CREATE_TABLE_LISTS = "CREATE TABLE IF NOT EXISTS"
-            + TABLE_LISTS + "(" + KEY_MAIL + " TEXT FOREIGN KEY," + KEY_TYPE + " INTEGER," + KEY_NAME
-            + " TEXT" + KEY_PHOTO + " TEXT," + KEY_RELEASE
+    private static final String CREATE_TABLE_LISTS = "CREATE TABLE IF NOT EXISTS "
+            + TABLE_LISTS + "(" + KEY_MAIL + " TEXT," + KEY_TYPE + " INTEGER," + KEY_NAME
+            + " TEXT," + KEY_PHOTO + " TEXT," + KEY_RELEASE
             + " TEXT," + KEY_GENRE + " TEXT," +  KEY_POPULARITY
             + " TEXT," + KEY_LANGUAGE + " TEXT," + KEY_SINOPSIS
-            + " TEXT," + KEY_VOTE + " TEXT," + KEY_ID + " INTEGER)";
+            + " TEXT," + KEY_VOTE + " TEXT," + KEY_ID + " INTEGER, FOREIGN KEY ("
+            + KEY_MAIL + ") REFERENCES " + TABLE_PROFILES + "(" + KEY_MAIL + "));";
 
     /****************************************************************************/
 

@@ -32,7 +32,7 @@ public class MovieActivity extends ToolBarActivity {
         db = DatabaseManager.getInstance(getApplicationContext());
 
         mainView = new MovieView(findViewById(R.id.movie_screen), model);
-        MovieViewBtnCtrl ctrl = new MovieViewBtnCtrl(model, mainView);
+        MovieViewBtnCtrl ctrl = new MovieViewBtnCtrl(model, mainView, db);
 
     }
 
