@@ -35,6 +35,8 @@ public class ApplicationModel extends Observable{
     LinkedList<Movie> search_results = new LinkedList<>();
     LinkedList<Bitmap> images = new LinkedList<>();
 
+    Profile profile = Profile.getInstance();
+
     //private final String api_key = "F088t4s6QGI5T92W3Nwiju8jFU52J8SP";
     //public final static String apiURL = "http://api.bigoven.com/recipes?";
     private final String api_key = "9e848c636182f849c60c808276757408";

@@ -32,7 +32,7 @@ public class MovieActivity extends ToolBarActivity {
 
         mainView = new MovieView(findViewById(R.id.movie_screen), model);
 
-        Toast.makeText(getApplicationContext(), db.toString(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), db.toString(), Toast.LENGTH_LONG).show();
 
     }
 
