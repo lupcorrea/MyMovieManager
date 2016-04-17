@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -25,6 +26,7 @@ public class MovieView {
     ApplicationModel model;
     View view;
     Movie selected = null;
+    public Button rate, interested, ninterested;
 
     public MovieView(View view, ApplicationModel model){
         this.model = model;
@@ -36,6 +38,10 @@ public class MovieView {
         TextView movie_release = (TextView) view.findViewById(R.id.movie_year);
         TextView movie_genre = (TextView) view.findViewById(R.id.movie_tag);
         TextView movie_description = (TextView) view.findViewById(R.id.movie_plot);
+
+        rate = (Button) view.findViewById(R.id.rate_btn);
+        interested = (Button) view.findViewById(R.id.interested_btn);
+        ninterested = (Button) view.findViewById(R.id.not_interested_btn);
         /*Button rate = (Button) view.findViewById(R.id.rate_btn);
         Button interested = (Button) view.findViewById(R.id.interested_btn);
         Button not_interested = (Button) view.findViewById(R.id.not_interested_btn);

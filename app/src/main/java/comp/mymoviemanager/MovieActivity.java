@@ -5,6 +5,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import comp.mymoviemanager.control.MovieViewBtnCtrl;
 import comp.mymoviemanager.model.ApplicationModel;
 import comp.mymoviemanager.model.Profile;
 import comp.mymoviemanager.util.DatabaseManager;
@@ -31,8 +32,8 @@ public class MovieActivity extends ToolBarActivity {
         db = DatabaseManager.getInstance(getApplicationContext());
 
         mainView = new MovieView(findViewById(R.id.movie_screen), model);
+        MovieViewBtnCtrl ctrl = new MovieViewBtnCtrl(model, mainView);
 
-        Toast.makeText(getApplicationContext(), db.toString(), Toast.LENGTH_SHORT).show();
 
     }
 
