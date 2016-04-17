@@ -34,7 +34,6 @@ public class MovieActivity extends ToolBarActivity {
         mainView = new MovieView(findViewById(R.id.movie_screen), model);
         MovieViewBtnCtrl ctrl = new MovieViewBtnCtrl(model, mainView);
 
-
     }
 
     @Override

@@ -31,6 +31,14 @@ public class Profile {
     private LinkedList<Movie> bottomList = new LinkedList<>();
     private LinkedList<Movie> futureList = new LinkedList<>();
 
+    /* Singleton */
+    private static Profile singleton;
+
+    public static synchronized Profile getInstance () {
+        if (singleton == null) singleton = new Profile();
+        return singleton;
+    }
+
     public LinkedList<Movie> getTopList(DatabaseManager joe) {
         topList = joe.getMoviesFrom(this.mail, "TopList");
 
@@ -66,22 +74,6 @@ public class Profile {
         joe.closeDB();
     }
 
-    public Bitmap getProfile_image() {
-        return profile_image;
-    }
-
-    public void setProfile_image(Bitmap profile_image) {
-        this.profile_image = profile_image;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public void addMovieToTopList(Movie m) {
         for (int index = 0; index < topList.size(); index++) {
             if (topList.get(index).getMyVote() < m.getMyVote()) continue;
@@ -104,5 +96,29 @@ public class Profile {
 
     public void addMovieToFutureList (Movie m) {
         futureList.add(m);
+    }
+
+    public Bitmap getProfile_image() {
+        return profile_image;
+    }
+
+    public void setProfile_image(Bitmap profile_image) {
+        this.profile_image = profile_image;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 }

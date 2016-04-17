@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,6 +36,8 @@ public class ApplicationModel extends Observable{
     LinkedList<Movie> search_results = new LinkedList<>();
     LinkedList<Bitmap> images = new LinkedList<>();
 
+    Profile profile = Profile.getInstance();
+
     //private final String api_key = "F088t4s6QGI5T92W3Nwiju8jFU52J8SP";
     //public final static String apiURL = "http://api.bigoven.com/recipes?";
     private final String api_key = "9e848c636182f849c60c808276757408";
@@ -45,8 +48,24 @@ public class ApplicationModel extends Observable{
     public Movie selected = null;
     public Hashtable<String,String> genres = new Hashtable<>();
 
-    /* Database */
-    private DatabaseManager db;
+    /* Database methods */
+    public LinkedList addToLiked (Movie m, DatabaseManager db) {
+        profile.addMovieToTopList(m);
+        profile.setTopList(db);
+        return profile.getTopList(db);
+    }
+
+    public LinkedList addToHated (Movie m, DatabaseManager db) {
+        profile.addMovieToBottomList(m);
+        profile.setBottomList(db);
+        return profile.getBottomList(db);
+    }
+
+    public LinkedList addToFuture (Movie m, DatabaseManager db) {
+        profile.addMovieToFutureList(m);
+        profile.setFutureList(db);
+        return profile.getFutureList(db);
+    }
 
     public Movie getSelected(){
         return selected;
