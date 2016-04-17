@@ -60,7 +60,7 @@ public abstract class ToolBarActivity extends AppCompatActivity {
             case R.id.profile_action:
             {
                 Intent i = new Intent(getApplicationContext(), ProfileActivity.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                //i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(i);
                 break;
             }

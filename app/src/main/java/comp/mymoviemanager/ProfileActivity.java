@@ -34,6 +34,7 @@ public class ProfileActivity extends ToolBarActivity{
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.view_profile_main);
+        Toast.makeText(getApplicationContext(), "Novo", Toast.LENGTH_LONG).show();
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
