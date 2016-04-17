@@ -22,6 +22,8 @@ import android.support.v7.widget.SearchView;
 
 import comp.mymoviemanager.control.ProfileSearchCtrl;
 import comp.mymoviemanager.model.ApplicationModel;
+import comp.mymoviemanager.model.Profile;
+import comp.mymoviemanager.util.DatabaseManager;
 import comp.mymoviemanager.view.ProfileView;
 
 /**
@@ -29,6 +31,9 @@ import comp.mymoviemanager.view.ProfileView;
  */
 public class ProfileActivity extends ToolBarActivity{
     private Toolbar toolbar;
+
+    ApplicationModel model;
+    DatabaseManager db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -42,9 +47,12 @@ public class ProfileActivity extends ToolBarActivity{
         TextView title = (TextView) toolbar.findViewById(R.id.toolbar_title);
         title.setText("Profile");
 
-        ApplicationModel model = ((MyMovieApplication) this.getApplication()).getModel();
+        model = ((MyMovieApplication) this.getApplication()).getModel();
+        db = DatabaseManager.getInstance(getApplicationContext());
 
         ProfileView view = new ProfileView(findViewById(R.id.profile_view), model);
+
+        Toast.makeText(getApplicationContext(), db.toString(), Toast.LENGTH_SHORT).show();
     }
 
 

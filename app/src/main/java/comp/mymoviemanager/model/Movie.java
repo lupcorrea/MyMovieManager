@@ -22,10 +22,9 @@ public class Movie {
     private String genre_list;
     private int myVote;
 
-    public Movie(String name, String release, String category, String popularity, String language, String sinopsis, String poster_path, Integer id, String genre_list){
+    public Movie(String name, String release, String popularity, String language, String sinopsis, String poster_path, Integer id, String genre_list){
         this.name = name;
         this.release = release;
-        this.category = category;
         this.popularity = popularity;
         this.language = language;
         this.sinopsis = sinopsis;

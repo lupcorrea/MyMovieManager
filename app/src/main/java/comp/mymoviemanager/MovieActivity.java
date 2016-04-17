@@ -3,14 +3,18 @@ package comp.mymoviemanager;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import comp.mymoviemanager.model.ApplicationModel;
+import comp.mymoviemanager.model.Profile;
+import comp.mymoviemanager.util.DatabaseManager;
 import comp.mymoviemanager.view.MovieView;
 
 public class MovieActivity extends ToolBarActivity {
 
     ApplicationModel model;
     MovieView mainView;
+    DatabaseManager db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +28,11 @@ public class MovieActivity extends ToolBarActivity {
         title.setText("Movie Info");
 
         model = ((MyMovieApplication) this.getApplication()).getModel();
+        db = DatabaseManager.getInstance(getApplicationContext());
 
         mainView = new MovieView(findViewById(R.id.movie_screen), model);
+
+        Toast.makeText(getApplicationContext(), db.toString(), Toast.LENGTH_SHORT).show();
 
     }
 

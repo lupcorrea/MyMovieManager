@@ -21,6 +21,8 @@ import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.Observable;
 
+import comp.mymoviemanager.util.DatabaseManager;
+
 /**
  * Created by Goldenberg on 02/04/16.
  */
@@ -41,8 +43,10 @@ public class ApplicationModel extends Observable{
     private int func1 = -1;
 
     public Movie selected = null;
-
     public Hashtable<String,String> genres = new Hashtable<>();
+
+    /* Database */
+    private DatabaseManager db;
 
     public Movie getSelected(){
         return selected;
@@ -119,6 +123,7 @@ public class ApplicationModel extends Observable{
         top_rated.clear();
         System.gc();
     }
+
     public void getSuggestions(){
         clearLists();
         //String url = apiURL + "title_kw=" + text + "&pg=1&rpp=20&api_key=" + api_key;
@@ -289,7 +294,7 @@ public class ApplicationModel extends Observable{
                     for(int i=0; i < json_array_participants.length(); i++) {
                         JSONObject participant = json_array_participants.getJSONObject(i);
                         //System.out.println(participant.getString("original_title"));
-                        suggestions.add(new Movie(participant.getString("original_title"),participant.getString("release_date"),"",participant.getString("vote_average"),participant.getString("original_language"),participant.getString("overview"),participant.getString("poster_path"),Integer.parseInt(participant.getString("id")),participant.getString("genre_ids")));
+                        suggestions.add(new Movie(participant.getString("original_title"),participant.getString("release_date"),participant.getString("vote_average"),participant.getString("original_language"),participant.getString("overview"),participant.getString("poster_path"),Integer.parseInt(participant.getString("id")),participant.getString("genre_ids")));
                     }
                     getImages(0);
                     func = -1;
@@ -305,7 +310,7 @@ public class ApplicationModel extends Observable{
                     for(int i=0; i < json_array_participants.length(); i++) {
                         JSONObject participant = json_array_participants.getJSONObject(i);
                         //System.out.println(participant.getString("original_title"));
-                        popular.add(new Movie(participant.getString("original_title"),participant.getString("release_date"),"",participant.getString("vote_average"),participant.getString("original_language"),participant.getString("overview"),participant.getString("poster_path"),Integer.parseInt(participant.getString("id")),participant.getString("genre_ids")));
+                        popular.add(new Movie(participant.getString("original_title"),participant.getString("release_date"),participant.getString("vote_average"),participant.getString("original_language"),participant.getString("overview"),participant.getString("poster_path"),Integer.parseInt(participant.getString("id")),participant.getString("genre_ids")));
                     }
                     getImages(1);
                     func = -1;
@@ -321,7 +326,7 @@ public class ApplicationModel extends Observable{
                     for(int i=0; i < json_array_participants.length(); i++) {
                         JSONObject participant = json_array_participants.getJSONObject(i);
                         //System.out.println(participant.getString("original_title"));
-                        top_rated.add(new Movie(participant.getString("original_title"),participant.getString("release_date"),"",participant.getString("vote_average"),participant.getString("original_language"),participant.getString("overview"),participant.getString("poster_path"),Integer.parseInt(participant.getString("id")),participant.getString("genre_ids")));
+                        top_rated.add(new Movie(participant.getString("original_title"),participant.getString("release_date"),participant.getString("vote_average"),participant.getString("original_language"),participant.getString("overview"),participant.getString("poster_path"),Integer.parseInt(participant.getString("id")),participant.getString("genre_ids")));
                     }
                     getImages(2);
                     func = -1;
@@ -337,7 +342,7 @@ public class ApplicationModel extends Observable{
                     for(int i=0; i < json_array_participants.length(); i++) {
                         JSONObject participant = json_array_participants.getJSONObject(i);
                         //System.out.println(participant.getString("original_title"));
-                        upcoming.add(new Movie(participant.getString("original_title"),participant.getString("release_date"),"",participant.getString("vote_average"),participant.getString("original_language"),participant.getString("overview"),participant.getString("poster_path"),Integer.parseInt(participant.getString("id")),participant.getString("genre_ids")));
+                        upcoming.add(new Movie(participant.getString("original_title"),participant.getString("release_date"),participant.getString("vote_average"),participant.getString("original_language"),participant.getString("overview"),participant.getString("poster_path"),Integer.parseInt(participant.getString("id")),participant.getString("genre_ids")));
                     }
                     getImages(3);
                     func = -1;
@@ -354,7 +359,7 @@ public class ApplicationModel extends Observable{
                     for(int i=0; i < json_array_participants.length(); i++) {
                         JSONObject participant = json_array_participants.getJSONObject(i);
                         //System.out.println(participant.getString("original_title"));
-                        search_results.add(new Movie(participant.getString("original_title"),participant.getString("release_date"),"",participant.getString("vote_average"),participant.getString("original_language"),participant.getString("overview"),participant.getString("poster_path"),Integer.parseInt(participant.getString("id")),participant.getString("genre_ids")));
+                        search_results.add(new Movie(participant.getString("original_title"),participant.getString("release_date"),participant.getString("vote_average"),participant.getString("original_language"),participant.getString("overview"),participant.getString("poster_path"),Integer.parseInt(participant.getString("id")),participant.getString("genre_ids")));
                     }
                     getImages(4);
                     func = -1;
@@ -425,6 +430,7 @@ public class ApplicationModel extends Observable{
             }
         }
     }
+
     public ApplicationModel(){
         genres.put("28","Action");
         genres.put("12", "Adventure");
