@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import comp.mymoviemanager.control.MainViewBtnCtrl;
 import comp.mymoviemanager.model.ApplicationModel;
@@ -15,6 +16,7 @@ public class MainActivity extends ToolBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.view_search_main);
+        Toast.makeText(getApplicationContext(), "Novo", Toast.LENGTH_LONG).show();
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
