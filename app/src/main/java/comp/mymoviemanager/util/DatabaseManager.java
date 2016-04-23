@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.sql.SQLException;
 import java.util.LinkedList;
 
 import comp.mymoviemanager.model.Movie;
@@ -63,6 +64,10 @@ public class DatabaseManager extends SQLiteOpenHelper {
             + " TEXT," + KEY_VOTE + " TEXT," + KEY_ID + " INTEGER, FOREIGN KEY ("
             + KEY_MAIL + ") REFERENCES " + TABLE_PROFILES + "(" + KEY_MAIL + "));";
 
+    // Database queries
+    private final String selectFromLists = "SELECT * FROM " + TABLE_LISTS + " WHERE ";
+    private final String selectFromProfiles = "SELECT * FROM " + TABLE_PROFILES + " WHERE ";
+
     /****************************************************************************/
 
     /* Singletons */
@@ -102,48 +107,75 @@ public class DatabaseManager extends SQLiteOpenHelper {
     }
 
     /****************************************************************************/
-
-    public LinkedList<Movie> getMoviesFrom (String mail, String listType) {
+    public Movie retrieveMovieFrom (String mail, String listType, Movie m) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String selectQuery = "SELECT  * FROM " + TABLE_LISTS + " WHERE " + KEY_TYPE + " = "
-                + listType + " AND " + KEY_MAIL + " = " + mail;
 
+        // Check if the movie exists
+        String selectQuery = selectFromLists
+                + KEY_ID + " =? AND "
+                + KEY_MAIL + " =? AND "
+                + KEY_TYPE + " =?";
         Log.e(LOG, selectQuery);
-        Cursor c = db.rawQuery(selectQuery, null);
 
-        if (c != null) c.moveToFirst();
+        Cursor c;
+        try {
+            c = db.rawQuery(selectQuery, new String[] {"" + m.getId(), mail, listType});
+        } catch (Exception e) {
+            return null;
+        }
+        c.moveToFirst();
 
-        LinkedList<Movie> ll_movies = new LinkedList<>();
-        do {
-            Movie m = new Movie(c.getString(c.getColumnIndex(KEY_NAME)), c.getString(c.getColumnIndex(KEY_RELEASE)), c.getString(c.getColumnIndex(KEY_POPULARITY)), c.getString(c.getColumnIndex(KEY_LANGUAGE)), c.getString(c.getColumnIndex(KEY_SINOPSIS)), c.getString(c.getColumnIndex(KEY_PHOTO)), c.getInt(c.getColumnIndex(KEY_ID)), c.getString(c.getColumnIndex(KEY_GENRE)));
-            m.setMyVote(c.getInt(c.getColumnIndex(KEY_VOTE)));
-            ll_movies.add(m);
-            c.moveToNext();
-        } while (!c.isAfterLast());
-
-        return ll_movies;
+        // Build a new object and return it
+        // String name, String release, String popularity, String language, String sinopsis, String poster_path, Integer id, String genre_list
+        return new Movie(c.getString(c.getColumnIndex(KEY_NAME)),
+                c.getString(c.getColumnIndex(KEY_RELEASE)),
+                c.getString(c.getColumnIndex(KEY_POPULARITY)),
+                c.getString(c.getColumnIndex(KEY_LANGUAGE)),
+                c.getString(c.getColumnIndex(KEY_SINOPSIS)),
+                c.getString(c.getColumnIndex(KEY_PHOTO)),
+                c.getInt(c.getColumnIndex(KEY_ID)),
+                c.getString(c.getColumnIndex(KEY_GENRE)));
     }
 
-    public void updateMoviesAt(String mail, String listType, LinkedList<Movie> ll_movies) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_LISTS, KEY_MAIL + " = " + mail + " AND " + KEY_TYPE + " = " + listType, null);
+    public Movie addMovieTo (String mail, String listType, Movie m) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Check if the movie is already there
+        String selectQuery = selectFromLists
+                + KEY_ID + " =? AND "
+                + KEY_MAIL + " =? AND "
+                + KEY_TYPE + " =?";
+        Log.e(LOG, selectQuery);
+
+        try {
+            Cursor c = db.rawQuery(selectQuery, new String[] {"" + m.getId(), mail, listType});
+        } catch (Exception e) {
+            return null;
+        }
 
         ContentValues values = new ContentValues();
-        for (int i = 0; i < ll_movies.size(); i++) {
-            values.put(KEY_MAIL, mail);
-            values.put(KEY_TYPE, listType);
-            values.put(KEY_NAME, ll_movies.get(i).getName());
-            values.put(KEY_PHOTO, ll_movies.get(i).getPosterPath());
-            values.put(KEY_RELEASE, ll_movies.get(i).getRelease());
-            values.put(KEY_GENRE, ll_movies.get(i).getGenre_list());
-            values.put(KEY_POPULARITY, ll_movies.get(i).getPopularity());
-            values.put(KEY_LANGUAGE, ll_movies.get(i).getLanguage());
-            values.put(KEY_SINOPSIS, ll_movies.get(i).getSinopsis());
-            values.put(KEY_VOTE, ll_movies.get(i).getMyVote());
-            values.put(KEY_ID, ll_movies.get(i).getId());
+        values.put(KEY_MAIL, mail);
+        values.put(KEY_TYPE, listType);
+        values.put(KEY_NAME, m.getName());
+        values.put(KEY_PHOTO, m.getPosterPath());
+        values.put(KEY_RELEASE, m.getRelease());
+        values.put(KEY_GENRE, m.getGenre_list());
+        values.put(KEY_POPULARITY, m.getPopularity());
+        values.put(KEY_LANGUAGE, m.getLanguage());
+        values.put(KEY_SINOPSIS, m.getSinopsis());
+        values.put(KEY_VOTE, m.getMyVote());
+        values.put(KEY_ID, m.getId());
 
-            db.insert(TABLE_LISTS, null, values);
-        }
+        db.insert(TABLE_LISTS, null, values);
+
+        return retrieveMovieFrom(mail, listType, m);
+    }
+
+    public void deleteMovieFrom(String mail, String listType, Movie m) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_LISTS, KEY_ID + " = " + m.getId() + " AND "
+                + KEY_MAIL + " = " + mail + " AND "
+                + KEY_TYPE + " = " + listType, null);
     }
 
 }

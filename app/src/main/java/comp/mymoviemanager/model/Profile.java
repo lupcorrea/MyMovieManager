@@ -39,86 +39,42 @@ public class Profile {
         return singleton;
     }
 
-    public LinkedList<Movie> getTopList(DatabaseManager joe) {
-        topList = joe.getMoviesFrom(this.mail, "TopList");
-
-        return this.topList;
+    // Adding methods
+    public void addToTopList (Movie m, DatabaseManager db) {
+        Movie newMovie = db.addMovieTo(mail, "topList", m);
+        if (newMovie != null) topList.add(newMovie);
+    }
+    public void addToBottomList (Movie m, DatabaseManager db) {
+        Movie newMovie = db.addMovieTo(mail, "bottomList", m);
+        if (newMovie != null) bottomList.add(newMovie);
+    }
+    public void addToFutureList (Movie m, DatabaseManager db) {
+        Movie newMovie = db.addMovieTo(mail, "futureList", m);
+        if (newMovie != null) futureList.add(newMovie);
     }
 
-    public void setTopList(DatabaseManager joe) {
-        joe.updateMoviesAt(this.mail, "TopList", this.topList);
-        joe.closeDB();
+    // Removal methods
+    public void removeFromTopList (Movie m, DatabaseManager db) {
+        db.deleteMovieFrom(mail, "topList", m);
+        topList.remove(m);
+    }
+    public void removeFromBottomList (Movie m, DatabaseManager db) {
+        db.deleteMovieFrom(mail, "bottomList", m);
+        bottomList.remove(m);
+    }
+    public void removeFromFutureList (Movie m, DatabaseManager db) {
+        db.deleteMovieFrom(mail, "futureList", m);
+        futureList.remove(m);
     }
 
-    public LinkedList<Movie> getBottomList(DatabaseManager joe) {
-        bottomList = joe.getMoviesFrom(this.mail, "BottomList");
-        joe.closeDB();
-
+    // Getters
+    public LinkedList<Movie> getTopList() {
+        return topList;
+    }
+    public LinkedList<Movie> getBottomList() {
         return bottomList;
     }
-
-    public void setBottomList(DatabaseManager joe) {
-        joe.updateMoviesAt(this.mail, "BottomList", this.bottomList);
-        joe.closeDB();
-    }
-
-    public LinkedList<Movie> getFutureList(DatabaseManager joe) {
-        futureList = joe.getMoviesFrom(this.mail, "FutureList");
-        joe.closeDB();
-
+    public LinkedList<Movie> getFutureList() {
         return futureList;
-    }
-
-    public void setFutureList(DatabaseManager joe) {
-        joe.updateMoviesAt(this.mail,"FutureList", this.futureList);
-        joe.closeDB();
-    }
-
-    public void addMovieToTopList(Movie m) {
-        for (int index = 0; index < topList.size(); index++) {
-            if (topList.get(index).getMyVote() < m.getMyVote()) continue;
-            else {
-                topList.add(index, m);
-                break;
-            }
-        }
-    }
-
-    public void addMovieToBottomList (Movie m) {
-        for (int index = 0; index < bottomList.size(); index++) {
-            if (bottomList.get(index).getMyVote() > m.getMyVote()) continue;
-            else {
-                bottomList.add(index, m);
-                break;
-            }
-        }
-    }
-
-    public void addMovieToFutureList (Movie m) {
-        futureList.add(m);
-    }
-
-    public Bitmap getProfile_image() {
-        return profile_image;
-    }
-
-    public void setProfile_image(Bitmap profile_image) {
-        this.profile_image = profile_image;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
     }
 }

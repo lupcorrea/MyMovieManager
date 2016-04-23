@@ -50,21 +50,18 @@ public class ApplicationModel extends Observable{
 
     /* Database methods */
     public Movie addToLiked (Movie m, DatabaseManager db) {
-        profile.addMovieToTopList(m);
-        profile.setTopList(db);
-        return profile.getTopList(db).getLast();
+        profile.addToTopList(m, db);
+        return profile.getTopList().getLast();
     }
 
     public Movie addToHated (Movie m, DatabaseManager db) {
-        profile.addMovieToBottomList(m);
-        profile.setBottomList(db);
-        return profile.getBottomList(db).getLast();
+        profile.addToBottomList(m, db);
+        return profile.getBottomList().getLast();
     }
 
     public Movie addToFuture (Movie m, DatabaseManager db) {
-        profile.addMovieToFutureList(m);
-        profile.setFutureList(db);
-        return profile.getFutureList(db).getLast();
+        profile.addToFutureList(m, db);
+        return profile.getFutureList().getLast();
     }
 
     public Movie getSelected(){
