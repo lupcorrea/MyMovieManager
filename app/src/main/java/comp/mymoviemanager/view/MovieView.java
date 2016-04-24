@@ -5,10 +5,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.Rating;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -27,6 +29,8 @@ public class MovieView {
     View view;
     Movie selected = null;
     public Button rate, interested, ninterested;
+    public RatingBar ratingBarDisplay;
+    public TextView ratingBarDisplayTitle;
 
     public MovieView(View view, ApplicationModel model){
         this.model = model;
@@ -38,6 +42,9 @@ public class MovieView {
         TextView movie_release = (TextView) view.findViewById(R.id.movie_year);
         TextView movie_genre = (TextView) view.findViewById(R.id.movie_tag);
         TextView movie_description = (TextView) view.findViewById(R.id.movie_plot);
+
+        ratingBarDisplay = (RatingBar) view.findViewById(R.id.ratingBar_main);
+        ratingBarDisplayTitle = (TextView) view.findViewById(R.id.rating_label);
 
         rate = (Button) view.findViewById(R.id.rate_btn);
         interested = (Button) view.findViewById(R.id.interested_btn);

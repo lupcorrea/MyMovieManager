@@ -127,9 +127,20 @@
                 android:scrollbarAlwaysDrawVerticalTrack="true"
                 android:id="@+id/movie_plot"/>
 
-            <!-- Insert here grid with artists, directors and producers in the movie (if possible by API) -->
-
-            <!-- Grid with buttons fixed at the bottom -->
+            <TextView
+                android:id="@+id/rating_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="You didn't rate this movie yet!"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="10dp"/>
+            <RatingBar
+                android:id="@+id/ratingBar_main"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:isIndicator="true"/>
 
         </LinearLayout>
 

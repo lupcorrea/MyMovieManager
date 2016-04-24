@@ -77,4 +77,18 @@ public class Profile {
     public LinkedList<Movie> getFutureList() {
         return futureList;
     }
+
+    // Checking methods
+    public Movie existsInTop (Movie m) {
+        if (topList.contains(m)) return topList.get(topList.indexOf(m));
+        else return null;
+    }
+    public Movie existsInBottom (Movie m) {
+        if (bottomList.contains(m)) return bottomList.get(bottomList.indexOf(m));
+        else return null;
+    }
+    public Movie existsInFuture (Movie m) {
+        if (futureList.contains(m)) return futureList.get(futureList.indexOf(m));
+        else return null;
+    }
 }

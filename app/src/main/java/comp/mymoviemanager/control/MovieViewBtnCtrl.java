@@ -30,6 +30,55 @@ public class MovieViewBtnCtrl implements View.OnClickListener{
         view.ninterested.setOnClickListener(this);
         view.rate.setOnClickListener(this);
 
+        changeVisual(null, model.getSelected());
+
+    }
+
+    public void changeVisual (View v, Movie m) {
+        if (v == view.interested) {
+            view.interested.setText("Added!");
+            view.rate.setText("Rate");
+            view.ninterested.setText("I'm not interested");
+        } else if (v == view.ninterested) {
+            view.ratingBarDisplayTitle.setText("Your rating for this movie:");
+            view.ratingBarDisplay.setIsIndicator(false);
+            view.ratingBarDisplay.setNumStars(m.getMyVote());
+            view.ratingBarDisplay.setIsIndicator(true);
+            view.interested.setText("I'm interested");
+            view.rate.setText("Rate");
+            view.ninterested.setText("Rated!");
+        } else if (v == view.rate) {
+            view.ratingBarDisplayTitle.setText("Your rating for this movie:");
+            view.ratingBarDisplay.setIsIndicator(false);
+            view.ratingBarDisplay.setNumStars(m.getMyVote());
+            view.ratingBarDisplay.setIsIndicator(true);
+            view.interested.setText("I'm interested");
+            view.rate.setText("Rated!");
+            view.ninterested.setText("I'm not interested");
+        } else {
+            // Check if movie already exists in database
+            if (model.existsInTop(m) != null) {
+                view.ratingBarDisplayTitle.setText("Your rating for this movie:");
+                view.ratingBarDisplay.setIsIndicator(false);
+                view.ratingBarDisplay.setNumStars(m.getMyVote());
+                view.ratingBarDisplay.setIsIndicator(true);
+                view.interested.setText("I'm interested");
+                view.rate.setText("Rated!");
+                view.ninterested.setText("I'm not interested");
+            } else if (model.existsInBottom(m) != null) {
+                view.ratingBarDisplayTitle.setText("Your rating for this movie:");
+                view.ratingBarDisplay.setIsIndicator(false);
+                view.ratingBarDisplay.setNumStars(m.getMyVote());
+                view.ratingBarDisplay.setIsIndicator(true);
+                view.interested.setText("I'm interested");
+                view.rate.setText("Rate");
+                view.ninterested.setText("Rated!");
+            } else if (model.existsInFuture(m) != null) {
+                view.interested.setText("Added!");
+                view.rate.setText("Rate");
+                view.ninterested.setText("I'm not interested");
+            }
+        }
     }
 
     @Override
@@ -37,6 +86,8 @@ public class MovieViewBtnCtrl implements View.OnClickListener{
         if (v == view.interested){
             Movie m = model.addToFuture(model.getSelected(), db);
             System.err.println(m.getName());
+            Toast.makeText(view.getContext(), m.getName() + " added to the list!", Toast.LENGTH_LONG);
+            changeVisual(v, m);
         }
         else if (v == view.ninterested){
             // Create the popup
@@ -57,12 +108,12 @@ public class MovieViewBtnCtrl implements View.OnClickListener{
             confirmBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    model.getSelected().setMyVote((int) rate.getRating());
+                    model.getSelected().setMyVote(Math.round(rate.getRating()));
                     Movie m = model.addToHated(model.getSelected(), db);
                     System.err.println(m.getName());
+                    Toast.makeText(view.getContext(), m.getMyVote() + " added to the list!", Toast.LENGTH_LONG).show();
+                    changeVisual(v, m);
                     dialog.dismiss();
-                    // Insert toast here
-                    // Insert visual change of the button here
                 }
             });
             dismissBtn.setOnClickListener(new View.OnClickListener() {
@@ -95,8 +146,8 @@ public class MovieViewBtnCtrl implements View.OnClickListener{
                     Movie m = model.addToLiked(model.getSelected(), db);
                     System.err.println(m.getName());
                     dialog.dismiss();
-                    // Insert toast here
-                    // Insert visual change of the button here
+                    Toast.makeText(view.getContext(), m.getName() + " added to the list!", Toast.LENGTH_LONG);
+                    changeVisual(v, m);
                 }
             });
             dismissBtn.setOnClickListener(new View.OnClickListener() {

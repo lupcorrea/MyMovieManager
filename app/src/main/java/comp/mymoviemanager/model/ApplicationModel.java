@@ -63,6 +63,16 @@ public class ApplicationModel extends Observable{
         profile.addToFutureList(m, db);
         return profile.getFutureList().getLast();
     }
+    public Movie existsInTop (Movie m) {
+        return profile.existsInTop(m);
+    }
+    public Movie existsInBottom (Movie m) {
+        return profile.existsInBottom(m);
+    }
+    public Movie existsInFuture (Movie m) {
+        return profile.existsInFuture(m);
+    }
+
 
     public Movie getSelected(){
         return selected;
