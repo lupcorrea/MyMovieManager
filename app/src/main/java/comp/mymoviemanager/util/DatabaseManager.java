@@ -67,7 +67,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
     // Database queries
     private final String selectFromLists = "SELECT * FROM " + TABLE_LISTS + " WHERE ";
     private final String selectFromProfiles = "SELECT * FROM " + TABLE_PROFILES + " WHERE ";
-
     /****************************************************************************/
 
     /* Singletons */
@@ -137,6 +136,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 c.getString(c.getColumnIndex(KEY_GENRE)));
     }
 
+    /****************************************************************************/
     public Movie addMovieTo (String mail, String listType, Movie m) {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -177,13 +177,21 @@ public class DatabaseManager extends SQLiteOpenHelper {
         return retrieveMovieFrom(mail, listType, m);
     }
 
+    /****************************************************************************/
     public void deleteMovieFrom(String mail, String listType, Movie m) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_LISTS, KEY_ID + " = " + m.getId() + " AND "
-                + KEY_MAIL + " = " + mail + " AND "
-                + KEY_TYPE + " = " + listType, null);
+        try {
+            db.beginTransaction();
+            db.delete(TABLE_LISTS, KEY_ID + " = " + m.getId() + " AND "
+                    + KEY_MAIL + " = " + mail + " AND "
+                    + KEY_TYPE + " = " + listType, null);
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+        }
     }
 
+    /****************************************************************************/
     public LinkedList createListFromDb (String mail, String listType) {
         SQLiteDatabase db = this.getReadableDatabase();
         LinkedList ll_movie = new LinkedList();

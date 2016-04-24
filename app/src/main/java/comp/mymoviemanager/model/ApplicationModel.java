@@ -36,8 +36,6 @@ public class ApplicationModel extends Observable{
     LinkedList<Movie> search_results = new LinkedList<>();
     LinkedList<Bitmap> images = new LinkedList<>();
 
-    Profile profile = Profile.getInstance();
-
     //private final String api_key = "F088t4s6QGI5T92W3Nwiju8jFU52J8SP";
     //public final static String apiURL = "http://api.bigoven.com/recipes?";
     private final String api_key = "9e848c636182f849c60c808276757408";
@@ -48,37 +46,25 @@ public class ApplicationModel extends Observable{
     public Movie selected = null;
     public Hashtable<String,String> genres = new Hashtable<>();
 
-    /* Database methods */
+    /****************************************************************************/
+    Profile profile = Profile.getInstance();
+
+    /****************************************************************************/
     public Movie addToLiked (Movie m, DatabaseManager db) {
         profile.addToTopList(m, db);
         setChanged();
         notifyObservers(1);
         return profile.getTopList().getLast();
     }
-
-    public Movie getMovieFromDb (Movie m, DatabaseManager db) {
-        return profile.getFromDb(db, m);
-    }
-
-    public Movie addToHated (Movie m, DatabaseManager db) {
-        profile.addToBottomList(m, db);
-        return profile.getBottomList().getLast();
-    }
-
     public Movie addToFuture (Movie m, DatabaseManager db) {
         profile.addToFutureList(m, db);
         setChanged();
         notifyObservers(0);
         return profile.getFutureList().getLast();
     }
+
     public Movie existsInTop (Movie m) {
         return profile.existsInTop(m);
-    }
-    public Movie existsInBottom (Movie m) {
-        return profile.existsInBottom(m);
-    }
-    public Movie existsInFuture (Movie m) {
-        return profile.existsInFuture(m);
     }
 
 

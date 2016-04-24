@@ -20,6 +20,7 @@ import static android.database.sqlite.SQLiteDatabase.OPEN_READWRITE;
  */
 
 public class Profile {
+    /****************************************************************************/
     /* Profile attributes */
     private String name = "Fgh";
     private String profile_image_path;
@@ -28,9 +29,9 @@ public class Profile {
 
     /* Movies lists */
     private LinkedList<Movie> topList = new LinkedList<>();
-    private LinkedList<Movie> bottomList = new LinkedList<>();
     private LinkedList<Movie> futureList = new LinkedList<>();
 
+    /****************************************************************************/
     /* Singleton */
     private static Profile singleton;
 
@@ -38,41 +39,43 @@ public class Profile {
         if (singleton == null) singleton = new Profile();
         return singleton;
     }
+    /****************************************************************************/
 
-    // Adding methods
+    /****************************************************************************/
     public void addToTopList (Movie m, DatabaseManager db) {
+        if (existsIn(m, "topList")) {
+            return;
+        } else if (existsIn(m, "futureList")) {
+            removeFromFutureList(m, db);
+        }
+
         Movie newMovie = db.addMovieTo(mail, "topList", m);
         if (newMovie != null) topList.add(newMovie);
     }
-    public void addToBottomList (Movie m, DatabaseManager db) {
-        Movie newMovie = db.addMovieTo(mail, "bottomList", m);
-        if (newMovie != null) bottomList.add(newMovie);
-    }
     public void addToFutureList (Movie m, DatabaseManager db) {
+        if (existsIn(m, "futureList")) {
+            return;
+        } else if (existsIn(m, "topList")) {
+            removeFromTopList(m, db);
+        }
+
         Movie newMovie = db.addMovieTo(mail, "futureList", m);
         if (newMovie != null) futureList.add(newMovie);
     }
 
-    // Removal methods
+    /****************************************************************************/
     public void removeFromTopList (Movie m, DatabaseManager db) {
         db.deleteMovieFrom(mail, "topList", m);
         topList.remove(m);
-    }
-    public void removeFromBottomList (Movie m, DatabaseManager db) {
-        db.deleteMovieFrom(mail, "bottomList", m);
-        bottomList.remove(m);
     }
     public void removeFromFutureList (Movie m, DatabaseManager db) {
         db.deleteMovieFrom(mail, "futureList", m);
         futureList.remove(m);
     }
 
-    // Getters
+    /****************************************************************************/
     public LinkedList<Movie> getTopList() {
         return topList;
-    }
-    public LinkedList<Movie> getBottomList() {
-        return bottomList;
     }
     public LinkedList<Movie> getFutureList() {
         return futureList;
@@ -80,18 +83,32 @@ public class Profile {
     public String getMail() {
         return mail;
     }
-
-    // Setters
     public void setTopList(LinkedList<Movie> topList) {
         this.topList = topList;
-    }
-    public void setBottomList(LinkedList<Movie> bottomList) {
-        this.bottomList = bottomList;
     }
     public void setFutureList(LinkedList<Movie> futureList) {
         this.futureList = futureList;
     }
 
+    /****************************************************************************/
+    public boolean existsIn (Movie m, String listType) {
+        switch (listType) {
+            case "topList":
+                for (int i = 0; i < topList.size(); i++) {
+                    if (m.getId().intValue() == topList.get(i).getId().intValue()) return true;
+                }
+                break;
+            case "futureList":
+                for (int i = 0; i < futureList.size(); i++) {
+                    if (m.getId() == futureList.get(i).getId()) return true;
+                }
+                break;
+        }
+
+        return false;
+    }
+
+    /****************************************************************************/
     public Movie existsInTop (Movie m) {
         if (topList != null) {
             for (int i = 0; i < topList.size(); i++) {
@@ -101,17 +118,5 @@ public class Profile {
         }
 
         return null;
-    }
-    public Movie existsInBottom (Movie m) {
-        if (bottomList.contains(m)) return bottomList.get(bottomList.indexOf(m));
-        else return null;
-    }
-    public Movie existsInFuture (Movie m) {
-        if (futureList.contains(m)) return futureList.get(futureList.indexOf(m));
-        else return null;
-    }
-
-    public Movie getFromDb (DatabaseManager db, Movie m) {
-        return db.retrieveMovieFrom(mail, "topList", m);
     }
 }
