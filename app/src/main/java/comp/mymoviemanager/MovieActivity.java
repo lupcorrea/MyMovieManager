@@ -1,7 +1,11 @@
 package comp.mymoviemanager;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +37,12 @@ public class MovieActivity extends ToolBarActivity {
 
         mainView = new MovieView(findViewById(R.id.movie_screen), model);
         MovieViewBtnCtrl ctrl = new MovieViewBtnCtrl(model, mainView, db);
+
+
+        /* Customization of rating bar */
+        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar_main);
+        LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
+        stars.getDrawable(2).setColorFilter(Color.YELLOW, PorterDuff.Mode.SRC_ATOP);
 
     }
 
