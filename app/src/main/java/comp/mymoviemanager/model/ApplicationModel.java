@@ -34,6 +34,8 @@ public class ApplicationModel extends Observable{
     LinkedList<Movie> top_rated = new LinkedList<>();
     LinkedList<Movie> upcoming = new LinkedList<>();
     LinkedList<Movie> search_results = new LinkedList<>();
+    public LinkedList<Movie> top = new LinkedList<>();
+    public LinkedList<Movie> future = new LinkedList<>();
     LinkedList<Bitmap> images = new LinkedList<>();
 
     //private final String api_key = "F088t4s6QGI5T92W3Nwiju8jFU52J8SP";
@@ -67,6 +69,20 @@ public class ApplicationModel extends Observable{
         return profile.existsInTop(m);
     }
 
+    public void setLists(DatabaseManager db){
+        profile.setTopList(db.createListFromDb(profile.getMail(), "topList"));
+        profile.setFutureList(db.createListFromDb(profile.getMail(), "futureList"));
+    }
+
+    public void getTopList(){
+        top = profile.getTopList();
+        getImages(5);
+    }
+
+    public void getFutureList(){
+        future = profile.getFutureList();
+        getImages(6);
+    }
 
     public Movie getSelected(){
         return selected;
@@ -141,6 +157,9 @@ public class ApplicationModel extends Observable{
         upcoming.clear();
         popular.clear();
         top_rated.clear();
+        images.clear();
+        top.clear();
+        future.clear();
         System.gc();
     }
 
@@ -204,6 +223,18 @@ public class ApplicationModel extends Observable{
                 new GetPoster().execute("http://image.tmdb.org/t/p/w154" + search_results.get(i).getPosterPath());
             }
         }
+        else if (x == 5){
+            func1 = 5;
+            for (int i = 0; i < top.size(); i++){
+                new GetPoster().execute("http://image.tmdb.org/t/p/w154" + top.get(i).getPosterPath());
+            }
+        }
+        else if (x == 6){
+            func1 = 6;
+            for (int i = 0; i < future.size(); i++){
+                new GetPoster().execute("http://image.tmdb.org/t/p/w154" + future.get(i).getPosterPath());
+            }
+        }
     }
 
     public void setImages(){
@@ -250,7 +281,24 @@ public class ApplicationModel extends Observable{
             setChanged();
             notifyObservers(4);
         }
-        func1 = -1;
+        else if (func1 == 5) {
+            for (int i = 0; i < top.size(); i++) {
+                top.get(i).setPoster(images.get(i));
+            }
+            images.clear();
+            setChanged();
+            notifyObservers(5);
+            getFutureList();
+        }
+        else if (func1 == 6) {
+            for (int i = 0; i < future.size(); i++) {
+                future.get(i).setPoster(images.get(i));
+            }
+            images.clear();
+            setChanged();
+            notifyObservers(6);
+        }
+        //func1 = -1;
     }
 
     public LinkedList<Movie> getResult(Integer x){
@@ -445,6 +493,16 @@ public class ApplicationModel extends Observable{
             }
             else if (func1 == 4) {
                 if (images.size() == search_results.size()) {
+                    setImages();
+                }
+            }
+            else if (func1 == 5) {
+                if (images.size() == top.size()) {
+                    setImages();
+                }
+            }
+            else if (func1 == 6) {
+                if (images.size() == future.size()) {
                     setImages();
                 }
             }

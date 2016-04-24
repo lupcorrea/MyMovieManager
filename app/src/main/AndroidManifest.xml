@@ -55,8 +55,7 @@
         </activity>
         <activity
             android:name=".ProfileActivity"
-            android:label="ProfileActivity"
-            android:launchMode="singleTask">
+            android:label="ProfileActivity">
             <meta-data
                 android:name="android.app.default_searchable"
                 android:value=".ResultsActivity" />

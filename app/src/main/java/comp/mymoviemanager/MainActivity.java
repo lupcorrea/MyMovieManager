@@ -26,14 +26,11 @@ public class MainActivity extends ToolBarActivity {
         title.setText("Home");
 
         ApplicationModel model = ((MyMovieApplication) this.getApplication()).getModel();
+        model.clearLists();
 
         MainSearchView mainView = new MainSearchView(findViewById(R.id.main_search), model);
         MainViewBtnCtrl btnCtrl = new MainViewBtnCtrl(mainView, model);
 
-        // Profile and Database
-        Profile profile = Profile.getInstance();
-        DatabaseManager db = DatabaseManager.getInstance(getApplicationContext());
-        profile.setTopList(db.createListFromDb(profile.getMail(), "topList"));
 
     }
 
