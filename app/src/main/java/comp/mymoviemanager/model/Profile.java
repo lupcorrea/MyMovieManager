@@ -44,8 +44,10 @@ public class Profile {
     /****************************************************************************/
     public void addToTopList (Movie m, DatabaseManager db) {
         if (existsIn(m, "topList")) {
+            System.err.println("[addToTopList] exists in TopList");
             return;
         } else if (existsIn(m, "futureList")) {
+            System.err.println("[addToTopList] exists in FutureList");
             removeFromFutureList(m, db);
         }
 
@@ -54,8 +56,10 @@ public class Profile {
     }
     public void addToFutureList (Movie m, DatabaseManager db) {
         if (existsIn(m, "futureList")) {
+            System.err.println("[addToFutureList] exists in FutureList");
             return;
         } else if (existsIn(m, "topList")) {
+            System.err.println("[addToFutureList] exists in TopList");
             removeFromTopList(m, db);
         }
 
