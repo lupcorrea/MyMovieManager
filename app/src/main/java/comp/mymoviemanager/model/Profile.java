@@ -78,10 +78,13 @@ public class Profile {
         return futureList;
     }
 
-    // Checking methods
     public Movie existsInTop (Movie m) {
-        if (topList.contains(m)) return topList.get(topList.indexOf(m));
-        else return null;
+        for (int i = 0; i < topList.size(); i++) {
+            if (topList.get(i) != null) System.err.println ("[" + topList.get(i).getId() + "] " + topList.get(i).getName());
+            if (topList.get(i).getId() == m.getId()) return topList.get(i);
+        }
+
+        return null;
     }
     public Movie existsInBottom (Movie m) {
         if (bottomList.contains(m)) return bottomList.get(bottomList.indexOf(m));
@@ -90,5 +93,9 @@ public class Profile {
     public Movie existsInFuture (Movie m) {
         if (futureList.contains(m)) return futureList.get(futureList.indexOf(m));
         else return null;
+    }
+
+    public Movie getFromDb (DatabaseManager db, Movie m) {
+        return db.retrieveMovieFrom(mail, "topList", m);
     }
 }

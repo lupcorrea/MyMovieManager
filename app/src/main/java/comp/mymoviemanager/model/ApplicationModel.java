@@ -56,6 +56,10 @@ public class ApplicationModel extends Observable{
         return profile.getTopList().getLast();
     }
 
+    public Movie getMovieFromDb (Movie m, DatabaseManager db) {
+        return profile.getFromDb(db, m);
+    }
+
     public Movie addToHated (Movie m, DatabaseManager db) {
         profile.addToBottomList(m, db);
         return profile.getBottomList().getLast();

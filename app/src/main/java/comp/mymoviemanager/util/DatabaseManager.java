@@ -166,7 +166,13 @@ public class DatabaseManager extends SQLiteOpenHelper {
         values.put(KEY_VOTE, m.getMyVote());
         values.put(KEY_ID, m.getId());
 
-        db.insert(TABLE_LISTS, null, values);
+        try {
+            db.beginTransaction();
+            db.insert(TABLE_LISTS, null, values);
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+        }
 
         return retrieveMovieFrom(mail, listType, m);
     }
@@ -176,6 +182,34 @@ public class DatabaseManager extends SQLiteOpenHelper {
         db.delete(TABLE_LISTS, KEY_ID + " = " + m.getId() + " AND "
                 + KEY_MAIL + " = " + mail + " AND "
                 + KEY_TYPE + " = " + listType, null);
+    }
+
+    public LinkedList createListFromDb (String mail, String listType) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = selectFromLists
+                + KEY_MAIL + " =? AND "
+                + KEY_TYPE + " =?";
+        Log.e(LOG, selectQuery);
+
+        Cursor c;
+        try {
+            c = db.rawQuery(selectQuery, new String[] {"" + mail, listType});
+        } catch (Exception e) {
+            return null;
+        }
+        c.moveToFirst();
+
+        // Build a new object and return it
+        // String name, String release, String popularity, String language, String sinopsis, String poster_path, Integer id, String genre_list
+        return new Movie(c.getString(c.getColumnIndex(KEY_NAME)),
+                c.getString(c.getColumnIndex(KEY_RELEASE)),
+                c.getString(c.getColumnIndex(KEY_POPULARITY)),
+                c.getString(c.getColumnIndex(KEY_LANGUAGE)),
+                c.getString(c.getColumnIndex(KEY_SINOPSIS)),
+                c.getString(c.getColumnIndex(KEY_PHOTO)),
+                c.getInt(c.getColumnIndex(KEY_ID)),
+                c.getString(c.getColumnIndex(KEY_GENRE)));
     }
 
 }

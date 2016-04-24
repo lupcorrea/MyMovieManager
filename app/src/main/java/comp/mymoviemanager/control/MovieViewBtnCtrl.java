@@ -92,38 +92,7 @@ public class MovieViewBtnCtrl implements View.OnClickListener{
             //changeVisual(v, m);
         }
         else if (v == view.ninterested){
-            // Create the popup
-            final Dialog dialog = new Dialog (view.getContext());
-            dialog.setContentView(R.layout.popup_rate);
-            dialog.setTitle("Rate this movie!");
-            final RatingBar rate = (RatingBar) dialog.findViewById(R.id.ratingBar);
-            Button confirmBtn = (Button) dialog.findViewById(R.id.confirmButton);
-            Button dismissBtn = (Button) dialog.findViewById(R.id.dismissButton);
-
-            // Customize the popup
-            ((TextView) dialog.findViewById(R.id.rating_popup_title)).setText(model.getSelected().getName());
-
-            // Show the popup
-            dialog.show();
-
-            // Set listeners
-            confirmBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    model.getSelected().setMyVote(Math.round(rate.getRating()));
-                    Movie m = model.addToHated(model.getSelected(), db);
-                    System.err.println(m.getName());
-                    Toast.makeText(view.getContext(), m.getMyVote() + " added to the list!", Toast.LENGTH_LONG).show();
-                    //changeVisual(v, m);
-                    dialog.dismiss();
-                }
-            });
-            dismissBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dialog.dismiss();
-                }
-            });
+            System.err.println(model.existsInTop(model.getSelected()).getName());
         }
         else if (v == view.rate) {
 
