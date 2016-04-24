@@ -22,7 +22,6 @@ public class LoginBtnCtrl implements View.OnClickListener{
         this.model = model;
 
         view.data_login.setOnClickListener(this);
-        view.fb_login.setOnClickListener(this);
     }
 
     @Override

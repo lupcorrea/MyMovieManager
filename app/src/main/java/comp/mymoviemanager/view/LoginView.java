@@ -14,13 +14,12 @@ public class LoginView {
     View view;
     ApplicationModel model;
 
-    public Button fb_login, data_login;
+    public Button data_login;
 
     public LoginView(View view, ApplicationModel model){
         this.view = view;
         this.model = model;
 
-        fb_login = (Button) view.findViewById(R.id.fb_login);
         data_login = (Button) view.findViewById(R.id.data_login);
     }
 

@@ -12,27 +12,35 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minHeight="150dp"
-            android:minWidth="150dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:layout_gravity="center"
             android:layout_marginBottom="40dp"
             android:src="@drawable/logo"
             />
 
-        <Button
-            android:layout_width="300dp"
-            android:layout_height="match_parent"
-            android:text="LOG IN VIA FACEBOOK"
-            android:id="@+id/fb_login"
-            android:layout_marginBottom="20dp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#070707"
+            android:text="Name"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="10dp"
+            android:onClick="clearField"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#070707"
+            android:text="Email"
+            android:textColor="#FFFFFF"
+            android:onClick="clearField"/>
 
         <Button
             android:layout_width="300dp"
             android:layout_height="match_parent"
-            android:text="FILL YOUR DATA MANUALLY"
-            android:id="@+id/data_login"/>
+            android:text="Log in"
+            android:id="@+id/data_login"
+            android:layout_marginTop="40dp"/>
 
     </LinearLayout>
 

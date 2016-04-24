@@ -3,6 +3,8 @@ package comp.mymoviemanager;
 import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
 
 import comp.mymoviemanager.control.LoginBtnCtrl;
 import comp.mymoviemanager.model.ApplicationModel;
@@ -21,5 +23,10 @@ public class LoginActivity extends Activity {
 
         LoginView view = new LoginView(findViewById(R.id.login_view), model);
         LoginBtnCtrl ctrl = new LoginBtnCtrl(view, model);
+    }
+
+    public void clearField (View v) {
+        EditText edit = (EditText) v;
+        edit.setText("");
     }
 }
