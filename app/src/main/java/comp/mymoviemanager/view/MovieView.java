@@ -16,6 +16,8 @@ import android.widget.TextView;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import comp.mymoviemanager.R;
 import comp.mymoviemanager.model.Movie;
@@ -24,7 +26,7 @@ import comp.mymoviemanager.model.ApplicationModel;
 /**
  * Created by Goldenberg on 06/04/16.
  */
-public class MovieView {
+public class MovieView implements Observer{
     ApplicationModel model;
     View view;
     Movie selected = null;
@@ -37,6 +39,8 @@ public class MovieView {
         this.view = view;
         this.selected = model.getSelected();
 
+        model.addObserver(this);
+
         ImageView poster = (ImageView) view.findViewById(R.id.movie_thumbnail);
         TextView movie_name = (TextView) view.findViewById(R.id.movie_title);
         TextView movie_release = (TextView) view.findViewById(R.id.movie_year);
@@ -46,9 +50,32 @@ public class MovieView {
         ratingBarDisplay = (RatingBar) view.findViewById(R.id.ratingBar_main);
         ratingBarDisplayTitle = (TextView) view.findViewById(R.id.rating_label);
 
+        Movie m = model.getSelected();
         rate = (Button) view.findViewById(R.id.rate_btn);
         interested = (Button) view.findViewById(R.id.interested_btn);
         ninterested = (Button) view.findViewById(R.id.not_interested_btn);
+        //Set the button's text
+        if (model.existsInTop(m) != null) {
+            ratingBarDisplayTitle.setText("Your rating for this movie:");
+            ratingBarDisplay.setIsIndicator(false);
+            ratingBarDisplay.setNumStars(m.getMyVote());
+            ratingBarDisplay.setIsIndicator(true);
+            interested.setText("I'm interested");
+            rate.setText("Rated!");
+            ninterested.setText("I'm not interested");
+        } else if (model.existsInBottom(m) != null) {
+            ratingBarDisplayTitle.setText("Your rating for this movie:");
+            ratingBarDisplay.setIsIndicator(false);
+            ratingBarDisplay.setNumStars(m.getMyVote());
+            ratingBarDisplay.setIsIndicator(true);
+            interested.setText("I'm interested");
+            rate.setText("Rate");
+            ninterested.setText("Rated!");
+        } else if (model.existsInFuture(m) != null) {
+            interested.setText("Added!");
+            rate.setText("Rate");
+            ninterested.setText("I'm not interested");
+        }
         /*Button rate = (Button) view.findViewById(R.id.rate_btn);
         Button interested = (Button) view.findViewById(R.id.interested_btn);
         Button not_interested = (Button) view.findViewById(R.id.not_interested_btn);
@@ -102,4 +129,22 @@ public class MovieView {
     }
 
 
+
+    @Override
+    public void update(Observable observable, Object data) {
+        if ((Integer) data == 0){
+            interested.setText("Added!");
+            rate.setText("Rate");
+            ninterested.setText("I'm not interested");
+        }
+        else if ((Integer) data == 1){
+            ratingBarDisplayTitle.setText("Your rating for this movie:");
+            ratingBarDisplay.setIsIndicator(false);
+            ratingBarDisplay.setNumStars(model.getSelected().getMyVote());
+            ratingBarDisplay.setIsIndicator(true);
+            interested.setText("I'm interested");
+            rate.setText("Rated!");
+            ninterested.setText("I'm not interested");
+        }
+    }
 }

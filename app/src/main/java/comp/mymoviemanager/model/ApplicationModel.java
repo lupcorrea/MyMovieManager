@@ -51,6 +51,8 @@ public class ApplicationModel extends Observable{
     /* Database methods */
     public Movie addToLiked (Movie m, DatabaseManager db) {
         profile.addToTopList(m, db);
+        setChanged();
+        notifyObservers(1);
         return profile.getTopList().getLast();
     }
 
@@ -61,6 +63,8 @@ public class ApplicationModel extends Observable{
 
     public Movie addToFuture (Movie m, DatabaseManager db) {
         profile.addToFutureList(m, db);
+        setChanged();
+        notifyObservers(0);
         return profile.getFutureList().getLast();
     }
     public Movie existsInTop (Movie m) {

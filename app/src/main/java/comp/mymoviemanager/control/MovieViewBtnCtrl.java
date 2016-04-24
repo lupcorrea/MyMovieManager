@@ -30,10 +30,11 @@ public class MovieViewBtnCtrl implements View.OnClickListener{
         view.ninterested.setOnClickListener(this);
         view.rate.setOnClickListener(this);
 
-        changeVisual(null, model.getSelected());
+        //changeVisual(null, model.getSelected());
 
     }
 
+    /*
     public void changeVisual (View v, Movie m) {
         if (v == view.interested) {
             view.interested.setText("Added!");
@@ -80,6 +81,7 @@ public class MovieViewBtnCtrl implements View.OnClickListener{
             }
         }
     }
+    */
 
     @Override
     public void onClick(View v) {
@@ -87,7 +89,7 @@ public class MovieViewBtnCtrl implements View.OnClickListener{
             Movie m = model.addToFuture(model.getSelected(), db);
             System.err.println(m.getName());
             Toast.makeText(view.getContext(), m.getName() + " added to the list!", Toast.LENGTH_LONG);
-            changeVisual(v, m);
+            //changeVisual(v, m);
         }
         else if (v == view.ninterested){
             // Create the popup
@@ -112,7 +114,7 @@ public class MovieViewBtnCtrl implements View.OnClickListener{
                     Movie m = model.addToHated(model.getSelected(), db);
                     System.err.println(m.getName());
                     Toast.makeText(view.getContext(), m.getMyVote() + " added to the list!", Toast.LENGTH_LONG).show();
-                    changeVisual(v, m);
+                    //changeVisual(v, m);
                     dialog.dismiss();
                 }
             });
@@ -124,6 +126,7 @@ public class MovieViewBtnCtrl implements View.OnClickListener{
             });
         }
         else if (v == view.rate) {
+
             // Create the popup
             final Dialog dialog = new Dialog (view.getContext());
             dialog.setContentView(R.layout.popup_rate);
@@ -147,7 +150,7 @@ public class MovieViewBtnCtrl implements View.OnClickListener{
                     System.err.println(m.getName());
                     dialog.dismiss();
                     Toast.makeText(view.getContext(), m.getName() + " added to the list!", Toast.LENGTH_LONG);
-                    changeVisual(v, m);
+                    //changeVisual(v, m);
                 }
             });
             dismissBtn.setOnClickListener(new View.OnClickListener() {
