@@ -57,9 +57,7 @@ public class MovieView implements Observer{
         Movie d = model.existsInTop(m);
         if (d != null) {
             ratingBarDisplayTitle.setText("Your rating for this movie:");
-            ratingBarDisplay.setIsIndicator(false);
-            ratingBarDisplay.setNumStars(d.getMyVote());
-            ratingBarDisplay.setIsIndicator(true);
+            ratingBarDisplay.setRating(d.getMyVote());
             interested.setText("I'm interested");
             rate.setText("Rated!");
         }
@@ -113,9 +111,7 @@ public class MovieView implements Observer{
         else if ((Integer) data == 1){
             System.err.println("ENTREI AQUI");
             ratingBarDisplayTitle.setText("Your rating for this movie:");
-            ratingBarDisplay.setIsIndicator(false);
-            ratingBarDisplay.setNumStars(model.getSelected().getMyVote());
-            ratingBarDisplay.setIsIndicator(true);
+            ratingBarDisplay.setRating(model.getSelected().getMyVote());
             interested.setText("I'm interested");
             rate.setText("Rated!");
         }

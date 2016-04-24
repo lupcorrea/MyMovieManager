@@ -19,7 +19,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_above="@+id/bottom_btns"
+            android:layout_marginBottom="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -50,7 +52,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="10dp"
                         android:orientation="horizontal"
                         android:weightSum="2">
 
@@ -82,7 +84,7 @@
                 android:layout_width="300dp"
                 android:layout_height="1dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:background="@android:color/darker_gray" />
 
             <TextView
@@ -92,8 +94,8 @@
                 android:layout_gravity="center"
                 android:text="You didn't rate this movie yet!"
                 android:textColor="#FFFFFF"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
             <RatingBar
                 android:id="@+id/ratingBar_main"
                 android:layout_width="wrap_content"
@@ -106,31 +108,29 @@
                 android:layout_width="300dp"
                 android:layout_height="1dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:background="@android:color/darker_gray" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textColor="#ffffff"
-                android:text="@string/plot"/>
-            <TextView
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textColor="#ffffff"
-                android:scrollbarAlwaysDrawVerticalTrack="true"
-                android:id="@+id/movie_plot"/>
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#ffffff"
+                    android:id="@+id/movie_plot"/>
+            </ScrollView>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="35dp"
             android:orientation="horizontal"
             android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true">
+            android:layout_alignParentBottom="true"
+            android:id="@+id/bottom_btns">
 
             <Button
                 android:layout_width="wrap_content"
