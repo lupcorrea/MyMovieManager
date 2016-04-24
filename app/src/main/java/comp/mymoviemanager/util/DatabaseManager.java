@@ -225,16 +225,10 @@ public class DatabaseManager extends SQLiteOpenHelper {
                     c.getInt(c.getColumnIndex(KEY_ID)),
                     c.getString(c.getColumnIndex(KEY_GENRE)));
             m.setMyVote(c.getInt(c.getColumnIndex(KEY_VOTE)));
-            if (ll_movie.size() == 0) {
-                ll_movie.add(m);
-                c.moveToNext();
-                continue;
-            }
-            for (int i = 0; i < ll_movie.size(); i++) {
-                if (ll_movie.get(i).getMyVote() < m.getMyVote()) ll_movie.add(i, m);
-            }
+            ll_movie.add(m);
             c.moveToNext();
         }
+        System.err.println("SIZE OF LL: " + ll_movie.size());
         return ll_movie;
     }
 

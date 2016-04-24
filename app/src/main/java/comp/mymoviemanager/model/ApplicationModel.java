@@ -76,12 +76,16 @@ public class ApplicationModel extends Observable{
 
     public void getTopList(){
         top = profile.getTopList();
-        getImages(5);
+        System.err.println("TAMANHO: " + top.size());
+        if (top.size() != 0)
+            getImages(5);
+        else
+            getFutureList();
     }
 
     public void getFutureList(){
         future = profile.getFutureList();
-        System.err.println(future.size());
+        System.err.println("TAMANHO: " + top.size());
         getImages(6);
     }
 
@@ -142,6 +146,26 @@ public class ApplicationModel extends Observable{
                     e.printStackTrace();
                 }
             }
+            for (int i = 0; i < top.size() && found == 0; i++) {
+                try {
+                    if (top.get(i).getId().intValue() == id.intValue()) {
+                        selected = top.get(i);
+                        found = 1;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            for (int i = 0; i < future.size() && found == 0; i++) {
+                try {
+                    if (future.get(i).getId().intValue() == id.intValue()) {
+                        selected = future.get(i);
+                        found = 1;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
@@ -159,8 +183,8 @@ public class ApplicationModel extends Observable{
         popular.clear();
         top_rated.clear();
         images.clear();
-        top.clear();
-        future.clear();
+        //top.clear();
+        //future.clear();
         System.gc();
     }
 
