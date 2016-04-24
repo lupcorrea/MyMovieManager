@@ -186,7 +186,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     public LinkedList createListFromDb (String mail, String listType) {
         SQLiteDatabase db = this.getReadableDatabase();
-
+        LinkedList ll_movie = new LinkedList();
+        Movie m;
         String selectQuery = selectFromLists
                 + KEY_MAIL + " =? AND "
                 + KEY_TYPE + " =?";
@@ -202,14 +203,21 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
         // Build a new object and return it
         // String name, String release, String popularity, String language, String sinopsis, String poster_path, Integer id, String genre_list
-        return new Movie(c.getString(c.getColumnIndex(KEY_NAME)),
-                c.getString(c.getColumnIndex(KEY_RELEASE)),
-                c.getString(c.getColumnIndex(KEY_POPULARITY)),
-                c.getString(c.getColumnIndex(KEY_LANGUAGE)),
-                c.getString(c.getColumnIndex(KEY_SINOPSIS)),
-                c.getString(c.getColumnIndex(KEY_PHOTO)),
-                c.getInt(c.getColumnIndex(KEY_ID)),
-                c.getString(c.getColumnIndex(KEY_GENRE)));
+        while (!c.isAfterLast()) {
+            m = new Movie(c.getString(c.getColumnIndex(KEY_NAME)),
+                    c.getString(c.getColumnIndex(KEY_RELEASE)),
+                    c.getString(c.getColumnIndex(KEY_POPULARITY)),
+                    c.getString(c.getColumnIndex(KEY_LANGUAGE)),
+                    c.getString(c.getColumnIndex(KEY_SINOPSIS)),
+                    c.getString(c.getColumnIndex(KEY_PHOTO)),
+                    c.getInt(c.getColumnIndex(KEY_ID)),
+                    c.getString(c.getColumnIndex(KEY_GENRE)));
+            m.setMyVote(c.getInt(c.getColumnIndex(KEY_VOTE)));
+            ll_movie.add(m);
+            c.moveToNext();
+        }
+        if (ll_movie.size() == 0) return null;
+        return ll_movie;
     }
 
 }
