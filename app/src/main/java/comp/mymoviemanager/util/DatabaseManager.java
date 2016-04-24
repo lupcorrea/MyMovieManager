@@ -147,6 +147,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 + KEY_TYPE + " =?";
         Log.e(LOG, selectQuery);
 
+
         try {
             Cursor c = db.rawQuery(selectQuery, new String[] {"" + m.getId(), mail, listType});
         } catch (Exception e) {
