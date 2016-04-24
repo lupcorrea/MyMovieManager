@@ -77,6 +77,20 @@ public class Profile {
     public LinkedList<Movie> getFutureList() {
         return futureList;
     }
+    public String getMail() {
+        return mail;
+    }
+
+    // Setters
+    public void setTopList(LinkedList<Movie> topList) {
+        this.topList = topList;
+    }
+    public void setBottomList(LinkedList<Movie> bottomList) {
+        this.bottomList = bottomList;
+    }
+    public void setFutureList(LinkedList<Movie> futureList) {
+        this.futureList = futureList;
+    }
 
     public Movie existsInTop (Movie m) {
         for (int i = 0; i < topList.size(); i++) {

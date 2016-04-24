@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import comp.mymoviemanager.control.MainViewBtnCtrl;
 import comp.mymoviemanager.model.ApplicationModel;
+import comp.mymoviemanager.model.Profile;
+import comp.mymoviemanager.util.DatabaseManager;
 import comp.mymoviemanager.view.MainSearchView;
 
 public class MainActivity extends ToolBarActivity {
@@ -27,6 +29,11 @@ public class MainActivity extends ToolBarActivity {
 
         MainSearchView mainView = new MainSearchView(findViewById(R.id.main_search), model);
         MainViewBtnCtrl btnCtrl = new MainViewBtnCtrl(mainView, model);
+
+        // Profile and Database
+        Profile profile = Profile.getInstance();
+        DatabaseManager db = DatabaseManager.getInstance(getApplicationContext());
+        profile.setTopList(db.createListFromDb(profile.getMail(), "topList"));
 
     }
 
