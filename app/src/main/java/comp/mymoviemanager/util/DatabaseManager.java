@@ -216,7 +216,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
             ll_movie.add(m);
             c.moveToNext();
         }
-        if (ll_movie.size() == 0) return null;
         return ll_movie;
     }
 

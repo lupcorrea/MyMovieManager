@@ -93,9 +93,11 @@ public class Profile {
     }
 
     public Movie existsInTop (Movie m) {
-        for (int i = 0; i < topList.size(); i++) {
-            if (topList.get(i) != null) System.err.println ("[" + topList.get(i).getId() + "] " + topList.get(i).getName());
-            if (topList.get(i).getId() == m.getId()) return topList.get(i);
+        if (topList != null) {
+            for (int i = 0; i < topList.size(); i++) {
+                if (topList.get(i) != null) System.err.println ("[" + topList.get(i).getId() + "] " + topList.get(i).getName());
+                if (topList.get(i).getId() == m.getId()) return topList.get(i);
+            }
         }
 
         return null;
