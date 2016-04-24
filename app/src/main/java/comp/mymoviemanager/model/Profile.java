@@ -106,4 +106,16 @@ public class Profile {
 
         return null;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
 }

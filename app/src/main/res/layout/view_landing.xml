@@ -19,27 +19,10 @@
             android:src="@drawable/logo"
             />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="#070707"
-            android:text="Name"
-            android:textColor="#FFFFFF"
-            android:layout_marginBottom="10dp"
-            android:onClick="clearField"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="#070707"
-            android:text="Email"
-            android:textColor="#FFFFFF"
-            android:onClick="clearField"/>
-
-
         <Button
             android:layout_width="300dp"
             android:layout_height="match_parent"
-            android:text="Log in"
+            android:text="Welcome"
             android:id="@+id/data_login"
             android:layout_marginTop="40dp"/>
 

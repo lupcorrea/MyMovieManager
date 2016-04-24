@@ -64,8 +64,6 @@ public abstract class ToolBarActivity extends AppCompatActivity {
                 startActivity(i);
                 break;
             }
-            case R.id.favorite_action:
-            {}
             case R.id.action_search:
             {}
         }

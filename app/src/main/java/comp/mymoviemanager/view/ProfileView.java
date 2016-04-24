@@ -30,7 +30,8 @@ public class ProfileView implements Observer{
     public SearchView search;
     LinkedList<Movie> top = new LinkedList();
     LinkedList<Movie> future = new LinkedList();
-    LinearLayout myFavs, myFavsText, myFuture, myFutureText;
+    public LinearLayout myFavs, myFuture;
+    LinearLayout myFavsText, myFutureText;
     ImageButton movieButton;
     TextView movie_name;
 

@@ -81,6 +81,7 @@ public class ApplicationModel extends Observable{
 
     public void getFutureList(){
         future = profile.getFutureList();
+        System.err.println(future.size());
         getImages(6);
     }
 

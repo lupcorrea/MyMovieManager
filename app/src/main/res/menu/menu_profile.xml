@@ -15,12 +15,6 @@
         android:orderInCategory="200"
         app:showAsAction="always">
     </item>
-    <item android:id="@+id/favorite_action"
-        android:title="@string/favorite"
-        android:icon="@drawable/favorite"
-        android:orderInCategory="200"
-        app:showAsAction="always">
-    </item>
     <item
         android:id="@+id/action_search"
         android:title="@string/search"

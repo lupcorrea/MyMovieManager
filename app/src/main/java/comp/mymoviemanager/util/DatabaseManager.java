@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 
 import comp.mymoviemanager.model.Movie;
+import comp.mymoviemanager.model.Profile;
 
 /**
  * Author: lupcorrea
@@ -48,12 +49,14 @@ public class DatabaseManager extends SQLiteOpenHelper {
     private static final String KEY_VOTE = "personal_vote";
     private static final String KEY_ID = "id";
 
+    private static final String KEY_LOG = "logged";
+
     // Table Create Statements
     // Profiles table
     private static final String CREATE_TABLE_PROFILES = "CREATE TABLE IF NOT EXISTS "
             + TABLE_PROFILES + "(" + KEY_MAIL + " TEXT PRIMARY KEY," + KEY_NAME
             + " TEXT," + KEY_PHOTO + " TEXT," + KEY_GENRE
-            + " TEXT);";
+            + " TEXT," + KEY_LOG + "INTEGER);";
 
     // Lists table
     private static final String CREATE_TABLE_LISTS = "CREATE TABLE IF NOT EXISTS "

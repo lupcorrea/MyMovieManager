@@ -16,7 +16,7 @@
     <string name="interested">I\'m interested</string>
 
     <!-- Profile Strings -->
-    <string name="profile_top_movies">Movies I Liked The Most</string>
+    <string name="profile_top_movies">Movies I Rated</string>
     <string name="profile_todo_movies">Movies I Will Watch</string>
     <string name="profile_top_tags">Most Liked Categories</string>
     <string name="profile_bottom_tags">Most Hated Categories</string>

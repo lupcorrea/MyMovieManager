@@ -20,6 +20,7 @@ import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.SearchView;
 
+import comp.mymoviemanager.control.ProfileBtnCtrl;
 import comp.mymoviemanager.control.ProfileSearchCtrl;
 import comp.mymoviemanager.model.ApplicationModel;
 import comp.mymoviemanager.model.Profile;
@@ -53,6 +54,7 @@ public class ProfileActivity extends ToolBarActivity{
         model.setLists(db);
 
         ProfileView view = new ProfileView(findViewById(R.id.profile_view), model);
+        ProfileBtnCtrl ctrl = new ProfileBtnCtrl(model, view);
 
 
     }
