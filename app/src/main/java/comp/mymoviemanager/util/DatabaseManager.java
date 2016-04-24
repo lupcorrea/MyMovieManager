@@ -61,7 +61,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
             + " TEXT," + KEY_PHOTO + " TEXT," + KEY_RELEASE
             + " TEXT," + KEY_GENRE + " TEXT," +  KEY_POPULARITY
             + " TEXT," + KEY_LANGUAGE + " TEXT," + KEY_SINOPSIS
-            + " TEXT," + KEY_VOTE + " TEXT," + KEY_ID + " INTEGER, FOREIGN KEY ("
+            + " TEXT," + KEY_VOTE + " INTEGER," + KEY_ID + " INTEGER, FOREIGN KEY ("
             + KEY_MAIL + ") REFERENCES " + TABLE_PROFILES + "(" + KEY_MAIL + "));";
 
     // Database queries

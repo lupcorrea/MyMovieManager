@@ -30,7 +30,7 @@ public class MovieView implements Observer{
     ApplicationModel model;
     View view;
     Movie selected = null;
-    public Button rate, interested, ninterested;
+    public Button rate, interested;
     public RatingBar ratingBarDisplay;
     public TextView ratingBarDisplayTitle;
 
@@ -53,42 +53,16 @@ public class MovieView implements Observer{
         Movie m = model.getSelected();
         rate = (Button) view.findViewById(R.id.rate_btn);
         interested = (Button) view.findViewById(R.id.interested_btn);
-        ninterested = (Button) view.findViewById(R.id.not_interested_btn);
         //Set the button's text
-        if (model.existsInTop(m) != null) {
+        Movie d = model.existsInTop(m);
+        if (d != null) {
             ratingBarDisplayTitle.setText("Your rating for this movie:");
             ratingBarDisplay.setIsIndicator(false);
-            ratingBarDisplay.setNumStars(m.getMyVote());
+            ratingBarDisplay.setNumStars(d.getMyVote());
             ratingBarDisplay.setIsIndicator(true);
             interested.setText("I'm interested");
             rate.setText("Rated!");
-            ninterested.setText("I'm not interested");
-        } else if (model.existsInBottom(m) != null) {
-            ratingBarDisplayTitle.setText("Your rating for this movie:");
-            ratingBarDisplay.setIsIndicator(false);
-            ratingBarDisplay.setNumStars(m.getMyVote());
-            ratingBarDisplay.setIsIndicator(true);
-            interested.setText("I'm interested");
-            rate.setText("Rate");
-            ninterested.setText("Rated!");
-        } else if (model.existsInFuture(m) != null) {
-            interested.setText("Added!");
-            rate.setText("Rate");
-            ninterested.setText("I'm not interested");
         }
-        /*Button rate = (Button) view.findViewById(R.id.rate_btn);
-        Button interested = (Button) view.findViewById(R.id.interested_btn);
-        Button not_interested = (Button) view.findViewById(R.id.not_interested_btn);
-
-        rate.setCompoundDrawablesWithIntrinsicBounds(R.drawable.rate_icon, 0, 0, 0);
-        rate.setBackgroundColor(0);
-        rate.setText("Rate");
-
-        interested.setCompoundDrawablesWithIntrinsicBounds(R.drawable.interested_icon, 0, 0, 0);
-        interested.setText("I'm interested");
-
-        not_interested.setCompoundDrawablesWithIntrinsicBounds(R.drawable.not_interested_icon, 0, 0, 0);
-        not_interested.setText("I'm not interested");*/
 
         try{
             Bitmap resized_img = Bitmap.createScaledBitmap(selected.getPoster(), 241, 360, true);
@@ -135,16 +109,15 @@ public class MovieView implements Observer{
         if ((Integer) data == 0){
             interested.setText("Added!");
             rate.setText("Rate");
-            ninterested.setText("I'm not interested");
         }
         else if ((Integer) data == 1){
+            System.err.println("ENTREI AQUI");
             ratingBarDisplayTitle.setText("Your rating for this movie:");
             ratingBarDisplay.setIsIndicator(false);
             ratingBarDisplay.setNumStars(model.getSelected().getMyVote());
             ratingBarDisplay.setIsIndicator(true);
             interested.setText("I'm interested");
             rate.setText("Rated!");
-            ninterested.setText("I'm not interested");
         }
     }
 }

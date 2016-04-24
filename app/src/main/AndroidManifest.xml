@@ -23,8 +23,7 @@
         </activity>
         <activity
             android:name=".MovieActivity"
-            android:label="@string/title_activity_movie"
-            android:launchMode="singleTask">
+            android:label="@string/title_activity_movie">
             <meta-data
                 android:name="android.app.default_searchable"
                 android:value=".ResultsActivity" />

@@ -7,6 +7,7 @@ import comp.mymoviemanager.MainActivity;
 import comp.mymoviemanager.MoviePreferencesActivity;
 import comp.mymoviemanager.ProfileActivity;
 import comp.mymoviemanager.model.ApplicationModel;
+import comp.mymoviemanager.model.Profile;
 import comp.mymoviemanager.view.LoginView;
 
 /**
@@ -26,7 +27,7 @@ public class LoginBtnCtrl implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        Intent i = new Intent(view.getContext(), MainActivity.class);
+        Intent i = new Intent(view.getContext(), ProfileActivity.class);
         view.getContext().startActivity(i);
     }
 }
