@@ -46,10 +46,14 @@ public class ProfileActivity extends ToolBarActivity{
         TextView title = (TextView) toolbar.findViewById(R.id.toolbar_title);
         title.setText("Profile");
 
+
         model = ((MyMovieApplication) this.getApplication()).getModel();
+
         db = DatabaseManager.getInstance(getApplicationContext());
+        model.setLists(db);
 
         ProfileView view = new ProfileView(findViewById(R.id.profile_view), model);
+
 
     }
 
