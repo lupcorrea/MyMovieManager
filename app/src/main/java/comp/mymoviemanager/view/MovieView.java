@@ -30,7 +30,7 @@ public class MovieView implements Observer{
     ApplicationModel model;
     View view;
     Movie selected = null;
-    public Button rate, interested;
+    public Button rate, interested, remove;
     public RatingBar ratingBarDisplay;
     public TextView ratingBarDisplayTitle;
 
@@ -53,6 +53,7 @@ public class MovieView implements Observer{
         Movie m = model.getSelected();
         rate = (Button) view.findViewById(R.id.rate_btn);
         interested = (Button) view.findViewById(R.id.interested_btn);
+        remove = (Button) view.findViewById(R.id.remove_btn);
         //Set the button's text
         System.out.println(m.getName());
         Movie d = model.existsIn(m, "topList");
@@ -60,11 +61,34 @@ public class MovieView implements Observer{
         if (d != null) {
             ratingBarDisplayTitle.setText("Your rating for this movie:");
             ratingBarDisplay.setRating(d.getMyVote());
-            interested.setVisibility(View.INVISIBLE);
+
+            interested.setTextColor(Color.parseColor("#EDEDED"));
+            interested.setBackgroundColor(Color.parseColor("#000000"));
+            interested.setEnabled(true);
+            remove.setText("Remove");
+            remove.setTextColor(Color.parseColor("#EDEDED"));
+            remove.setBackgroundColor(Color.parseColor("#000000"));
+            remove.setEnabled(true);
+
             rate.setText("Rated!");
+            rate.setTextColor(Color.parseColor("#000000"));
+            rate.setBackgroundColor(Color.parseColor("##EDEDED"));
+            rate.setEnabled(false);
         } else if(f != null){
             interested.setText("Added!");
+            interested.setTextColor(Color.parseColor("#000000"));
+            interested.setBackgroundColor(Color.parseColor("#EDEDED"));
+            interested.setEnabled(false);
+
             rate.setText("Rate");
+            rate.setTextColor(Color.parseColor("#EDEDED"));
+            rate.setBackgroundColor(Color.parseColor("#000000"));
+            rate.setEnabled(true);
+
+            remove.setText("Remove");
+            remove.setTextColor(Color.parseColor("#EDEDED"));
+            remove.setBackgroundColor(Color.parseColor("#000000"));
+            remove.setEnabled(true);
         }
 
         try{
@@ -111,14 +135,57 @@ public class MovieView implements Observer{
     public void update(Observable observable, Object data) {
         if ((Integer) data == 0){
             interested.setText("Added!");
+            interested.setTextColor(Color.parseColor("#000000"));
+            interested.setBackgroundColor(Color.parseColor("#EDEDED"));
+            interested.setEnabled(false);
+
             rate.setText("Rate");
+            rate.setTextColor(Color.parseColor("#EDEDED"));
+            rate.setBackgroundColor(Color.parseColor("#000000"));
+            rate.setEnabled(true);
+            remove.setText("Remove");
+            remove.setTextColor(Color.parseColor("#EDEDED"));
+            remove.setBackgroundColor(Color.parseColor("#000000"));
+            remove.setEnabled(true);
+
         }
         else if ((Integer) data == 1){
-            System.err.println("ENTREI AQUI");
             ratingBarDisplayTitle.setText("Your rating for this movie:");
             ratingBarDisplay.setRating(model.getSelected().getMyVote());
+
             interested.setText("I'm interested");
+            interested.setTextColor(Color.parseColor("#EDEDED"));
+            interested.setBackgroundColor(Color.parseColor("#000000"));
+            interested.setEnabled(true);
+
             rate.setText("Rated!");
+            rate.setTextColor(Color.parseColor("#000000"));
+            rate.setBackgroundColor(Color.parseColor("#EDEDED"));
+            rate.setEnabled(false);
+
+            remove.setText("Remove");
+            remove.setTextColor(Color.parseColor("#EDEDED"));
+            remove.setBackgroundColor(Color.parseColor("#000000"));
+            remove.setEnabled(true);
+        }
+        else if ((Integer) data == 3){
+            ratingBarDisplayTitle.setText("Your rating for this movie:");
+            ratingBarDisplay.setRating(model.getSelected().getMyVote());
+
+            interested.setText("I'm interested");
+            interested.setTextColor(Color.parseColor("#EDEDED"));
+            interested.setBackgroundColor(Color.parseColor("#000000"));
+            interested.setEnabled(true);
+
+            rate.setText("Rate");
+            rate.setTextColor(Color.parseColor("#EDEDED"));
+            rate.setBackgroundColor(Color.parseColor("#000000"));
+            rate.setEnabled(true);
+
+            remove.setText("Not Added");
+            remove.setTextColor(Color.parseColor("#000000"));
+            remove.setBackgroundColor(Color.parseColor("#EDEDED"));
+            remove.setEnabled(false);
         }
     }
 }

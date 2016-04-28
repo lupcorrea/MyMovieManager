@@ -28,6 +28,7 @@ public class MovieViewBtnCtrl implements View.OnClickListener{
 
         view.interested.setOnClickListener(this);
         view.rate.setOnClickListener(this);
+        view.remove.setOnClickListener(this);
 
 
     }
@@ -75,6 +76,9 @@ public class MovieViewBtnCtrl implements View.OnClickListener{
                     dialog.dismiss();
                 }
             });
+        }
+        else if(v == view.remove){
+
         }
     }
 }
