@@ -29,7 +29,7 @@ import comp.mymoviemanager.util.DatabaseManager;
  */
 public class ApplicationModel extends Observable{
 
-    LinkedList<Movie> suggestions = new LinkedList<>();
+    //LinkedList<Movie> suggestions = new LinkedList<>();
     LinkedList<Movie> popular = new LinkedList<>();
     LinkedList<Movie> top_rated = new LinkedList<>();
     LinkedList<Movie> upcoming = new LinkedList<>();
@@ -120,7 +120,7 @@ public class ApplicationModel extends Observable{
                     e.printStackTrace();
                 }
             }
-            for (int i = 0; i < suggestions.size() && found == 0; i++) {
+            /*for (int i = 0; i < suggestions.size() && found == 0; i++) {
                 try {
                     if (suggestions.get(i).getId().intValue() == id.intValue()) {
                         selected = suggestions.get(i);
@@ -129,7 +129,7 @@ public class ApplicationModel extends Observable{
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }
+            }*/
             for (int i = 0; i < popular.size() && found == 0; i++) {
                 try {
                     if (popular.get(i).getId().intValue() == id.intValue()) {
@@ -182,7 +182,7 @@ public class ApplicationModel extends Observable{
     }
 
     public void clearLists(){
-        suggestions.clear();
+        //suggestions.clear();
         upcoming.clear();
         popular.clear();
         top_rated.clear();
@@ -194,10 +194,12 @@ public class ApplicationModel extends Observable{
 
     public void getSuggestions(){
         clearLists();
+        /*
         //String url = apiURL + "title_kw=" + text + "&pg=1&rpp=20&api_key=" + api_key;
         String url = apiURL + "movie/popular?api_key=" + api_key;
         func = 0;
-        new CallAPI().execute(url);
+        new CallAPI().execute(url);*/
+        getPopulars();
     }
 
     public void getPopulars(){
@@ -222,13 +224,13 @@ public class ApplicationModel extends Observable{
     }
 
     public void getImages(Integer x){
-        if (x == 0) {
+       /* if (x == 0) {
             func1 = 0;
             for (int i = 0; i < suggestions.size(); i++) {
                 new GetPoster().execute("http://image.tmdb.org/t/p/w92" + suggestions.get(i).getPosterPath());
             }
-        }
-        else if (x == 1){
+        }*/
+        if (x == 1){
             func1 = 1;
             for (int i = 0; i < popular.size(); i++) {
                 new GetPoster().execute("http://image.tmdb.org/t/p/w92" + popular.get(i).getPosterPath());
@@ -267,7 +269,7 @@ public class ApplicationModel extends Observable{
     }
 
     public void setImages(){
-        if (func1 == 0){
+        /*if (func1 == 0){
             for (int i = 0; i < suggestions.size(); i++){
                 suggestions.get(i).setPoster(images.get(i));
             }
@@ -275,8 +277,8 @@ public class ApplicationModel extends Observable{
             setChanged();
             notifyObservers(0);
             getPopulars();
-        }
-        else if (func1 == 1) {
+        }*/
+        if (func1 == 1) {
             for (int i = 0; i < popular.size(); i++) {
                 popular.get(i).setPoster(images.get(i));
             }
@@ -332,9 +334,9 @@ public class ApplicationModel extends Observable{
 
     public LinkedList<Movie> getResult(Integer x){
         LinkedList<Movie> result = new LinkedList<>();
-        if (x == 0)
-            result = suggestions;
-        else if (x == 1)
+        /*if (x == 0)
+            result = suggestions;*/
+        if (x == 1)
             result = popular;
         else if (x == 2)
             result = top_rated;
@@ -384,7 +386,7 @@ public class ApplicationModel extends Observable{
 
         @Override
         protected void onPostExecute(String result){
-            if(func == 0){
+            /*if(func == 0){
                 try {
                     JSONObject suggestionsObj = new JSONObject(result);
                     JSONArray json_array_participants = suggestionsObj.getJSONArray("results");
@@ -399,8 +401,8 @@ public class ApplicationModel extends Observable{
                     e.printStackTrace();
                     func = -1;
                 }
-            }
-            else if(func == 1){
+            }*/
+            if(func == 1){
                 try {
                     JSONObject suggestionsObj = new JSONObject(result);
                     JSONArray json_array_participants = suggestionsObj.getJSONArray("results");
@@ -500,12 +502,12 @@ public class ApplicationModel extends Observable{
         @Override
         protected void onPostExecute(Bitmap result){
             images.add(result);
-            if (func1 == 0) {
+            /*if (func1 == 0) {
                 if (images.size() == suggestions.size()) {
                     setImages();
                 }
-            }
-            else if (func1 == 1) {
+            }*/
+            if (func1 == 1) {
                 if (images.size() == popular.size()) {
                     setImages();
                 }

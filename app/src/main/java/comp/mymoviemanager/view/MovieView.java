@@ -56,7 +56,6 @@ public class MovieView implements Observer{
         interested = (Button) view.findViewById(R.id.interested_btn);
         remove = (Button) view.findViewById(R.id.remove_btn);
         //Set the button's text
-        System.out.println(m.getName());
         Movie d = model.existsIn(m, "topList");
         Movie f = model.existsIn(m, "futureList");
         if (d != null) {
@@ -76,6 +75,9 @@ public class MovieView implements Observer{
             rate.setBackgroundColor(Color.parseColor("#EDEDED"));
             rate.setEnabled(false);
         } else if(f != null){
+            ratingBarDisplayTitle.setText("Your rating for this movie:");
+            ratingBarDisplay.setRating(f.getMyVote());
+
             interested.setText("Added!");
             interested.setTextColor(Color.parseColor("#000000"));
             interested.setBackgroundColor(Color.parseColor("#EDEDED"));
@@ -134,7 +136,9 @@ public class MovieView implements Observer{
 
     @Override
     public void update(Observable observable, Object data) {
-        if ((Integer) data == 0){
+        if ((Integer) data == 0) {
+            ratingBarDisplayTitle.setText("Your rating for this movie:");
+            ratingBarDisplay.setRating(model.getSelected().getMyVote());
             interested.setText("Added!");
             interested.setTextColor(Color.parseColor("#000000"));
             interested.setBackgroundColor(Color.parseColor("#EDEDED"));
@@ -169,7 +173,7 @@ public class MovieView implements Observer{
             remove.setBackgroundColor(Color.parseColor("#000000"));
             remove.setEnabled(true);
         }
-        else if ((Integer) data == 3){
+        else if ((Integer) data == 3) {
             ratingBarDisplayTitle.setText("Your rating for this movie:");
             ratingBarDisplay.setRating(0);
 
@@ -187,8 +191,6 @@ public class MovieView implements Observer{
             remove.setTextColor(Color.parseColor("#000000"));
             remove.setBackgroundColor(Color.parseColor("#EDEDED"));
             remove.setEnabled(false);
-
-            Toast.makeText(view.getContext(), "Movie was removed from your List!", Toast.LENGTH_LONG).show();
         }
     }
 }

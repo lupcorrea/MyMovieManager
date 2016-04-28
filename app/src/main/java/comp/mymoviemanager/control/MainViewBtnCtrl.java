@@ -20,7 +20,7 @@ public class MainViewBtnCtrl implements ViewGroup.OnHierarchyChangeListener {
         this.model = model;
         this.view = view;
 
-        view.suggestions.setOnHierarchyChangeListener(this);
+        //view.suggestions.setOnHierarchyChangeListener(this);
         view.upcoming.setOnHierarchyChangeListener(this);
         view.popular.setOnHierarchyChangeListener(this);
         view.topRated.setOnHierarchyChangeListener(this);

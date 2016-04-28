@@ -34,8 +34,8 @@ public class MainSearchView implements Observer{
 
     LinkedList<Movie> suggestion_result;
 
-    public LinearLayout suggestions;
-    LinearLayout suggestionsText;
+   // public LinearLayout suggestions;
+    //LinearLayout suggestionsText;
     public LinearLayout upcoming;
     LinearLayout upcomingText;
     public LinearLayout popular;
@@ -55,8 +55,8 @@ public class MainSearchView implements Observer{
         progressBar2 = (ProgressBar) view.findViewById(R.id.progressBar2);
         progressBar3 = (ProgressBar) view.findViewById(R.id.progressBar3);
 
-        suggestions = (LinearLayout) view.findViewById(R.id.suggestionView);
-        suggestionsText = (LinearLayout) view.findViewById(R.id.suggestionViewText);
+        //suggestions = (LinearLayout) view.findViewById(R.id.suggestionView);
+        //suggestionsText = (LinearLayout) view.findViewById(R.id.suggestionViewText);
         upcoming = (LinearLayout) view.findViewById(R.id.upcomingView);
         upcomingText = (LinearLayout) view.findViewById(R.id.upcomingViewText);
         popular = (LinearLayout) view.findViewById(R.id.popularView);
@@ -65,7 +65,7 @@ public class MainSearchView implements Observer{
         topRatedText = (LinearLayout) view.findViewById(R.id.topRatedViewText);
 
         model.getSuggestions();
-        progressBar.setVisibility(View.VISIBLE);
+//        progressBar.setVisibility(View.VISIBLE);
         progressBar1.setVisibility(View.VISIBLE);
         progressBar2.setVisibility(View.VISIBLE);
         progressBar3.setVisibility(View.VISIBLE);
@@ -75,6 +75,7 @@ public class MainSearchView implements Observer{
     @Override
     public void update(Observable observable, Object data) {
         //UPDATE SUGGESTIONS
+        /*
         if ((Integer) data == 0){
             progressBar.setVisibility(View.GONE);
             suggestion_result = model.getResult(0);
@@ -101,18 +102,11 @@ public class MainSearchView implements Observer{
                 movieButton.setLayoutParams(params);
                 movieButton.setId(suggestion_result.get(i).getId());
                 movie_name.setLayoutParams(params1);
-                //movieButton.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-                //movieButton.setLayoutParams(new LinearLayout.LayoutParams(241,360));
-                //int resId = suggestion_result.get(i).getPoster().getGenerationId();
-                //System.out.println(suggestion_result.get(i).getPoster());
-                //teste.setImageBitmap(suggestion_result.get(0).getPoster());
-                //teste.setImageDrawable(img);
-                //movieButton.setCompoundDrawablesWithIntrinsicBounds(0, img, 0, 0);
-                //movieButton.setBackgroundColor(0);
+
                 suggestions.addView(movieButton);
                 suggestionsText.addView(movie_name);
             }
-        }
+        }*/
         if ((Integer) data == 1){
             progressBar1.setVisibility(View.GONE);
             suggestion_result = model.getResult(1);

@@ -82,6 +82,7 @@ public class MovieViewBtnCtrl implements View.OnClickListener{
                 model.removeMovie(model.getSelected(), db, "futureList");
             else
                 model.removeMovie(model.getSelected(), db, "topList");
+            Toast.makeText(view.getContext(), "Movie was removed from your List!", Toast.LENGTH_LONG).show();
         }
     }
 }
