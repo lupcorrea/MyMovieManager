@@ -140,7 +140,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
     }
 
     /****************************************************************************/
-    public Movie addMovieTo (String mail, String listType, Movie m) {
+    public void addMovieTo (String mail, String listType, Movie m) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         // Check if the movie is already there
@@ -154,7 +154,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         try {
             Cursor c = db.rawQuery(selectQuery, new String[] {"" + m.getId(), mail, listType});
         } catch (Exception e) {
-            return null;
+            return;
         }
 
         ContentValues values = new ContentValues();
@@ -177,8 +177,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
         } finally {
             db.endTransaction();
         }
-
-        return retrieveMovieFrom(mail, listType, m);
     }
 
     /****************************************************************************/

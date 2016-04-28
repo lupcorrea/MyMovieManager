@@ -43,13 +43,13 @@ public class Profile {
 
     /****************************************************************************/
     public void addToTopList(Movie m, DatabaseManager db) {
-        Movie newMovie = db.addMovieTo(mail, "topList", m);
-        if (newMovie != null) topList.add(newMovie);
+        topList.add(m);
+        db.addMovieTo(mail, "topList", m);
     }
 
     public void addToFutureList(Movie m, DatabaseManager db) {
-        Movie newMovie = db.addMovieTo(mail, "futureList", m);
-        if (newMovie != null) futureList.add(newMovie);
+        futureList.add(m);
+        db.addMovieTo(mail, "futureList", m);
     }
 
     /****************************************************************************/
