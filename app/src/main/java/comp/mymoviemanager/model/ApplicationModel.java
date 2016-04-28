@@ -65,9 +65,12 @@ public class ApplicationModel extends Observable{
         return profile.getFutureList().getLast();
     }
 
-    /*public Movie existsInTop (Movie m) {
-        return profile.existsInTop(m);
-    }*/
+    public void removeMovie(Movie m, DatabaseManager db, String type){
+        profile.removeFrom(m, db, type);
+        setChanged();
+        notifyObservers();
+    }
+
     public Movie existsIn (Movie m, String type) { return profile.existsIn(m, type); }
 
     public void setLists(DatabaseManager db){

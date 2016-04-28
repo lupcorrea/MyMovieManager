@@ -72,7 +72,7 @@ public class MovieView implements Observer{
 
             rate.setText("Rated!");
             rate.setTextColor(Color.parseColor("#000000"));
-            rate.setBackgroundColor(Color.parseColor("##EDEDED"));
+            rate.setBackgroundColor(Color.parseColor("#EDEDED"));
             rate.setEnabled(false);
         } else if(f != null){
             interested.setText("Added!");

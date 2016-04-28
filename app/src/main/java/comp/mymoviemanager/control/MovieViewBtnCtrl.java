@@ -78,7 +78,10 @@ public class MovieViewBtnCtrl implements View.OnClickListener{
             });
         }
         else if(v == view.remove){
-
+            if (model.existsIn(model.getSelected(), "futureList") != null)
+                model.removeMovie(model.getSelected(), db, "futureList");
+            else
+                model.removeMovie(model.getSelected(), db, "topList");
         }
     }
 }
