@@ -52,13 +52,17 @@ public class Profile {
     }
 
     /****************************************************************************/
-    public void removeFromTopList (Movie m, DatabaseManager db) {
-        db.deleteMovieFrom(mail, "topList", m);
-        topList.remove(m);
-    }
-    public void removeFromFutureList (Movie m, DatabaseManager db) {
-        db.deleteMovieFrom(mail, "futureList", m);
-        futureList.remove(m);
+    public void removeFrom (Movie m, DatabaseManager db, String listType) {
+        switch (listType) {
+            case "topList":
+                db.deleteMovieFrom(mail, "topList", m);
+                topList.remove(m);
+                break;
+            case "futureList":
+                db.deleteMovieFrom(mail, "futureList", m);
+                futureList.remove(m);
+                break;
+        }
     }
 
     /****************************************************************************/
@@ -103,8 +107,3 @@ public class Profile {
     public void setName(String name) {
         this.name = name;
     }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-}
