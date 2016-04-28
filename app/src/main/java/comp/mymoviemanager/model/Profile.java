@@ -35,24 +35,25 @@ public class Profile {
     /* Singleton */
     private static Profile singleton;
 
-    public static synchronized Profile getInstance () {
+    public static synchronized Profile getInstance() {
         if (singleton == null) singleton = new Profile();
         return singleton;
     }
     /****************************************************************************/
 
     /****************************************************************************/
-    public void addToTopList (Movie m, DatabaseManager db) {
+    public void addToTopList(Movie m, DatabaseManager db) {
         Movie newMovie = db.addMovieTo(mail, "topList", m);
         if (newMovie != null) topList.add(newMovie);
     }
-    public void addToFutureList (Movie m, DatabaseManager db) {
+
+    public void addToFutureList(Movie m, DatabaseManager db) {
         Movie newMovie = db.addMovieTo(mail, "futureList", m);
         if (newMovie != null) futureList.add(newMovie);
     }
 
     /****************************************************************************/
-    public void removeFrom (Movie m, DatabaseManager db, String listType) {
+    public void removeFrom(Movie m, DatabaseManager db, String listType) {
         switch (listType) {
             case "topList":
                 db.deleteMovieFrom(mail, "topList", m);
@@ -69,25 +70,30 @@ public class Profile {
     public LinkedList<Movie> getTopList() {
         return topList;
     }
+
     public LinkedList<Movie> getFutureList() {
         return futureList;
     }
+
     public String getMail() {
         return mail;
     }
+
     public void setTopList(LinkedList<Movie> topList) {
         this.topList = topList;
     }
+
     public void setFutureList(LinkedList<Movie> futureList) {
         this.futureList = futureList;
     }
 
     /****************************************************************************/
-    public Movie existsIn (Movie m, String listType) {
+    public Movie existsIn(Movie m, String listType) {
         switch (listType) {
             case "topList":
                 for (int i = 0; i < topList.size(); i++) {
-                    if (m.getId().intValue() == topList.get(i).getId().intValue()) return topList.get(i);
+                    if (m.getId().intValue() == topList.get(i).getId().intValue())
+                        return topList.get(i);
                 }
                 break;
             case "futureList":
@@ -107,3 +113,4 @@ public class Profile {
     public void setName(String name) {
         this.name = name;
     }
+}
