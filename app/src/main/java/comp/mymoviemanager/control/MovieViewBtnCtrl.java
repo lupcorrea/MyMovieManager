@@ -37,8 +37,7 @@ public class MovieViewBtnCtrl implements View.OnClickListener{
     public void onClick(View v) {
         if (v == view.interested){
             Movie m = model.addToFuture(model.getSelected(), db);
-            System.err.println(m.getName());
-            Toast.makeText(view.getContext(), m.getName() + " added to the list!", Toast.LENGTH_LONG);
+            Toast.makeText(view.getContext(), m.getName() + " added to your Watch List!", Toast.LENGTH_LONG).show();
             //changeVisual(v, m);
         }
         else if (v == view.rate) {
@@ -66,7 +65,7 @@ public class MovieViewBtnCtrl implements View.OnClickListener{
                     Movie m = model.addToLiked(model.getSelected(), db);
                     System.err.println(m.getName());
                     dialog.dismiss();
-                    Toast.makeText(view.getContext(), m.getName() + " added to the list!", Toast.LENGTH_LONG);
+                    Toast.makeText(view.getContext(), m.getName() + " added to the Rated List!", Toast.LENGTH_LONG).show();
                     //changeVisual(v, m);
                 }
             });
@@ -76,6 +75,7 @@ public class MovieViewBtnCtrl implements View.OnClickListener{
                     dialog.dismiss();
                 }
             });
+
         }
         else if(v == view.remove){
             if (model.existsIn(model.getSelected(), "futureList") != null)

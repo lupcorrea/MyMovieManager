@@ -43,12 +43,18 @@ public class Profile {
 
     /****************************************************************************/
     public void addToTopList(Movie m, DatabaseManager db) {
-        if (existsIn(m, "topList") == null) topList.add(m);
+        if (existsIn(m, "topList") == null){
+            topList.add(m);
+            removeFrom(m, db, "futureList");
+        }
         db.addMovieTo(mail, "topList", m);
     }
 
     public void addToFutureList(Movie m, DatabaseManager db) {
-        if (existsIn(m, "futureList") == null) futureList.add(m);
+        if (existsIn(m, "futureList") == null){
+            futureList.add(m);
+            removeFrom(m, db, "topList");
+        }
         db.addMovieTo(mail, "futureList", m);
     }
 
