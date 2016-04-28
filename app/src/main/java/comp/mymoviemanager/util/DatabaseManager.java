@@ -64,8 +64,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
             + " TEXT," + KEY_PHOTO + " TEXT," + KEY_RELEASE
             + " TEXT," + KEY_GENRE + " TEXT," +  KEY_POPULARITY
             + " TEXT," + KEY_LANGUAGE + " TEXT," + KEY_SINOPSIS
-            + " TEXT," + KEY_VOTE + " INTEGER," + KEY_ID + " INTEGER, FOREIGN KEY ("
-            + KEY_MAIL + ") REFERENCES " + TABLE_PROFILES + "(" + KEY_MAIL + "));";
+            + " TEXT," + KEY_VOTE + " INTEGER," + KEY_ID + " INTEGER UNIQUE NOT NULL, " +
+            "FOREIGN KEY (" + KEY_MAIL + ") REFERENCES " + TABLE_PROFILES + "(" + KEY_MAIL + "));";
 
     // Database queries
     private final String selectFromLists = "SELECT * FROM " + TABLE_LISTS + " WHERE ";
@@ -167,12 +167,13 @@ public class DatabaseManager extends SQLiteOpenHelper {
         values.put(KEY_POPULARITY, m.getPopularity());
         values.put(KEY_LANGUAGE, m.getLanguage());
         values.put(KEY_SINOPSIS, m.getSinopsis());
-        values.put(KEY_VOTE, m.getMyVote());
+        if (listType.equals("futureList")) values.put(KEY_VOTE, 0);
+        else values.put(KEY_VOTE, m.getMyVote());
         values.put(KEY_ID, m.getId());
 
         try {
             db.beginTransaction();
-            db.insert(TABLE_LISTS, null, values);
+            db.insertWithOnConflict(TABLE_LISTS, null, values, SQLiteDatabase.CONFLICT_REPLACE);
             db.setTransactionSuccessful();
         } finally {
             db.endTransaction();
