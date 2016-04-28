@@ -187,9 +187,9 @@ public class DatabaseManager extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         try {
             db.beginTransaction();
-            db.delete(TABLE_LISTS, KEY_ID + " = " + m.getId() + " AND "
-                    + KEY_MAIL + " = " + mail + " AND "
-                    + KEY_TYPE + " = " + listType, null);
+            db.delete(TABLE_LISTS, KEY_ID + " =? AND "
+                    + KEY_MAIL + " =? AND "
+                    + KEY_TYPE + " =? ", new String[] {""+m.getId(), mail, listType});
             db.setTransactionSuccessful();
         } finally {
             db.endTransaction();
