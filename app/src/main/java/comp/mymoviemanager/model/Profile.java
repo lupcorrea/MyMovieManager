@@ -79,29 +79,18 @@ public class Profile {
     }
 
     /****************************************************************************/
-    public boolean existsIn (Movie m, String listType) {
+    public Movie existsIn (Movie m, String listType) {
         switch (listType) {
             case "topList":
                 for (int i = 0; i < topList.size(); i++) {
-                    if (m.getId().intValue() == topList.get(i).getId().intValue()) return true;
+                    if (m.getId().intValue() == topList.get(i).getId().intValue()) return topList.get(i);
                 }
                 break;
             case "futureList":
                 for (int i = 0; i < futureList.size(); i++) {
-                    if (m.getId() == futureList.get(i).getId()) return true;
+                    if (m.getId() == futureList.get(i).getId()) return futureList.get(i);
                 }
                 break;
-        }
-
-        return false;
-    }
-
-    /****************************************************************************/
-    public Movie existsInTop (Movie m) {
-        if (topList != null) {
-            for (int i = 0; i < topList.size(); i++) {
-                if (topList.get(i).getId().intValue() == m.getId().intValue()) return topList.get(i);
-            }
         }
 
         return null;
