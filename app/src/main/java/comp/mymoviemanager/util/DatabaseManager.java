@@ -203,14 +203,14 @@ public class DatabaseManager extends SQLiteOpenHelper {
         Movie m;
         String selectQuery = selectFromLists
                 + KEY_MAIL + " =? AND "
-                + KEY_TYPE + " =?";
+                + KEY_TYPE + " =? ORDER BY " + KEY_VOTE + " DESC";
         Log.e(LOG, selectQuery);
 
         Cursor c;
         try {
             c = db.rawQuery(selectQuery, new String[] {"" + mail, listType});
         } catch (Exception e) {
-            return null;
+            return ll_movie;
         }
         c.moveToFirst();
 

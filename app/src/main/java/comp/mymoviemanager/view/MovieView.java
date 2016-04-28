@@ -54,12 +54,17 @@ public class MovieView implements Observer{
         rate = (Button) view.findViewById(R.id.rate_btn);
         interested = (Button) view.findViewById(R.id.interested_btn);
         //Set the button's text
-        Movie d = model.existsInTop(m);
+        System.out.println(m.getName());
+        Movie d = model.existsIn(m, "topList");
+        Movie f = model.existsIn(m, "futureList");
         if (d != null) {
             ratingBarDisplayTitle.setText("Your rating for this movie:");
             ratingBarDisplay.setRating(d.getMyVote());
-            interested.setText("I'm interested");
+            interested.setVisibility(View.INVISIBLE);
             rate.setText("Rated!");
+        } else if(f != null){
+            interested.setText("Added!");
+            rate.setText("Rate");
         }
 
         try{

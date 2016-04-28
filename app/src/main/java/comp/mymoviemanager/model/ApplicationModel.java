@@ -65,9 +65,10 @@ public class ApplicationModel extends Observable{
         return profile.getFutureList().getLast();
     }
 
-    public Movie existsInTop (Movie m) {
+    /*public Movie existsInTop (Movie m) {
         return profile.existsInTop(m);
-    }
+    }*/
+    public Movie existsIn (Movie m, String type) { return profile.existsIn(m, type); }
 
     public void setLists(DatabaseManager db){
         profile.setTopList(db.createListFromDb(profile.getMail(), "topList"));
@@ -76,7 +77,6 @@ public class ApplicationModel extends Observable{
 
     public void getTopList(){
         top = profile.getTopList();
-        System.err.println("TAMANHO: " + top.size());
         if (top.size() != 0)
             getImages(5);
         else
@@ -85,7 +85,6 @@ public class ApplicationModel extends Observable{
 
     public void getFutureList(){
         future = profile.getFutureList();
-        System.err.println("TAMANHO: " + top.size());
         getImages(6);
     }
 
@@ -96,6 +95,26 @@ public class ApplicationModel extends Observable{
     public void setMovieFromId(Integer id){
         int found = 0;
         while (found == 0) {
+            for (int i = 0; i < top.size() && found == 0; i++) {
+                try {
+                    if (top.get(i).getId().intValue() == id.intValue()) {
+                        selected = top.get(i);
+                        found = 1;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            for (int i = 0; i < future.size() && found == 0; i++) {
+                try {
+                    if (future.get(i).getId().intValue() == id.intValue()) {
+                        selected = future.get(i);
+                        found = 1;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
             for (int i = 0; i < suggestions.size() && found == 0; i++) {
                 try {
                     if (suggestions.get(i).getId().intValue() == id.intValue()) {
@@ -140,26 +159,6 @@ public class ApplicationModel extends Observable{
                 try {
                     if (search_results.get(i).getId().intValue() == id.intValue()) {
                         selected = search_results.get(i);
-                        found = 1;
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            for (int i = 0; i < top.size() && found == 0; i++) {
-                try {
-                    if (top.get(i).getId().intValue() == id.intValue()) {
-                        selected = top.get(i);
-                        found = 1;
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            for (int i = 0; i < future.size() && found == 0; i++) {
-                try {
-                    if (future.get(i).getId().intValue() == id.intValue()) {
-                        selected = future.get(i);
                         found = 1;
                     }
                 } catch (Exception e) {
@@ -221,43 +220,43 @@ public class ApplicationModel extends Observable{
         if (x == 0) {
             func1 = 0;
             for (int i = 0; i < suggestions.size(); i++) {
-                new GetPoster().execute("http://image.tmdb.org/t/p/w154" + suggestions.get(i).getPosterPath());
+                new GetPoster().execute("http://image.tmdb.org/t/p/w92" + suggestions.get(i).getPosterPath());
             }
         }
         else if (x == 1){
             func1 = 1;
             for (int i = 0; i < popular.size(); i++) {
-                new GetPoster().execute("http://image.tmdb.org/t/p/w154" + popular.get(i).getPosterPath());
+                new GetPoster().execute("http://image.tmdb.org/t/p/w92" + popular.get(i).getPosterPath());
             }
         }
         else if (x == 2){
             func1 = 2;
             for (int i = 0; i < top_rated.size(); i++) {
-                new GetPoster().execute("http://image.tmdb.org/t/p/w154" + top_rated.get(i).getPosterPath());
+                new GetPoster().execute("http://image.tmdb.org/t/p/w92" + top_rated.get(i).getPosterPath());
             }
         }
         else if (x == 3){
             func1 = 3;
             for (int i = 0; i < upcoming.size(); i++) {
-                new GetPoster().execute("http://image.tmdb.org/t/p/w154" + upcoming.get(i).getPosterPath());
+                new GetPoster().execute("http://image.tmdb.org/t/p/w92" + upcoming.get(i).getPosterPath());
             }
         }
         else if (x == 4){
             func1 = 4;
             for (int i = 0; i < search_results.size(); i++) {
-                new GetPoster().execute("http://image.tmdb.org/t/p/w154" + search_results.get(i).getPosterPath());
+                new GetPoster().execute("http://image.tmdb.org/t/p/w92" + search_results.get(i).getPosterPath());
             }
         }
         else if (x == 5){
             func1 = 5;
             for (int i = 0; i < top.size(); i++){
-                new GetPoster().execute("http://image.tmdb.org/t/p/w154" + top.get(i).getPosterPath());
+                new GetPoster().execute("http://image.tmdb.org/t/p/w92" + top.get(i).getPosterPath());
             }
         }
         else if (x == 6){
             func1 = 6;
             for (int i = 0; i < future.size(); i++){
-                new GetPoster().execute("http://image.tmdb.org/t/p/w154" + future.get(i).getPosterPath());
+                new GetPoster().execute("http://image.tmdb.org/t/p/w92" + future.get(i).getPosterPath());
             }
         }
     }

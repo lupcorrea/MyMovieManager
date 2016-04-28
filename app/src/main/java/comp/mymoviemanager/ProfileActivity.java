@@ -59,7 +59,6 @@ public class ProfileActivity extends ToolBarActivity{
 
     }
 
-
     @Override
     public int getLayoutResource() {
         return R.layout.view_profile_main;
