@@ -68,7 +68,7 @@ public class ApplicationModel extends Observable{
     public void removeMovie(Movie m, DatabaseManager db, String type){
         profile.removeFrom(m, db, type);
         setChanged();
-        notifyObservers();
+        notifyObservers(3);
     }
 
     public Movie existsIn (Movie m, String type) { return profile.existsIn(m, type); }

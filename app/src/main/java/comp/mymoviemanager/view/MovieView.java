@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Arrays;
 import java.util.List;
@@ -170,7 +171,7 @@ public class MovieView implements Observer{
         }
         else if ((Integer) data == 3){
             ratingBarDisplayTitle.setText("Your rating for this movie:");
-            ratingBarDisplay.setRating(model.getSelected().getMyVote());
+            ratingBarDisplay.setRating(0);
 
             interested.setText("I'm interested");
             interested.setTextColor(Color.parseColor("#EDEDED"));
@@ -186,6 +187,8 @@ public class MovieView implements Observer{
             remove.setTextColor(Color.parseColor("#000000"));
             remove.setBackgroundColor(Color.parseColor("#EDEDED"));
             remove.setEnabled(false);
+
+            Toast.makeText(view.getContext(), "Movie was removed from your List!", Toast.LENGTH_LONG).show();
         }
     }
 }
