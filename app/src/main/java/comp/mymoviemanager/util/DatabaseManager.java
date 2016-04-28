@@ -167,8 +167,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         values.put(KEY_POPULARITY, m.getPopularity());
         values.put(KEY_LANGUAGE, m.getLanguage());
         values.put(KEY_SINOPSIS, m.getSinopsis());
-        if (listType.equals("futureList")) values.put(KEY_VOTE, 0);
-        else values.put(KEY_VOTE, m.getMyVote());
+        values.put(KEY_VOTE, m.getMyVote());
         values.put(KEY_ID, m.getId());
 
         try {

@@ -59,13 +59,15 @@ public class ApplicationModel extends Observable{
         return profile.getTopList().getLast();
     }
     public Movie addToFuture (Movie m, DatabaseManager db) {
-        profile.addToFutureList(m, db);
+        Movie newM = profile.existsIn(m, "topList");
+        if (newM != null) profile.addToFutureList(newM, db);
+        else profile.addToFutureList(m, db);
         setChanged();
         notifyObservers(0);
         return profile.getFutureList().getLast();
     }
 
-    public void removeMovie(Movie m, DatabaseManager db, String type){
+    public void removeMovie(Movie m, DatabaseManager db, String type) {
         profile.removeFrom(m, db, type);
         setChanged();
         notifyObservers(3);
